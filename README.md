@@ -119,7 +119,7 @@ exist in the table.
 lume.find({"a", "b", "c"}, "b") -- Returns 2
 ```
 
-### lume.once(fn, ...])
+### lume.once(fn, ...)
 Returns a wrapper function to `fn` which takes the supplied arguments. The
 wrapper function will call `fn` on the first call and do nothing on any
 subsequent calls.
