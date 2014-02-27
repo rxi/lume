@@ -27,10 +27,11 @@ Returns `1` if `x` is 0 or above, returns `-1` when `x` is negative.
 
 ### lume.lerp(a, b, amount)
 Returns the linearly interpolated value between `a` and `b`, `amount` should be
-in the range of 0 - 1; if `amount` is outside of this range it is clamped.
+range of 0 - 1; if `amount` is outside of this range it is clamped.
 
 ### lume.smooth(a, b, amount)
-Similar to `lume.lerp()` but uses cosine interpolation.
+Similar to `lume.lerp()` but uses cosine interpolation instead of linear
+interpolation.
 
 ### lume.pingpong(x, len)
 Ping-pongs the value `x` between 0 and `len`.
@@ -47,34 +48,33 @@ between `0` and `a` is returned. If no arguments are supplied a random number
 between `0` and `1` is returned.
 
 ### lume.randomchoice(t)
-Returns a random value from the supplied array
+Returns a random value from array `t`.
 
 ### lume.shuffle(t)
-Shuffles the values of an array in place, returns the array.
+Shuffles the values of array `t` in place, returns the array.
 
 ### lume.array(...)
-Iterates the supplied iterator and returns an array filled with the values
-which it returned.
+Iterates the supplied iterator and returns an array filled with the values.
 ```lua
 lume.array(pairs({a = 1, b = 2})) -- Returns {a, b}
 ```
 
 ### lume.map(t, fn)
-Iterates the table `t` on all its values, replaces each value in place with the
-return of `fn` when called on that value.
+Applies the function `fn` to each value in table `t` and returns a new table
+with the resulting values.
 ```lua
 lume.map({1, 2, 3}, function(x) return x * 2 end) -- Returns {2, 4, 6}
 ```
 
 ### lume.all(t, fn)
-Iterates the table `t` and calls `fn` on each value. Returns true if all the
-calls to `fn` return true.
+Calls `fn` on each value in `t` table and returns true if all the calls to `fn`
+return true.
 ```lua
 lume.all({1, 2, 1}, function(x) return x == 1 end) -- Returns false
 ```
 
 ### lume.any(t, fn)
-Iterates the table `t` and calls `fn` on each value. Returns true if any of the
+Calls `fn` on each value in `t` table and returns true if any of the
 calls to `fn` return true.
 ```lua
 lume.all({1, 2, 1}, function(x) return x == 1 end) -- Returns true
@@ -105,9 +105,9 @@ lume.filter({1, 2, 3, 4}, function(x) return x % 2 == 0 end, true)
 
 ### lume.merge(t, t2 [, isarray])
 Merges all the values from the table `t2` into `t` in place. If `isarray` is
-true the tables are treated as arrays, `isarray` is false by default. If `t2`
-overwrites the value of any key which `t` already has when both table not
-treating the tables as arrays.
+true the tables are treated as arrays, `isarray` is false by default. If
+`isarray` is false and `t` and `t2` have a conflicting key, the value from `t2`
+is used.
 ```lua
 lume.merge({2, 3}, {4, 5}, true) -- Returns {2, 3, 4, 5}
 ```
@@ -148,7 +148,7 @@ f() -- Prints "Hello"
 ```
 
 ### lume.serialize(x)
-Serialises the argument `x` into a string which can be loaded again using
+Serializes the argument `x` into a string which can be loaded again using
 `lume.deserialize()`. `x` can be a boolean, number, table or string. Circular
 references are not handled, all nested tables of `x` are serialised as unique
 tables.
@@ -167,7 +167,7 @@ lume.deserialize("{1, 2, 3}") -- Returns {1, 2, 3}
 ### lume.split(str [, sep])
 Splits the string `str` into words and returns a table of the sub strings. If
 `sep` is provided the string will be split at any of the characters in `sep`
-rather than on whitespace.
+instead of on whitespace.
 ```lua
 lume.split("One two three") -- Returns {"One", "two", "three}
 ```
@@ -175,7 +175,7 @@ lume.split("One two three") -- Returns {"One", "two", "three}
 ### lume.trim(str [, chars])
 Trims the whitespace from the start and end of the string `str` and returns the
 new string. If a `chars` value is set the characters in `chars` are trimmed
-rather than the whitespace.
+instead of whitespace.
 ```lua
 lume.trim("  Hello  ") -- Returns "Hello"
 ```
@@ -196,7 +196,7 @@ lume.dostring("print('Hello!')") -- Prints "Hello!"
 
 ### lume.rgba(color)
 Takes the 32bit integer `color` argument and returns 4 numbers, one for each
-channel, with a range of 0 - 255. Useful for as the argument to
+channel, with a range of 0 - 255. Handy for using as the argument to
 [LÖVE](http://love2d.org)'s setColor() function.
 ```lua
 lume.rgba(0xFF304050) -- Returns 48, 64, 80, 255
