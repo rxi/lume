@@ -89,7 +89,7 @@ lume.set({2, 1, 2, "cat", "cat"}) -- Returns {1, 2, cat}
 ### lume.reduce(t, fn [, first])
 Applies `fn` on two arguments cumulative to the items of the array `t`, from
 left to right, so as to reduce the array to a single value. If the `first`
-argument is not supplied the accumulator is initialised to `0`
+argument is not supplied the accumulator is initialised to `0`.
 ```lua
 lume.reduce({1, 2, 3}, function(a, b) return a + b end) -- Returns 6
 ```
@@ -150,7 +150,8 @@ f() -- Prints "Hello"
 ### lume.serialize(x)
 Serialises the argument `x` into a string which can be loaded again using
 `lume.deserialize()`. `x` can be a boolean, number, table or string. Circular
-are not handled, all nested tables of `x` are serialised as unique tables.
+references are not handled, all nested tables of `x` are serialised as unique
+tables.
 ```lua
 lume.serialize({a = "test", b = {1, 2, 3}, false})
 -- Returns "{[1]=false,["a"]="test",["b"]={[1]=1,[2]=2,[3]=3,},}"
