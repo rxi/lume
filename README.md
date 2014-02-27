@@ -80,18 +80,19 @@ calls to `fn` return true.
 lume.all({1, 2, 1}, function(x) return x == 1 end) -- Returns true
 ```
 
-### lume.set(t)
-Returns a copy of the array `t` with all the duplicate values removed.
-```lua
-lume.set({2, 1, 2, "cat", "cat"}) -- Returns {1, 2, cat}
-```
-
 ### lume.reduce(t, fn [, first])
 Applies `fn` on two arguments cumulative to the items of the array `t`, from
 left to right, so as to reduce the array to a single value. If the `first`
 argument is not supplied the accumulator is initialised to `0`.
 ```lua
 lume.reduce({1, 2, 3}, function(a, b) return a + b end) -- Returns 6
+```
+
+### lume.set(t, [, isarray])
+Returns a copy of the `t` table with all the duplicate values removed. If
+`isarray` is true the table is treated as an array.
+```lua
+lume.set({2, 1, 2, "cat", "cat"}) -- Returns {1, 2, cat}
 ```
 
 ### lume.filter(t, fn [, isarray])

@@ -102,20 +102,22 @@ function lume.any(t, fn)
 end
 
 
-function lume.set(t)
-  local tmp = {}
-  for k, v in pairs(t) do tmp[v] = k end
-  local rtn = {}
-  for k, _ in pairs(tmp) do rtn[#rtn + 1] = k end
-  return rtn
-end
-
-
 function lume.reduce(t, fn, first)
   local acc = first
   if acc == nil then acc = 0 end
   for i = 1, #t do acc = fn(acc, t[i]) end
   return acc
+end
+
+
+function lume.set(t, isarray)
+  local tmp = {}
+  for k, v in pairs(t) do tmp[v] = k end
+  local rtn = {}
+  for k, v in pairs(tmp) do 
+    rtn[isarray and (#rtn + 1) or v] = k
+  end
+  return rtn
 end
 
 
