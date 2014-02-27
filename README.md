@@ -101,8 +101,7 @@ Calls `fn` on each value of `t` table. Returns a new table with only the values
 where `fn` returned true. If `retainkeys` is true the table is not treated as
 an array and retains its original keys.
 ```lua
-lume.filter({1, 2, 3, 4}, function(x) return x % 2 == 0 end, true) 
--- Returns {2, 4}
+lume.filter({1, 2, 3, 4}, function(x) return x % 2 == 0 end) -- Returns {2, 4}
 ```
 
 ### lume.merge(t, t2 [, retainkeys])
