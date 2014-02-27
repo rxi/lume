@@ -110,7 +110,7 @@ Merges all the values from the table `t2` into `t` in place. If `retainkeys` is
 true the table is not treated as an array and retains its original keys; if `t`
 and `t2` have a conflicting key, the value from `t2` is used.
 ```lua
-lume.merge({2, 3}, {4, 5}, true) -- Returns {2, 3, 4, 5}
+lume.merge({2, 3}, {4, 5}) -- Returns {2, 3, 4, 5}
 ```
 
 ### lume.find(t, value)
