@@ -166,7 +166,7 @@ end
 
 
 function lume.clone(t)
-  rtn = {}
+  local rtn = {}
   for k, v in pairs(t) do rtn[k] = v end
   return rtn
 end
