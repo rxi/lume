@@ -43,7 +43,7 @@ Returns the distance between the two points.
 Returns the angle between the two points.
 
 ### lume.random([a [, b]])
-Returns a random number between `a` and `b`. If only `a` is supplied an integer
+Returns a random number between `a` and `b`. If only `a` is supplied a number
 between `0` and `a` is returned. If no arguments are supplied a random number
 between `0` and `1` is returned.
 
