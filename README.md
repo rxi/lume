@@ -19,8 +19,8 @@ lume = require "lume"
 Returns the value `x` clamped between the values `min` and `max`
 
 ### lume.round(x)
-Rounds `x` to the nearest integer. Rounds towards zero if we're midway between
-two integers.
+Rounds `x` to the nearest integer. Rounds away from zero if we're midway
+between two integers.
 
 ### lume.sign(x)
 Returns `1` if `x` is 0 or above, returns `-1` when `x` is negative.
