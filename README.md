@@ -33,8 +33,8 @@ range of 0 - 1; if `amount` is outside of this range it is clamped.
 Similar to `lume.lerp()` but uses cosine interpolation instead of linear
 interpolation.
 
-### lume.pingpong(x, len)
-Ping-pongs the value `x` between 0 and `len`.
+### lume.pingpong(x)
+Ping-pongs the value `x` between 0 and 1.
 
 ### lume.distance(x1, y1, x2, y2)
 Returns the distance between the two points.

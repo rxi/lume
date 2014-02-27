@@ -7,7 +7,7 @@
 -- under the terms of the MIT license. See LICENSE for details.
 --
 
-local lume = { _version = "1.0.1" }
+local lume = { _version = "1.0.2" }
 
 
 function lume.clamp(x, min, max)
@@ -36,8 +36,8 @@ function lume.smooth(a, b, amount)
 end
 
 
-function lume.pingpong(x, len)
-  return (1 - math.abs(1 - x % 2)) * (len or 1)
+function lume.pingpong(x)
+  return 1 - math.abs(1 - x % 2)
 end
 
 
