@@ -110,29 +110,27 @@ function lume.reduce(t, fn, first)
 end
 
 
-function lume.set(t, isarray)
+function lume.set(t, retainkeys)
   local tmp = {}
   for k, v in pairs(t) do tmp[v] = k end
   local rtn = {}
-  for k, v in pairs(tmp) do 
-    rtn[isarray and (#rtn + 1) or v] = k
-  end
+  for k, v in pairs(tmp) do rtn[retainkeys and v or (#rtn + 1)] = k end
   return rtn
 end
 
 
-function lume.filter(t, fn, isarray)
+function lume.filter(t, fn, retainkeys)
   local rtn = {}
   for k, v in pairs(t) do
-    if fn(v) then rtn[isarray and (#rtn + 1) or k] = v end
+    if fn(v) then rtn[retainkeys and k or (#rtn + 1)] = v end
   end
   return rtn
 end
 
 
-function lume.merge(t, t2, isarray)
+function lume.merge(t, t2, retainkeys)
   for k, v in pairs(t2) do
-    t[isarray and (#t + 1) or k] = v
+    t[retainkeys and k or (#t + 1)] = v
   end
   return t
 end

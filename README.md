@@ -88,27 +88,27 @@ argument is not supplied the accumulator is initialised to `0`.
 lume.reduce({1, 2, 3}, function(a, b) return a + b end) -- Returns 6
 ```
 
-### lume.set(t, [, isarray])
+### lume.set(t, [, retainkeys])
 Returns a copy of the `t` table with all the duplicate values removed. If
-`isarray` is true the table is treated as an array.
+`retainkeys` is true the table is not treated as an array and retains its
+original keys.
 ```lua
 lume.set({2, 1, 2, "cat", "cat"}) -- Returns {1, 2, cat}
 ```
 
-### lume.filter(t, fn [, isarray])
-Iterates the table `t` and calls `fn` on each value. Returns a new table with
-only the value which `fn` returned true. If `isarray` is true the table is
-treated as an array, `isarray` is false by default.
+### lume.filter(t, fn [, retainkeys])
+Calls `fn` on each value of `t` table. Returns a new table with only the values
+where `fn` returned true. If `retainkeys` is true the table is not treated as
+an array and retains its original keys.
 ```lua
 lume.filter({1, 2, 3, 4}, function(x) return x % 2 == 0 end, true) 
 -- Returns {2, 4}
 ```
 
-### lume.merge(t, t2 [, isarray])
-Merges all the values from the table `t2` into `t` in place. If `isarray` is
-true the tables are treated as arrays, `isarray` is false by default. If
-`isarray` is false and `t` and `t2` have a conflicting key, the value from `t2`
-is used.
+### lume.merge(t, t2 [, retainkeys])
+Merges all the values from the table `t2` into `t` in place. If `retainkeys` is
+true the table is not treated as an array and retains its original keys; if `t`
+and `t2` have a conflicting key, the value from `t2` is used.
 ```lua
 lume.merge({2, 3}, {4, 5}, true) -- Returns {2, 3, 4, 5}
 ```
