@@ -170,7 +170,7 @@ Splits the string `str` into words and returns a table of the sub strings. If
 `sep` is provided the string will be split at any of the characters in `sep`
 instead of on whitespace.
 ```lua
-lume.split("One two three") -- Returns {"One", "two", "three}
+lume.split("One two three") -- Returns {"One", "two", "three"}
 ```
 
 ### lume.trim(str [, chars])
