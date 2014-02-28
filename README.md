@@ -66,18 +66,20 @@ with the resulting values.
 lume.map({1, 2, 3}, function(x) return x * 2 end) -- Returns {2, 4, 6}
 ```
 
-### lume.all(t, fn)
-Calls `fn` on each value in `t` table and returns true if all the calls to `fn`
-return true.
+### lume.all(t [, fn])
+Returns true if all the values in `t` table are true. If a `fn` function is
+supplied it is called on each value, true is returned if all of the calls to
+`fn` return true.
 ```lua
 lume.all({1, 2, 1}, function(x) return x == 1 end) -- Returns false
 ```
 
-### lume.any(t, fn)
-Calls `fn` on each value in `t` table and returns true if any of the
-calls to `fn` return true.
+### lume.any(t [, fn])
+Returns true if any of the values in `t` table are true. If a `fn` function is
+supplied it is called on each value, true is returned if any of the calls to
+`fn` return true.
 ```lua
-lume.all({1, 2, 1}, function(x) return x == 1 end) -- Returns true
+lume.any({1, 2, 1}, function(x) return x == 1 end) -- Returns true
 ```
 
 ### lume.reduce(t, fn, first)

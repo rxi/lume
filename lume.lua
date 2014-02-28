@@ -7,7 +7,7 @@
 -- under the terms of the MIT license. See LICENSE for details.
 --
 
-local lume = { _version = "1.0.3" }
+local lume = { _version = "1.0.4" }
 
 
 function lume.clamp(x, min, max)
@@ -87,6 +87,7 @@ end
 
 
 function lume.all(t, fn)
+  fn = fn or function(x) return x end
   for k, v in pairs(t) do
     if not fn(v) then return false end
   end
@@ -95,6 +96,7 @@ end
 
 
 function lume.any(t, fn)
+  fn = fn or function(x) return x end
   for k, v in pairs(t) do
     if fn(v) then return true end
   end
