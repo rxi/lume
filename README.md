@@ -149,6 +149,13 @@ local f = lume.fn(print, "Hello")
 f() -- Prints "Hello"
 ```
 
+### lume.time(fn, ...)
+Inserts the arguments into function `fn` and calls it. Returns the time in
+seconds the function `fn` took to execute followed by `fn`'s returned values.
+```lua
+lume.time(function(x) return x end, "hello") -- Returns 0, "hello"
+```
+
 ### lume.serialize(x)
 Serializes the argument `x` into a string which can be loaded again using
 `lume.deserialize()`. Only booleans, numbers, tables and strings can be

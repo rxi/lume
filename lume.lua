@@ -7,7 +7,7 @@
 -- under the terms of the MIT license. See LICENSE for details.
 --
 
-local lume = { _version = "1.0.4" }
+local lume = { _version = "1.0.5" }
 
 
 function lume.clamp(x, min, max)
@@ -175,6 +175,13 @@ end
 function lume.fn(fn, ...)
   local arg = {...}
   return function() fn(unpack(arg)) end
+end
+
+
+function lume.time(fn, ...)
+  local start = os.clock()
+  local rtn = {fn(...)}
+  return (os.clock() - start), unpack(rtn)
 end
 
 
