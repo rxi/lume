@@ -7,7 +7,7 @@
 -- under the terms of the MIT license. See LICENSE for details.
 --
 
-local lume = { _version = "1.0.2" }
+local lume = { _version = "1.0.3" }
 
 
 function lume.clamp(x, min, max)
@@ -103,10 +103,8 @@ end
 
 
 function lume.reduce(t, fn, first)
-  local acc = first
-  if acc == nil then acc = 0 end
-  for i = 1, #t do acc = fn(acc, t[i]) end
-  return acc
+  for i = 1, #t do first = fn(first, t[i]) end
+  return first
 end
 
 

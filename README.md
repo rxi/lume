@@ -80,12 +80,12 @@ calls to `fn` return true.
 lume.all({1, 2, 1}, function(x) return x == 1 end) -- Returns true
 ```
 
-### lume.reduce(t, fn [, first])
+### lume.reduce(t, fn, first)
 Applies `fn` on two arguments cumulative to the items of the array `t`, from
-left to right, so as to reduce the array to a single value. If the `first`
-argument is not supplied the accumulator is initialised to `0`.
+left to right, so as to reduce the array to a single value. The accumulator is
+intialised to the `first` value.
 ```lua
-lume.reduce({1, 2, 3}, function(a, b) return a + b end) -- Returns 6
+lume.reduce({1, 2, 3}, function(a, b) return a + b end, 0) -- Returns 6
 ```
 
 ### lume.set(t, [, retainkeys])
