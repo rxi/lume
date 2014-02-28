@@ -56,7 +56,7 @@ Shuffles the values of array `t` in place, returns the array.
 ### lume.array(...)
 Iterates the supplied iterator and returns an array filled with the values.
 ```lua
-lume.array(pairs({a = 1, b = 2})) -- Returns {a, b}
+lume.array(pairs({a = 1, b = 2})) -- Returns {"a", "b"}
 ```
 
 ### lume.map(t, fn)
@@ -90,7 +90,7 @@ intialised to the `first` value.
 lume.reduce({1, 2, 3}, function(a, b) return a + b end, 0) -- Returns 6
 ```
 
-### lume.set(t, [, retainkeys])
+### lume.set(t [, retainkeys])
 Returns a copy of the `t` table with all the duplicate values removed. If
 `retainkeys` is true the table is not treated as an array and retains its
 original keys.
@@ -151,9 +151,9 @@ f() -- Prints "Hello"
 
 ### lume.serialize(x)
 Serializes the argument `x` into a string which can be loaded again using
-`lume.deserialize()`. `x` can be a boolean, number, table or string. Circular
-references are not handled, all nested tables of `x` are serialised as unique
-tables.
+`lume.deserialize()`. Only booleans, numbers, tables and strings can be
+serialized. Circular references are not handled; all nested tables are
+serialized as unique tables.
 ```lua
 lume.serialize({a = "test", b = {1, 2, 3}, false})
 -- Returns "{[1]=false,["a"]="test",["b"]={[1]=1,[2]=2,[3]=3,},}"
@@ -184,7 +184,7 @@ lume.trim("  Hello  ") -- Returns "Hello"
 
 ### lume.format(str, vars)
 Returns a formatted string. The values of keys in the table `vars` can be
-inserted into the string by using the form `"{key}"` in `str`
+inserted into the string by using the form `"{key}"` in `str`.
 ```lua
 lume.format("Hello {a}, I hope {a} is {b}.", {a = "world", b = "well"})
 -- Returns "Hello world, I hope world is well."
