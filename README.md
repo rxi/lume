@@ -1,11 +1,11 @@
 # lume
 
-A collection of handy functions for Lua, geared towards game development.
+A collection of functions for Lua, geared towards game development.
 
 
 ## Installation
 
-The [lume.lua](lume.lua) file should be dropped into an existing project and
+The [lume.lua](lume.lua?raw=1) file should be dropped into an existing project and
 required by it:
 
 ```lua
@@ -214,8 +214,8 @@ lume.hotswap("lume") -- Reloads the lume module
 
 ### lume.rgba(color)
 Takes the 32bit integer `color` argument and returns 4 numbers, one for each
-channel, with a range of 0 - 255. Handy for using as the argument to
-[LÖVE](http://love2d.org)'s setColor() function.
+channel, with a range of 0 - 255. The returned values can be used as the
+arguments to [LÖVE](http://love2d.org)'s setColor() function.
 ```lua
 lume.rgba(0xFF304050) -- Returns 48, 64, 80, 255
 ```
