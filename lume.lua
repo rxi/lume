@@ -7,7 +7,7 @@
 -- under the terms of the MIT license. See LICENSE for details.
 --
 
-local lume = { _version = "1.0.5" }
+local lume = { _version = "1.0.6" }
 
 
 function lume.clamp(x, min, max)
@@ -223,6 +223,33 @@ end
 
 function lume.dostring(str)
   return assert(loadstring(str))()
+end
+
+
+function lume.hotswap(modname)
+  local updated = {}
+  local function update(old, new)
+    if updated[old] then return end 
+    updated[old] = true
+    local oldmt, newmt = getmetatable(old), getmetatable(new)
+    if oldmt and newmt then update(oldmt, newmt) end
+    for k, v in pairs(new) do
+      if type(v) == "table" then update(old[k], v) else old[k] = v end
+    end
+  end
+  local oldglobal = lume.clone(_G)
+  local oldmod = require(modname)
+  package.loaded[modname] = nil
+  local newmod = require(modname)
+  package.loaded[modname] = oldmod
+  if type(oldmod) == "table" then update(oldmod, newmod) end
+  for k, v in pairs(oldglobal) do
+    if v ~= _G[k] and type(v) == "table" then 
+      update(v, _G[k])
+      _G[k] = v
+    end
+  end
+  return oldmod
 end
 
 

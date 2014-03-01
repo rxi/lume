@@ -203,6 +203,15 @@ Executes the lua code inside `str`.
 lume.dostring("print('Hello!')") -- Prints "Hello!"
 ```
 
+### lume.hotswap(modname)
+Reloads an already loaded module in place; `modname` should be the same string
+used when loading the module with require(). This function can be used to
+immediatly see the effects of code changes without having to restart the
+program.
+```lua
+lume.hotswap("lume") -- Reloads the lume module
+```
+
 ### lume.rgba(color)
 Takes the 32bit integer `color` argument and returns 4 numbers, one for each
 channel, with a range of 0 - 255. Handy for using as the argument to
