@@ -7,7 +7,7 @@
 -- under the terms of the MIT license. See LICENSE for details.
 --
 
-local lume = { _version = "1.0.6" }
+local lume = { _version = "1.0.7" }
 
 
 function lume.clamp(x, min, max)
@@ -47,7 +47,7 @@ end
 
 
 function lume.angle(x1, y1, x2, y2)
-  return math.atan2(x1 - x2, y1 - y2)
+  return math.atan2(y2 - y1, x2 - x1)
 end
 
 
