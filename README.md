@@ -5,8 +5,8 @@ A collection of functions for Lua, geared towards game development.
 
 ## Installation
 
-The [lume.lua](lume.lua?raw=1) file should be dropped into an existing project and
-required by it:
+The [lume.lua](lume.lua?raw=1) file should be dropped into an existing project
+and required by it:
 
 ```lua
 lume = require "lume"
@@ -205,12 +205,14 @@ lume.dostring("print('Hello!')") -- Prints "Hello!"
 ```
 
 ### lume.hotswap(modname)
-Reloads an already loaded module in place; `modname` should be the same string
-used when loading the module with require(). This function can be used to
-immediatly see the effects of code changes without having to restart the
-program.
+Reloads an already loaded module in place, allowing you to immediatly see the
+effects of code changes without having to restart the program. `modname` should
+be the same string used when loading the module with require(). In the case of
+an error the global environment is restored and `nil` plus an error message is
+returned.
 ```lua
 lume.hotswap("lume") -- Reloads the lume module
+assert(lume.hotswap("inexistant_module")) -- Raises an error
 ```
 
 ### lume.rgba(color)
