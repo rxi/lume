@@ -28,6 +28,9 @@ Returns `1` if `x` is 0 or above, returns `-1` when `x` is negative.
 ### lume.lerp(a, b, amount)
 Returns the linearly interpolated value between `a` and `b`, `amount` should be
 range of 0 - 1; if `amount` is outside of this range it is clamped.
+```lua
+lume.lerp(100, 200, .5) -- Returns 150
+```
 
 ### lume.smooth(a, b, amount)
 Similar to `lume.lerp()` but uses cosine interpolation instead of linear
@@ -49,6 +52,9 @@ between `0` and `1` is returned.
 
 ### lume.randomchoice(t)
 Returns a random value from array `t`.
+```lua
+lume.randomchoice({true, false}) -- Returns either true or false
+```
 
 ### lume.shuffle(t)
 Shuffles the values of array `t` in place, returns the array.
