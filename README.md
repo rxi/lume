@@ -198,6 +198,14 @@ lume.format("Hello {a}, I hope {a} is {b}.", {a = "world", b = "well"})
 -- Returns "Hello world, I hope world is well."
 ```
 
+### lume.trace(...)
+Prints the current filename and line number followed by each argument separated
+by a space.
+```lua
+-- Assuming the file is called "example.lua" and the next line is 12:
+lume.trace("hello", 1234) -- Prints "[example.lua:12] hello 1234"
+```
+
 ### lume.dostring(str)
 Executes the lua code inside `str`.
 ```lua

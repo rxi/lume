@@ -223,6 +223,13 @@ function lume.format(str, vars)
 end
 
 
+function lume.trace(...)
+  local info = debug.getinfo(2, "Sl")
+  local head = "[" .. info.short_src .. ":" .. info.currentline .. "] "
+  print(head .. table.concat(lume.map({...}, tostring), " "))
+end
+
+
 function lume.dostring(str)
   return assert(loadstring(str))()
 end
