@@ -18,9 +18,14 @@ lume = require "lume"
 ### lume.clamp(x, min, max)
 Returns the value `x` clamped between the values `min` and `max`
 
-### lume.round(x)
-Rounds `x` to the nearest integer. Rounds away from zero if we're midway
-between two integers.
+### lume.round(x [, increment])
+Rounds `x` to the nearest integer; rounds away from zero if we're midway
+between two integers. If `increment` is set then the number is rounded to the
+nearest increment.
+```lua
+lume.round(2.3) -- Returns 2
+lume.round(123.4567, .1) -- Returns 123.5
+```
 
 ### lume.sign(x)
 Returns `1` if `x` is 0 or above, returns `-1` when `x` is negative.
