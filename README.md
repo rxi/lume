@@ -121,15 +121,6 @@ exist in the table.
 lume.find({"a", "b", "c"}, "b") -- Returns 2
 ```
 
-### lume.once(fn, ...)
-Returns a wrapper function to `fn` which takes the supplied arguments. The
-wrapper function will call `fn` on the first call and do nothing on any
-subsequent calls.
-```lua
-local f = lume.once(print, "Hello")
-f() -- Prints "Hello"
-f() -- Does nothing
-```
 
 ### lume.slice(t [, i [, j]])
 Mimics the behaviour of Lua's `string.sub`, but operates on an array rather
@@ -147,6 +138,16 @@ arguments into `fn` which will persist every time the wrapper is called.
 ```lua
 local f = lume.fn(print, "Hello")
 f() -- Prints "Hello"
+```
+
+### lume.once(fn, ...)
+Returns a wrapper function to `fn` which takes the supplied arguments. The
+wrapper function will call `fn` on the first call and do nothing on any
+subsequent calls.
+```lua
+local f = lume.once(print, "Hello")
+f() -- Prints "Hello"
+f() -- Does nothing
 ```
 
 ### lume.time(fn, ...)

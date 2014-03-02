@@ -7,7 +7,7 @@
 -- under the terms of the MIT license. See LICENSE for details.
 --
 
-local lume = { _version = "1.0.7" }
+local lume = { _version = "1.0.8" }
 
 
 function lume.clamp(x, min, max)
@@ -144,15 +144,6 @@ function lume.find(t, value)
 end
 
 
-function lume.once(fn, ...)
-  local arg = {...}
-  return function()
-    if arg == nil then return end
-    fn(unpack(arg))
-    arg = nil
-  end
-end
-
 
 function lume.slice(t, i, j)
   i = i or 1
@@ -174,7 +165,18 @@ end
 
 function lume.fn(fn, ...)
   local arg = {...}
-  return function() fn(unpack(arg)) end
+  return function() return fn(unpack(arg)) end
+end
+
+
+function lume.once(fn, ...)
+  local arg = {...}
+  return function()
+    if arg == nil then return end
+    local rtn = {fn(unpack(arg))}
+    arg = nil
+    return unpack(rtn)
+  end
 end
 
 
