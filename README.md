@@ -39,7 +39,7 @@ Ping-pongs the value `x` between 0 and 1.
 ### lume.distance(x1, y1, x2, y2)
 Returns the distance between the two points.
 
-### lume.angle(x1, y2, x2, y2)
+### lume.angle(x1, y1, x2, y2)
 Returns the angle between the two points.
 
 ### lume.random([a [, b]])
