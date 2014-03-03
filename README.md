@@ -211,7 +211,7 @@ instead of whitespace.
 lume.trim("  Hello  ") -- Returns "Hello"
 ```
 
-### lume.format(str, vars)
+### lume.format(str [, vars])
 Returns a formatted string. The values of keys in the table `vars` can be
 inserted into the string by using the form `"{key}"` in `str`.
 ```lua
