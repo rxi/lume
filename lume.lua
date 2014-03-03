@@ -175,7 +175,10 @@ end
 
 function lume.fn(fn, ...)
   local arg = {...}
-  return function() return fn(unpack(arg)) end
+  return function(...)
+    local a = lume.merge(lume.clone(arg), {...})
+    return fn(unpack(a)) 
+  end
 end
 
 
