@@ -245,7 +245,7 @@ end
 
 
 function lume.dostring(str)
-  return assert(loadstring(str))()
+  return assert((loadstring or load)(str))()
 end
 
 
