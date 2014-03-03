@@ -70,6 +70,15 @@ Iterates the supplied iterator and returns an array filled with the values.
 lume.array(pairs({a = 1, b = 2})) -- Returns {"a", "b"}
 ```
 
+### lume.each(t, fn, ...)
+Iterates the table `t` and calls the function `fn` on each value followed by
+the supplied additional arguments; if `fn` is a string the method of that name
+is called for each value. The function returns `t` unmodified.
+```lua
+lume.each({1, 2, 3}, print) -- Prints "1", "2", "3" on separate lines
+lume.each({a, b, c}, "move", 10, 20) -- Does x:move(10, 20) on each value
+```
+
 ### lume.map(t, fn)
 Applies the function `fn` to each value in table `t` and returns a new table
 with the resulting values.
@@ -131,7 +140,6 @@ exist in the table.
 ```lua
 lume.find({"a", "b", "c"}, "b") -- Returns 2
 ```
-
 
 ### lume.slice(t [, i [, j]])
 Mimics the behaviour of Lua's `string.sub`, but operates on an array rather

@@ -80,6 +80,16 @@ function lume.array(...)
 end
 
 
+function lume.each(t, fn, ...)
+  if type(fn) == "string" then
+    for _, v in pairs(t) do v[fn](v, ...) end
+  else
+    for _, v in pairs(t) do fn(v, ...) end
+  end
+  return t
+end
+
+
 function lume.map(t, fn)
   local rtn = {} 
   for k, v in pairs(t) do rtn[k] = fn(v) end
@@ -143,7 +153,6 @@ function lume.find(t, value)
   end
   return nil
 end
-
 
 
 function lume.slice(t, i, j)
