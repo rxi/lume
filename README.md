@@ -1,4 +1,4 @@
-# lume
+# Lume
 
 A collection of functions for Lua, geared towards game development.
 
@@ -13,10 +13,10 @@ lume = require "lume"
 ```
 
 
-## Function reference
+## Function Reference
 
 ### lume.clamp(x, min, max)
-Returns the value `x` clamped between the values `min` and `max`
+Returns the number `x` clamped between the numbers `min` and `max`
 
 ### lume.round(x [, increment])
 Rounds `x` to the nearest integer; rounds away from zero if we're midway
@@ -31,8 +31,8 @@ lume.round(123.4567, .1) -- Returns 123.5
 Returns `1` if `x` is 0 or above, returns `-1` when `x` is negative.
 
 ### lume.lerp(a, b, amount)
-Returns the linearly interpolated value between `a` and `b`, `amount` should be
-range of 0 - 1; if `amount` is outside of this range it is clamped.
+Returns the linearly interpolated number between `a` and `b`, `amount` should
+be in the range of 0 - 1; if `amount` is outside of this range it is clamped.
 ```lua
 lume.lerp(100, 200, .5) -- Returns 150
 ```
@@ -42,7 +42,7 @@ Similar to `lume.lerp()` but uses cosine interpolation instead of linear
 interpolation.
 
 ### lume.pingpong(x)
-Ping-pongs the value `x` between 0 and 1.
+Ping-pongs the number `x` between 0 and 1.
 
 ### lume.distance(x1, y1, x2, y2)
 Returns the distance between the two points.
@@ -232,7 +232,7 @@ lume.dostring("print('Hello!')") -- Prints "Hello!"
 ```
 
 ### lume.hotswap(modname)
-Reloads an already loaded module in place, allowing you to immediatly see the
+Reloads an already loaded module in place, allowing you to immediately see the
 effects of code changes without having to restart the program. `modname` should
 be the same string used when loading the module with require(). In the case of
 an error the global environment is restored and `nil` plus an error message is
