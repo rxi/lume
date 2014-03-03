@@ -153,10 +153,12 @@ Returns a shallow copy of the table `t`.
 
 ### lume.fn(fn, ...)
 Creates a wrapper function around function `fn`, automatically inserting the
-arguments into `fn` which will persist every time the wrapper is called.
+arguments into `fn` which will persist every time the wrapper is called. Any
+arguments which are passed to the returned function will be inserted after the
+already existing arguments passed to `fn`.
 ```lua
 local f = lume.fn(print, "Hello")
-f() -- Prints "Hello"
+f("world") -- Prints "Hello world"
 ```
 
 ### lume.once(fn, ...)
