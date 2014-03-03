@@ -157,7 +157,7 @@ end
 
 function lume.slice(t, i, j)
   i = i or 1
-  j = j and (j < 0 and (#t + j) or j) or (#t - i + 1)
+  j = j and (j < 0 and (#t + j + 1) or j) or #t
   local rtn = {}
   for i = math.max(i, 1), math.min(j, #t) do
     rtn[#rtn + 1] = t[i]
