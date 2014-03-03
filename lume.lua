@@ -231,7 +231,7 @@ end
 
 
 function lume.format(str, vars)
-  vars = vars or {}
+  if not vars then return str end
   local f = function(x) return tostring(vars[x] or "{" .. x .. "}") end
   return (str:gsub("{(.-)}", f))
 end
