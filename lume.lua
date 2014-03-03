@@ -183,12 +183,12 @@ end
 
 
 function lume.once(fn, ...)
-  local arg = {...}
-  return function()
-    if arg == nil then return end
-    local rtn = {fn(unpack(arg))}
-    arg = nil
-    return unpack(rtn)
+  local fn = lume.fn(fn, ...)
+  local done = false
+  return function(...)
+    if done then return end
+    done = true
+    return fn(...)
   end
 end
 
