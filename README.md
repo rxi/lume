@@ -56,7 +56,8 @@ between `0` and `a` is returned. If no arguments are supplied a random number
 between `0` and `1` is returned.
 
 ### lume.randomchoice(t)
-Returns a random value from array `t`.
+Returns a random value from array `t`. If the array is empty an error is
+raised.
 ```lua
 lume.randomchoice({true, false}) -- Returns either true or false
 ```
