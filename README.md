@@ -213,10 +213,11 @@ lume.trim("  Hello  ") -- Returns "Hello"
 
 ### lume.format(str [, vars])
 Returns a formatted string. The values of keys in the table `vars` can be
-inserted into the string by using the form `"{key}"` in `str`.
+inserted into the string by using the form `"{key}"` in `str`; numerical keys
+can also be used.
 ```lua
-lume.format("Hello {a}, I hope {a} is {b}.", {a = "world", b = "well"})
--- Returns "Hello world, I hope world is well."
+lume.format("{b} hi {a}", {a = "mark", b = "Oh"}) -- Returns "Oh hi mark"
+lume.format("Hello {1}!", {"world"}) -- Returns "Hello world!"
 ```
 
 ### lume.trace(...)
