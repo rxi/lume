@@ -263,7 +263,7 @@ function lume.hotswap(modname)
       if type(v) == "table" then update(old[k], v) else old[k] = v end
     end
   end
-  local oldmod = require(modname)
+  local oldmod = pcall(require, modname) or nil
   local err = nil
   local function onerror(e)
     for k, v in pairs(_G) do _G[k] = oldglobal[k] end
