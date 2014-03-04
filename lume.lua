@@ -7,7 +7,7 @@
 -- under the terms of the MIT license. See LICENSE for details.
 --
 
-local lume = { _version = "1.0.9" }
+local lume = { _version = "1.1.0" }
 
 
 function lume.clamp(x, min, max)
