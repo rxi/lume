@@ -11,7 +11,7 @@ local lume = { _version = "1.1.0" }
 
 
 function lume.clamp(x, min, max)
-  return math.max(math.min(x, max), min)
+  return x < min and min or (x > max and max or x)
 end
 
 
