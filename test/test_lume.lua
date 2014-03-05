@@ -64,11 +64,11 @@ end
 
 -- lume.distance
 tests["lume.distance"] = function()
-  testeq( lume.distance(10, 20, 10, 20), 0  )
-  testeq( lume.distance(10, 20, 20, 20), 10 )
-  local x = lume.distance(1, 2, 5, 7)
-  testeq( lume.distance(1, 2, 5, 7, true),      x * x   )
-  testeq( lume.distance(10, 10, 10, 20, true),  10 * 10 )
+  testeq( lume.distance(15, 20, 15, 20),        0             )
+  testeq( lume.distance(13, 44, 156, 232),      236.205419074 )
+  testeq( lume.distance(-23, 66, -232, 123),    216.633330769 )
+  local x = lume.distance(13, 15, -2, 81)
+  testeq( lume.distance(13, 15, -2, 81, true),  x * x         )
 end
 
 -- lume.angle
@@ -102,7 +102,6 @@ tests["lume.shuffle"] = function()
   testeq( t,                {1, 2, 3, 4, 5} )
   testeq( lume.shuffle({}), {}              )
 end
-
 
 -- lume.array
 tests["lume.array"] = function()
