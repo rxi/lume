@@ -43,7 +43,9 @@ end
 
 
 function lume.distance(x1, y1, x2, y2, squared)
-  local s = (x1 - x2) ^ 2 + (y1 - y2) ^ 2
+  local dx = x1 - x2
+  local dy = y1 - y2
+  local s = dx * dx + dy * dy
   return squared and s or math.sqrt(s)
 end
 
