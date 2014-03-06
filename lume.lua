@@ -101,7 +101,7 @@ end
 
 
 function lume.all(t, fn)
-  fn = fn or function(x) return x end
+  local fn = fn or function(x) return x end
   for k, v in pairs(t) do
     if not fn(v) then return false end
   end
@@ -110,7 +110,7 @@ end
 
 
 function lume.any(t, fn)
-  fn = fn or function(x) return x end
+  local fn = fn or function(x) return x end
   for k, v in pairs(t) do
     if fn(v) then return true end
   end
@@ -161,8 +161,8 @@ end
 
 
 function lume.slice(t, i, j)
-  i = i or 1
-  j = j and (j < 0 and (#t + j + 1) or j) or #t
+  local i = i or 1
+  local j = j and (j < 0 and (#t + j + 1) or j) or #t
   local rtn = {}
   for i = math.max(i, 1), math.min(j, #t) do
     rtn[#rtn + 1] = t[i]
@@ -230,7 +230,7 @@ end
 
 
 function lume.trim(str, chars)
-  chars = chars or "%s"
+  local chars = chars or "%s"
   return str:match("^[" .. chars .. "]*(.-)[" .. chars .. "]*$")
 end
 
@@ -274,7 +274,7 @@ function lume.hotswap(modname)
     err = lume.trim(e)
   end
   local ok, oldmod = pcall(require, modname)
-  oldmod = ok and oldmod or nil
+  local oldmod = ok and oldmod or nil
   xpcall(function()
     package.loaded[modname] = nil
     local newmod = require(modname)
