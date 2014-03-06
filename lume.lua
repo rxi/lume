@@ -119,8 +119,10 @@ end
 
 
 function lume.reduce(t, fn, first)
-  for i = 1, #t do first = fn(first, t[i]) end
-  return first
+  local acc = first or t[1]
+  assert(acc, "reduce of an empty array with no first value")
+  for i = first and 1 or 2, #t do acc = fn(acc, t[i]) end
+  return acc
 end
 
 

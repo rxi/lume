@@ -105,12 +105,14 @@ supplied it is called on each value, true is returned if any of the calls to
 lume.any({1, 2, 1}, function(x) return x == 1 end) -- Returns true
 ```
 
-### lume.reduce(t, fn, first)
+### lume.reduce(t, fn [, first])
 Applies `fn` on two arguments cumulative to the items of the array `t`, from
-left to right, so as to reduce the array to a single value. The accumulator is
-intialised to the `first` value.
+left to right, so as to reduce the array to a single value. If a `first` value
+is specified the accumulator is initialised to this, otherwise the first value
+in the array is used. If the array is empty and no `first` value is specified
+an error is raised,
 ```lua
-lume.reduce({1, 2, 3}, function(a, b) return a + b end, 0) -- Returns 6
+lume.reduce({1, 2, 3}, function(a, b) return a + b end) -- Returns 6
 ```
 
 ### lume.set(t [, retainkeys])
