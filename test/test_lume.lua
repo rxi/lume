@@ -170,6 +170,7 @@ end
 
 -- lume.set
 tests["lume.set"] = function()
+  testeq( lume.set({}), {} )
   local t = lume.set({1, 2, 3, 2, 5, 6, 6})
   table.sort(t)
   testeq( t, {1, 2, 3, 5, 6} )
