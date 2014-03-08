@@ -190,6 +190,15 @@ seconds the function `fn` took to execute followed by `fn`'s returned values.
 lume.time(function(x) return x end, "hello") -- Returns 0, "hello"
 ```
 
+### lume.lambda(str)
+Takes a string lambda and returns a function. `str` should be a list of
+comma-seperated parameters, followed by `->`, followed by the expression which
+will be evaluated and returned.
+```lua
+local f = lume.lambda "x,y -> 2*x+y"
+f(10, 5) -- Returns 25
+```
+
 ### lume.serialize(x)
 Serializes the argument `x` into a string which can be loaded again using
 `lume.deserialize()`. Only booleans, numbers, tables and strings can be
