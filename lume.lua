@@ -212,6 +212,14 @@ function lume.time(fn, ...)
 end
 
 
+function lume.lambda(str)
+  local args, body = str:match([[^([%w,_ ]-)%->(.-)$]])
+  assert(args and body, "bad string lambda")
+  local t = { "return function(", args, ")\nreturn ", body, "\nend" }
+  return lume.dostring(table.concat(t))                     
+end
+
+
 function lume.serialize(x)
   local f = { string = function(v) return string.format("%q", v) end,
               number = tostring, boolean = tostring }
