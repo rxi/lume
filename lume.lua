@@ -134,10 +134,10 @@ end
 
 
 function lume.set(t, retainkeys)
-  local tmp = {}
-  for k, v in pairs(t) do tmp[v] = k end
   local rtn = {}
-  for k, v in pairs(tmp) do rtn[retainkeys and v or (#rtn + 1)] = k end
+  for k, v in pairs(lume.invert(t)) do 
+    rtn[retainkeys and v or (#rtn + 1)] = k
+  end
   return rtn
 end
 
