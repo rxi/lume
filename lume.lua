@@ -215,8 +215,8 @@ end
 function lume.lambda(str)
   local args, body = str:match([[^([%w,_ ]-)%->(.-)$]])
   assert(args and body, "bad string lambda")
-  local t = { "return function(", args, ")\nreturn ", body, "\nend" }
-  return lume.dostring(table.concat(t))                     
+  local s = "return function(" .. args .. ")\nreturn " .. body .. "\nend"
+  return lume.dostring(s)
 end
 
 
