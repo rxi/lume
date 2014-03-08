@@ -160,14 +160,6 @@ tests["lume.reduce"] = function()
   testeq( lume.reduce({}, concat, "potato"),          "potato"    )
 end
 
--- lume.invert
-tests["lume_invert"] = function()
-  testeq( {},                                     {}                  )
-  testeq( lume.invert{a = "x", b = "y"},          {x = "a", y = "b"}  )
-  testeq( lume.invert{a = 1, b = 2},              {"a", "b"}          )
-  testeq( lume.invert(lume.invert{a = 1, b = 2}), {a = 1, b = 2}      )
-end
-
 -- lume.set
 tests["lume.set"] = function()
   testeq( lume.set({}), {} )
@@ -209,6 +201,14 @@ tests["lume.slice"] = function()
   testeq( lume.slice({"a", "b", "c", "d", "e"}, 4),     {"d", "e"}      )
   testeq( lume.slice({"a", "b", "c", "d", "e"}, 1, 1),  {"a"}           )
   testeq( lume.slice({"a", "b", "c", "d", "e"}, 2, 1),  {}              )
+end
+
+-- lume.invert
+tests["lume_invert"] = function()
+  testeq( {},                                     {}                  )
+  testeq( lume.invert{a = "x", b = "y"},          {x = "a", y = "b"}  )
+  testeq( lume.invert{a = 1, b = 2},              {"a", "b"}          )
+  testeq( lume.invert(lume.invert{a = 1, b = 2}), {a = 1, b = 2}      )
 end
 
 -- lume.clone
