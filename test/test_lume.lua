@@ -205,7 +205,7 @@ end
 
 -- lume.invert
 tests["lume_invert"] = function()
-  testeq( {},                                     {}                  )
+  testeq( lume.invert({}),                        {}                  )
   testeq( lume.invert{a = "x", b = "y"},          {x = "a", y = "b"}  )
   testeq( lume.invert{a = 1, b = 2},              {"a", "b"}          )
   testeq( lume.invert(lume.invert{a = 1, b = 2}), {a = 1, b = 2}      )
