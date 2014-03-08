@@ -239,6 +239,20 @@ tests["lume.time"] = function()
   testeq( {a, b, c},  {50, 60, 70}  )
 end
 
+-- lume.lambda
+tests["lume.lambda"] = function()
+  testeq( lume.lambda "x->x*x"(10),                 100         )
+  testeq( lume.lambda "x,y -> 2*x+y"(10,5),         25          )
+  testeq( lume.lambda "a, b -> a / b"(1, 2),        .5          )
+  testeq( lume.lambda "a -> 'hi->' .. a"("doggy"),  "hi->doggy" )
+  testeq( lume.lambda "A1,_->A1.._"("te","st"),     "test"      )
+  testeq( lume.lambda "->"(1,2,3),                  nil         )
+  tester.test.error( lume.lambda, "abc"         )
+  tester.test.error( lume.lambda, ""            )
+  tester.test.error( lume.lambda, "a,b->a->b"   )
+  tester.test.error( lume.lambda, "(a),b->a+b"  )
+end
+
 -- lume.serialize / lume.deserialize
 tests["lume.serialize, lume.deserialize"] = function()
   local t = { 1, 2, 3, 4, true, false, "cat", "dog", {1, 2, 3} }
