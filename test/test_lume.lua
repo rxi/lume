@@ -160,6 +160,14 @@ tests["lume.reduce"] = function()
   testeq( lume.reduce({}, concat, "potato"),          "potato"    )
 end
 
+-- lume.invert
+tests["lume_invert"] = function()
+  testeq( {},                                     {}                  )
+  testeq( lume.invert{a = "x", b = "y"},          {x = "a", y = "b"}  )
+  testeq( lume.invert{a = 1, b = 2},              {"a", "b"}          )
+  testeq( lume.invert(lume.invert{a = 1, b = 2}), {a = 1, b = 2}      )
+end
+
 -- lume.set
 tests["lume.set"] = function()
   local t = lume.set({1, 2, 3, 2, 5, 6, 6})
