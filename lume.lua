@@ -76,6 +76,7 @@ function lume.shuffle(t)
 end
 
 
+
 function lume.array(...)
   local t = {}
   for x in unpack({...}) do t[#t + 1] = x end
@@ -126,13 +127,6 @@ function lume.reduce(t, fn, first)
 end
 
 
-function lume.invert(t)
-  local rtn = {}
-  for k, v in pairs(t) do rtn[v] = k end
-  return rtn
-end
-
-
 function lume.set(t, retainkeys)
   local rtn = {}
   for k, v in pairs(lume.invert(t)) do 
@@ -159,6 +153,7 @@ function lume.merge(t, t2, retainkeys)
 end
 
 
+
 function lume.find(t, value)
   for k, v in pairs(t) do
     if v == value then return k end
@@ -174,6 +169,13 @@ function lume.slice(t, i, j)
   for i = math.max(i, 1), math.min(j, #t) do
     rtn[#rtn + 1] = t[i]
   end
+  return rtn
+end
+
+
+function lume.invert(t)
+  local rtn = {}
+  for k, v in pairs(t) do rtn[v] = k end
   return rtn
 end
 

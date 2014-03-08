@@ -115,13 +115,6 @@ an error is raised,
 lume.reduce({1, 2, 3}, function(a, b) return a + b end) -- Returns 6
 ```
 
-### lume.invert(t)
-Returns a copy of the table where the keys have become the values and the
-values the keys.
-```lua
-lume.invert({a = "x", b = "y"}) -- returns {x = "a", y = "b"}
-```
-
 ### lume.set(t [, retainkeys])
 Returns a copy of the `t` table with all the duplicate values removed. If
 `retainkeys` is true the table is not treated as an array and retains its
@@ -158,6 +151,13 @@ Mimics the behaviour of Lua's `string.sub`, but operates on an array rather
 than a string. Creates and returns a new array of the given slice.
 ```lua
 lume.slice({"a", "b", "c", "d", "e"}, 2, 4) -- Returns {"b", "c", "d"}
+```
+
+### lume.invert(t)
+Returns a copy of the table where the keys have become the values and the
+values the keys.
+```lua
+lume.invert({a = "x", b = "y"}) -- returns {x = "a", y = "b"}
 ```
 
 ### lume.clone(t)
