@@ -128,6 +128,18 @@ function tester.test.equal(result, expected)
 end
 
 
+function tester.test.error(fn, ...)
+  local passed = not pcall(fn, ...)
+  local info = debug.getinfo(2)
+  if passed then
+    dopass(info.short_src, info.currentline)
+  else
+    dofail(info.short_src, info.currentline)
+    printfailmsg("Expected an error to be raised")
+  end
+end
+
+
 function tester.dotests(t)
   local keys = {}
   for k in pairs(t) do table.insert(keys, k) end
