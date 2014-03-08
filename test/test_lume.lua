@@ -155,7 +155,7 @@ tests["lume.reduce"] = function()
   testeq( lume.reduce({"cat", "dog"}, concat, "pig"), "pigcatdog" )
   testeq( lume.reduce({"me", "ow"}, concat),          "meow"      )
   testeq( lume.reduce({1, 2, 3, 4}, add),             10          )
-  testeq( lume.reduce({1, 2, 3, 4}, add),             10          )
+  testeq( lume.reduce({1, 2, 3, 4}, add, 5),          15          )
   testeq( lume.reduce({1}, add),                      1           )
   testeq( lume.reduce({}, concat, "potato"),          "potato"    )
 end
