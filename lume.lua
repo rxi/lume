@@ -126,6 +126,13 @@ function lume.reduce(t, fn, first)
 end
 
 
+function lume.invert(t)
+  local rtn = {}
+  for k, v in pairs(t) do rtn[v] = k end
+  return rtn
+end
+
+
 function lume.set(t, retainkeys)
   local tmp = {}
   for k, v in pairs(t) do tmp[v] = k end
