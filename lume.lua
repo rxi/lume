@@ -7,7 +7,7 @@
 -- under the terms of the MIT license. See LICENSE for details.
 --
 
-local lume = { _version = "1.1.1" }
+local lume = { _version = "1.1.2" }
 
 
 function lume.clamp(x, min, max)
@@ -74,7 +74,6 @@ function lume.shuffle(t)
   end
   return t
 end
-
 
 
 function lume.array(...)
@@ -151,7 +150,6 @@ function lume.merge(t, t2, retainkeys)
   end
   return t
 end
-
 
 
 function lume.find(t, value)
