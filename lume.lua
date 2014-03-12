@@ -67,6 +67,21 @@ function lume.randomchoice(t)
 end
 
 
+function lume.weightedchoice(t)
+  local sum = 0
+  for k, v in pairs(t) do
+    assert(v >= 0, "weight value less than zero")
+    sum = sum + v
+  end
+  assert(sum ~= 0, "all weights are zero")
+  local rnd = lume.random(sum)
+  for k, v in pairs(t) do
+    if rnd < v then return k end
+    rnd = rnd - v
+  end
+end
+
+
 function lume.shuffle(t)
   for i = 1, #t do
     local r = math.random(#t)
