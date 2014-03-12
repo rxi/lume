@@ -245,6 +245,8 @@ function lume.serialize(x)
     end
     return "{" .. table.concat(rtn) .. "}"
   end
+  local err = function(t,k) error("unsupported serialize type: " .. k) end
+  setmetatable(f, { __index = err })
   return f[type(x)](x)
 end
 
