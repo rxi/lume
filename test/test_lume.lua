@@ -94,6 +94,15 @@ tests["lume.randomchoice"] = function()
   testeq( lume.randomchoice({true}),    true )
 end
 
+-- lume.weightedchoice
+tests["lume.weightedchoice"] = function()
+  testeq( lume.weightedchoice( {a = 1} ),         "a" )
+  testeq( lume.weightedchoice( {a = 0, b = 1} ),  "b" )
+  tester.test.error( lume.weightedchoice, {}                  )
+  tester.test.error( lume.weightedchoice, { a = 0, b = 0 }    )
+  tester.test.error( lume.weightedchoice, { a = 1, b = -1 }   )
+end
+
 -- lume.shuffle
 tests["lume.shuffle"] = function()
   local t = {1, 2, 3, 4, 5}
