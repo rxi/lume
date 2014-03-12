@@ -66,10 +66,9 @@ lume.randomchoice({true, false}) -- Returns either true or false
 
 ### lume.weightedchoice(t)
 Takes the argument table `t` where the keys are the possible choices and the
-values are the choice's weight. A weight should be 0 or above, the larger the
-weight value the higher the probability of that choice being picked. If the
-table is empty or all the weights are 0 or a weight is below zero an error is
-raised.
+value is the choice's weight. A weight should be 0 or above, the larger the
+number the higher the probability of that choice being picked. If the table is
+empty, a weight is below zero or all the weights are 0 then an error is raised.
 ```lua
 lume.weightedchoice({ ["cat"] = 10, ["dog"] = 5, ["frog"] = 0 })
 -- Returns either "cat" or "dog" with "cat" being twice as likely to be chosen.
