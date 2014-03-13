@@ -203,13 +203,18 @@ end
 
 -- lume.slice
 tests["lume.slice"] = function()
-  testeq( lume.slice({"a", "b", "c", "d", "e"}, 2, 4),  {"b", "c", "d"} )
-  testeq( lume.slice({"a", "b", "c", "d", "e"}, 2, -2), {"b", "c", "d"} )
-  testeq( lume.slice({"a", "b", "c", "d", "e"}, 3, -1), {"c", "d", "e"} )
-  testeq( lume.slice({"a", "b", "c", "d", "e"}, 3),     {"c", "d", "e"} )
-  testeq( lume.slice({"a", "b", "c", "d", "e"}, 4),     {"d", "e"}      )
-  testeq( lume.slice({"a", "b", "c", "d", "e"}, 1, 1),  {"a"}           )
-  testeq( lume.slice({"a", "b", "c", "d", "e"}, 2, 1),  {}              )
+  testeq( lume.slice({"a", "b", "c", "d", "e"}, 2, 4),    {"b", "c", "d"} )
+  testeq( lume.slice({"a", "b", "c", "d", "e"}, 2, -2),   {"b", "c", "d"} )
+  testeq( lume.slice({"a", "b", "c", "d", "e"}, 3, -1),   {"c", "d", "e"} )
+  testeq( lume.slice({"a", "b", "c", "d", "e"}, 3),       {"c", "d", "e"} )
+  testeq( lume.slice({"a", "b", "c", "d", "e"}, 4),       {"d", "e"}      )
+  testeq( lume.slice({"a", "b", "c", "d", "e"}, 1, 1),    {"a"}           )
+  testeq( lume.slice({"a", "b", "c", "d", "e"}, 2, 1),    {}              )
+  testeq( lume.slice({"a", "b", "c", "d", "e"}, -3, -2),  {"c", "d"}      )
+  testeq( lume.slice({"a", "b", "c", "d", "e"}, -3, 1),   {}              )
+  testeq( lume.slice({"a", "b", "c", "d", "e"}, 0, 1),    {"a"}           )
+  testeq( lume.slice({"a", "b", "c", "d", "e"}, 0, 0),    {}              )
+  testeq( lume.slice({"a", "b", "c", "d", "e"}, -3),      {"c", "d", "e"} )
 end
 
 -- lume.invert
