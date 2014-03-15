@@ -228,11 +228,16 @@ function lume.time(fn, ...)
 end
 
 
+local lambda_cache = {}
+
 function lume.lambda(str)
-  local args, body = str:match([[^([%w,_ ]-)%->(.-)$]])
-  assert(args and body, "bad string lambda")
-  local s = "return function(" .. args .. ")\nreturn " .. body .. "\nend"
-  return lume.dostring(s)
+  if not lambda_cache[str] then
+    local args, body = str:match([[^([%w,_ ]-)%->(.-)$]])
+    assert(args and body, "bad string lambda")
+    local s = "return function(" .. args .. ")\nreturn " .. body .. "\nend"
+    lambda_cache[str] = lume.dostring(s)
+  end
+  return lambda_cache[str]
 end
 
 
