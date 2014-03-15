@@ -256,6 +256,7 @@ end
 -- lume.lambda
 tests["lume.lambda"] = function()
   testeq( lume.lambda "x->x*x"(10),                 100         )
+  testeq( lume.lambda "x->x*x"(20),                 400         )
   testeq( lume.lambda "x,y -> 2*x+y"(10,5),         25          )
   testeq( lume.lambda "a, b -> a / b"(1, 2),        .5          )
   testeq( lume.lambda "a -> 'hi->' .. a"("doggy"),  "hi->doggy" )
