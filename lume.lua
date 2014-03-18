@@ -9,6 +9,20 @@
 
 local lume = { _version = "1.1.2" }
 
+local pairs, ipairs = pairs, ipairs
+local type, assert, unpack = type, assert, unpack 
+local tostring, tonumber = tostring, tonumber
+local math_floor = math.floor
+local math_ceil = math.ceil
+local math_random = math.random
+local math_cos = math.cos
+local math_atan2 = math.atan2
+local math_sqrt = math.sqrt
+local math_abs = math.abs
+local math_min = math.min
+local math_max = math.max
+local math_pi = math.pi
+
 
 function lume.clamp(x, min, max)
   return x < min and min or (x > max and max or x)
@@ -17,7 +31,7 @@ end
 
 function lume.round(x, increment)
   if increment then return lume.round(x / increment) * increment end
-  return x > 0 and math.floor(x + .5) or math.ceil(x - .5)
+  return x > 0 and math_floor(x + .5) or math_ceil(x - .5)
 end
 
 
@@ -32,13 +46,13 @@ end
 
 
 function lume.smooth(a, b, amount)
-  local m = (1 - math.cos(lume.clamp(amount, 0, 1) * math.pi)) / 2
+  local m = (1 - math_cos(lume.clamp(amount, 0, 1) * math_pi)) / 2
   return a + (b - a) * m
 end
 
 
 function lume.pingpong(x)
-  return 1 - math.abs(1 - x % 2)
+  return 1 - math_abs(1 - x % 2)
 end
 
 
@@ -46,24 +60,24 @@ function lume.distance(x1, y1, x2, y2, squared)
   local dx = x1 - x2
   local dy = y1 - y2
   local s = dx * dx + dy * dy
-  return squared and s or math.sqrt(s)
+  return squared and s or math_sqrt(s)
 end
 
 
 function lume.angle(x1, y1, x2, y2)
-  return math.atan2(y2 - y1, x2 - x1)
+  return math_atan2(y2 - y1, x2 - x1)
 end
 
 
 function lume.random(a, b)
   if not a then a, b = 0, 1 end
   if not b then b = 0 end
-  return a + math.random() * (b - a)
+  return a + math_random() * (b - a)
 end
 
 
 function lume.randomchoice(t)
-  return t[math.random(#t)]
+  return t[math_random(#t)]
 end
 
 
@@ -84,7 +98,7 @@ end
 
 function lume.shuffle(t)
   for i = 1, #t do
-    local r = math.random(#t)
+    local r = math_random(#t)
     t[i], t[r] = t[r], t[i]
   end
   return t
@@ -180,7 +194,7 @@ function lume.slice(t, i, j)
   i = i and index(i) or 1
   j = j and index(j) or #t
   local rtn = {}
-  for i = math.max(i, 1), math.min(j, #t) do
+  for i = math_max(i, 1), math_min(j, #t) do
     rtn[#rtn + 1] = t[i]
   end
   return rtn
@@ -331,11 +345,10 @@ end
 
 
 function lume.rgba(color)
-  local floor = math.floor
-  local a = floor((color / 2 ^ 24) % 256)
-  local r = floor((color / 2 ^ 16) % 256)
-  local g = floor((color / 2 ^ 08) % 256)
-  local b = floor((color) % 256)
+  local a = math_floor((color / 2 ^ 24) % 256)
+  local r = math_floor((color / 2 ^ 16) % 256)
+  local g = math_floor((color / 2 ^ 08) % 256)
+  local b = math_floor((color) % 256)
   return r, g, b, a
 end
 
