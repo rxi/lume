@@ -82,6 +82,9 @@ end
 
 -- lume.random
 tests["lume.random"] = function()
+  testeq( type(lume.random()),      "number" )
+  testeq( type(lume.random(1)),     "number" )
+  testeq( type(lume.random(1, 2)),  "number" )
 end
 
 -- lume.randomchoice
