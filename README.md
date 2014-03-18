@@ -202,7 +202,7 @@ lume.time(function(x) return x end, "hello") -- Returns 0, "hello"
 
 ### lume.lambda(str)
 Takes a string lambda and returns a function. `str` should be a list of
-comma-seperated parameters, followed by `->`, followed by the expression which
+comma-separated parameters, followed by `->`, followed by the expression which
 will be evaluated and returned.
 ```lua
 local f = lume.lambda "x,y -> 2*x+y"
