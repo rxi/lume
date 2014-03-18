@@ -7,7 +7,7 @@
 -- under the terms of the MIT license. See LICENSE for details.
 --
 
-local lume = { _version = "1.1.2" }
+local lume = { _version = "1.2.0" }
 
 local pairs, ipairs = pairs, ipairs
 local type, assert, unpack = type, assert, unpack 
