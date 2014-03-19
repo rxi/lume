@@ -227,11 +227,12 @@ lume.deserialize("{1, 2, 3}") -- Returns {1, 2, 3}
 ```
 
 ### lume.split(str [, sep])
-Splits the string `str` into words and returns a table of the sub strings. If
-`sep` is provided the string will be split at any of the characters in `sep`
-instead of on whitespace.
+Returns an array of the words in the string `str`. If `sep` is provided then
+consecutive delimiters are not grouped together and are deemed to delimit empty
+strings.
 ```lua
 lume.split("One two three") -- Returns {"One", "two", "three"}
+lume.split("a,b,,c", ",") -- Returns {"a", "b", "", "c"}
 ```
 
 ### lume.trim(str [, chars])
