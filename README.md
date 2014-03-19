@@ -227,9 +227,9 @@ lume.deserialize("{1, 2, 3}") -- Returns {1, 2, 3}
 ```
 
 ### lume.split(str [, sep])
-Returns an array of the words in the string `str`. If `sep` is provided then
-consecutive delimiters are not grouped together and are deemed to delimit empty
-strings.
+Returns an array of the words in the string `str`. If `sep` is provided it is
+used as the delimiter, consecutive delimiters are not grouped together and will
+delimit empty strings.
 ```lua
 lume.split("One two three") -- Returns {"One", "two", "three"}
 lume.split("a,b,,c", ",") -- Returns {"a", "b", "", "c"}
