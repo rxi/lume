@@ -23,6 +23,10 @@ local math_min = math.min
 local math_max = math.max
 local math_pi = math.pi
 
+local patternescape = function(str)
+  return str:gsub("[%(%)%.%%%+%-%*%?%[%]%^%$]", "%%%1")
+end
+
 
 function lume.clamp(x, min, max)
   return x < min and min or (x > max and max or x)
@@ -281,15 +285,15 @@ function lume.split(str, sep)
     return lume.array(str:gmatch("([%S]+)"))
   else
     assert(sep ~= "", "empty separator")
-    local ssep = sep:gsub("[%(%)%.%%%+%-%*%?%[%^%$]", "%%%1")
-    return lume.array((str..sep):gmatch("(.-)("..ssep..")"))
+    local psep = patternescape(sep)
+    return lume.array((str..sep):gmatch("(.-)("..psep..")"))
   end
 end
 
 
 function lume.trim(str, chars)
   if not chars then return str:match("^[%s]*(.-)[%s]*$") end
-  chars = chars:gsub("[%(%)%.%%%+%-%*%?%[%]%^%$]", "%%%1")
+  chars = patternescape(chars)
   return str:match("^[" .. chars .. "]*(.-)[" .. chars .. "]*$")
 end
 
