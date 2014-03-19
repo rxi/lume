@@ -130,7 +130,7 @@ Returns a copy of the `t` table with all the duplicate values removed. If
 `retainkeys` is true the table is not treated as an array and retains its
 original keys.
 ```lua
-lume.set({2, 1, 2, "cat", "cat"}) -- Returns {1, 2, cat}
+lume.set({2, 1, 2, "cat", "cat"}) -- Returns {1, 2, "cat"}
 ```
 
 ### lume.filter(t, fn [, retainkeys])
