@@ -288,7 +288,8 @@ end
 
 
 function lume.trim(str, chars)
-  chars = chars or "%s"
+  if not chars then return str:match("^[%s]*(.-)[%s]*$") end
+  chars = chars:gsub("[%(%)%.%%%+%-%*%?%[%]%^%$]", "%%%1")
   return str:match("^[" .. chars .. "]*(.-)[" .. chars .. "]*$")
 end
 
