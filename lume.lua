@@ -277,7 +277,13 @@ end
 
 
 function lume.split(str, sep)
-  return lume.array(str:gmatch("([^" .. (sep or "%s") .. "]+)"))
+  if not sep then
+    return lume.array(str:gmatch("([%S]+)"))
+  else
+    assert(sep ~= "", "empty separator")
+    local ssep = sep:gsub("[%(%)%.%%%+%-%*%?%[%^%$]", "%%%1")
+    return lume.array((str..sep):gmatch("(.-)("..ssep..")"))
+  end
 end
 
 
