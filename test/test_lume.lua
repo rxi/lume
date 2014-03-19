@@ -296,6 +296,8 @@ tests["lume.trim"] = function()
   testeq( lume.trim("   hello world   "),       "hello world"   )
   testeq( lume.trim("-=-hello-world===", "-="), "hello-world"   )
   testeq( lume.trim("***hello world*-*", "*"),  "hello world*-" )
+  testeq( lume.trim("...hello world.", "."),    "hello world"   )
+  testeq( lume.trim("^.hello world]^", "^.]"),  "hello world"   )
 end
 
 -- lume.format
