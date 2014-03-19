@@ -280,9 +280,15 @@ end
 
 -- lume.split
 tests["lume.split"] = function()
-  testeq( lume.split("cat   dog  pig"),     {"cat", "dog", "pig"} )
-  testeq( lume.split(",cat,dog,pig", ","),  {"cat", "dog", "pig"} )
-  testeq( lume.split(",cat,dog;pig", ",;"), {"cat", "dog", "pig"} )
+  testeq( lume.split("cat   dog  pig"),     {"cat", "dog", "pig"}     )
+  testeq( lume.split("cat,dog,pig", ","),   {"cat", "dog", "pig"}     )
+  testeq( lume.split("cat,dog;pig", ";"),   {"cat,dog", "pig"}        )
+  testeq( lume.split("cat,dog,,pig", ","),  {"cat", "dog", "", "pig"} )
+  testeq( lume.split(";;;cat;", ";"),       {"", "", "", "cat", ""}   )
+  testeq( lume.split("cat.dog", "."),       {"cat", "dog"}            )
+  testeq( lume.split("cat%dog", "%"),       {"cat", "dog"}            )
+  testeq( lume.split("1<>2<>3", "<>"),      {"1", "2", "3"}           )
+  tester.test.error( lume.split, "abc", "" )
 end
 
 -- lume.trim
