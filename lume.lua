@@ -308,9 +308,13 @@ end
 
 
 function lume.trace(...)
+  local function stringify(x)
+    x = (type(x) == "number") and lume.round(x, .01) or x
+    return tostring(x)
+  end
   local info = debug.getinfo(2, "Sl")
   local head = "[" .. info.short_src .. ":" .. info.currentline .. "] "
-  print(head .. table.concat(lume.map({...}, tostring), " "))
+  print(head .. table.concat(lume.map({...}, stringify), " "))
 end
 
 
