@@ -27,6 +27,10 @@ local patternescape = function(str)
   return str:gsub("[%(%)%.%%%+%-%*%?%[%]%^%$]", "%%%1")
 end
 
+local absindex = function(len, i)
+  return i < 0 and (len + i + 1) or i
+end
+
 
 function lume.clamp(x, min, max)
   return x < min and min or (x > max and max or x)
@@ -194,9 +198,8 @@ end
 
 
 function lume.slice(t, i, j)
-  local function index(x) return x < 0 and (#t + x + 1) or x end
-  i = i and index(i) or 1
-  j = j and index(j) or #t
+  i = i and absindex(#t, i) or 1
+  j = j and absindex(#t, j) or #t
   local rtn = {}
   for i = math_max(i, 1), math_min(j, #t) do
     rtn[#rtn + 1] = t[i]
