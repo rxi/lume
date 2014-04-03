@@ -246,19 +246,19 @@ function lume.once(fn, ...)
 end
 
 
+function lume.time(fn, ...)
+  local start = os.clock()
+  local rtn = {fn(...)}
+  return (os.clock() - start), unpack(rtn)
+end
+
+
 function lume.combine(...)
   local funcs = {...}
   assert(lume.all(funcs, isfunction), "expected all arguments to be functions")
   return function(...)
     for _, f in ipairs(funcs) do f(...) end
   end
-end
-
-
-function lume.time(fn, ...)
-  local start = os.clock()
-  local rtn = {fn(...)}
-  return (os.clock() - start), unpack(rtn)
 end
 
 

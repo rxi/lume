@@ -249,6 +249,13 @@ tests["lume.once"] = function()
   testeq( f(5),  nil  )
 end
 
+-- lume.time
+tests["lume.time"] = function()
+  local t, a, b, c = lume.time(function(x) return 50, 60, x end, 70)
+  testeq( type(t),    "number"      )
+  testeq( {a, b, c},  {50, 60, 70}  )
+end
+
 -- lume.combine
 tests["lume.combine"] = function()
   local acc = 0
@@ -257,13 +264,6 @@ tests["lume.combine"] = function()
   local fn = lume.combine(a, b)
   fn(10, 20)
   testeq( acc, 230 )
-end
-
--- lume.time
-tests["lume.time"] = function()
-  local t, a, b, c = lume.time(function(x) return 50, 60, x end, 70)
-  testeq( type(t),    "number"      )
-  testeq( {a, b, c},  {50, 60, 70}  )
 end
 
 -- lume.lambda
