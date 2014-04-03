@@ -31,6 +31,10 @@ local absindex = function(len, i)
   return i < 0 and (len + i + 1) or i
 end
 
+local isfunction = function(x)
+  return type(x) == "function"
+end
+
 
 function lume.clamp(x, min, max)
   return x < min and min or (x > max and max or x)
@@ -238,6 +242,15 @@ function lume.once(fn, ...)
     if done then return end
     done = true
     return fn(...)
+  end
+end
+
+
+function lume.combine(...)
+  local funcs = {...}
+  assert(lume.all(funcs, isfunction), "expected all arguments to be functions")
+  return function(...)
+    for _, f in ipairs(funcs) do f(...) end
   end
 end
 
