@@ -193,6 +193,16 @@ f() -- Prints "Hello"
 f() -- Does nothing
 ```
 
+### lume.combine(...)
+Creates a wrapper function which calls each supplied argument in the order they
+were passed to `lume.combine`. The wrapper function passes its own arguments to
+each of its wrapped functions when it is called.
+```lua
+local f = lume.combine(function(a, b) print(a + b) end,
+                       function(a, b) print(a * b) end)
+f(3, 4) -- Prints "7" then "12" on a new line
+```
+
 ### lume.time(fn, ...)
 Inserts the arguments into function `fn` and calls it. Returns the time in
 seconds the function `fn` took to execute followed by `fn`'s returned values.
