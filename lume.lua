@@ -201,6 +201,14 @@ function lume.find(t, value)
 end
 
 
+function lume.match(t, fn)
+  for k, v in pairs(t) do
+    if fn(v) then return v, k end
+  end
+  return nil
+end
+
+
 function lume.slice(t, i, j)
   i = i and absindex(#t, i) or 1
   j = j and absindex(#t, j) or #t
