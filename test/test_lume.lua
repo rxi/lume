@@ -258,6 +258,7 @@ end
 tests["lume.fn"] = function()
   local f = lume.fn(function(a, b) return a + b end, 10)
   testeq( f(5),  15 )
+  tester.test.error( lume.fn, 123 )
 end
 
 -- lume.once
@@ -265,6 +266,7 @@ tests["lume.once"] = function()
   local f = lume.once(function(a, b) return a + b end, 10)
   testeq( f(5),  15   )
   testeq( f(5),  nil  )
+  tester.test.error( lume.once, 123 )
 end
 
 -- lume.time

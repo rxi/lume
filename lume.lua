@@ -235,6 +235,7 @@ end
 
 
 function lume.fn(fn, ...)
+  assert(isfunction(fn), "expected a function as the first argument")
   local args = {...}
   return function(...)
     local a = lume.merge(lume.clone(args), {...})
