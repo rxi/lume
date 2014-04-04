@@ -204,6 +204,24 @@ tests["lume.find"] = function()
   testeq( lume.find({a=1, b=5, c=7}, 5),    "b" )
 end
 
+-- lume.match
+tests["lume.match"] = function()
+  local t = { "a", "b", "c", "d" }
+  local t2 = { a = 1, b = 2, c = 3, d = 4 }
+  local v, k = lume.match(t, function(x) return x > "c" end)
+  testeq( v, "d"  )
+  testeq( k, 4    )
+  local v, k = lume.match(t, function(x) return x < "b" end)
+  testeq( v, "a"  )
+  testeq( k, 1    )
+  local v, k = lume.match(t2, function(x) return x < 2 end)
+  testeq( v, 1    )
+  testeq( k, "a"  )
+  local v, k = lume.match(t2, function(x) return x > 5 end)
+  testeq( v, nil  )
+  testeq( k, nil  )
+end
+
 -- lume.slice
 tests["lume.slice"] = function()
   testeq( lume.slice({"a", "b", "c", "d", "e"}, 2, 4),    {"b", "c", "d"} )
