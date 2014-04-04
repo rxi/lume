@@ -156,6 +156,13 @@ exist in the table.
 lume.find({"a", "b", "c"}, "b") -- Returns 2
 ```
 
+### lume.match(t, fn)
+Returns the value and key of the value in table `t` which returns true when
+`fn` is called on it. Returns `nil` if no such value exists.
+```lua
+lume.match({1, 5, 8, 7}, function(x) return x % 2 == 0 end) -- Returns 8, 3
+```
+
 ### lume.slice(t [, i [, j]])
 Mimics the behaviour of Lua's `string.sub`, but operates on an array rather
 than a string. Creates and returns a new array of the given slice.
