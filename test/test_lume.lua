@@ -393,6 +393,13 @@ tests["lume.rgba"] = function()
   testeq( b, 0x78 )
 end
 
+-- lume.chain
+tests["lume.chain"] = function()
+  local t = lume.chain({1, 2}):map(function(x) return x * 2 end):result() 
+  testeq( t, { 2, 4 } )
+  testeq( lume.chain(10):result(), 10 )
+end
+
 
 tester.dotests(tests)
 tester.test.global()
