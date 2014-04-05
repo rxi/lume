@@ -163,6 +163,14 @@ Returns the value and key of the value in table `t` which returns true when
 lume.match({1, 5, 8, 7}, function(x) return x % 2 == 0 end) -- Returns 8, 3
 ```
 
+### lume.count(t [, fn])
+Counts the number of values in the table `t`. If a `fn` function is supplied it
+is called on each value, the number of times it returns true is counted.
+```lua
+lume.count({a = 2, b = 3, c = 4, d = 5}) -- Returns 4
+lume.count({1, 2, 4, 6}, function(x) return x % 2 == 0 end) -- Returns 3
+```
+
 ### lume.slice(t [, i [, j]])
 Mimics the behaviour of Lua's `string.sub`, but operates on an array rather
 than a string. Creates and returns a new array of the given slice.
