@@ -371,7 +371,7 @@ tests["lume.dostring"] = function()
   testeq( lume.dostring([[return 12345]]),    12345     )   
 end
 
-
+-- lume.uuid
 tests["lume.uuid"] = function()
   testeq( type(lume.uuid()), "string" )
   testeq( #lume.uuid(),      36       )
