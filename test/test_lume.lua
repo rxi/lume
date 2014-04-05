@@ -371,6 +371,12 @@ tests["lume.dostring"] = function()
   testeq( lume.dostring([[return 12345]]),    12345     )   
 end
 
+
+tests["lume.uuid"] = function()
+  testeq( type(lume.uuid()), "string" )
+  testeq( #lume.uuid(),      36       )
+end
+
 -- lume.hotswap
 tests["lume.hotswap"] = function()
   local ok, err = lume.hotswap("bad_module_name")

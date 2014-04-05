@@ -291,6 +291,10 @@ Executes the lua code inside `str`.
 lume.dostring("print('Hello!')") -- Prints "Hello!"
 ```
 
+### lume.uuid()
+Generates a random UUID string; version 4 as specified in
+[RFC 4122](http://www.ietf.org/rfc/rfc4122.txt).
+
 ### lume.hotswap(modname)
 Reloads an already loaded module in place, allowing you to immediately see the
 effects of code changes without having to restart the program. `modname` should

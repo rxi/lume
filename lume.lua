@@ -361,6 +361,17 @@ function lume.dostring(str)
 end
 
 
+function lume.uuid()
+  local hex = "0123456789abcdef"
+  local fn = function(x)
+    local r = math.random(16) - 1
+    r = (x == "x") and (r + 1) or (r % 4) + 9
+    return hex:sub(r, r)
+  end
+  return (("xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx"):gsub("[xy]", fn))
+end
+
+
 function lume.hotswap(modname)
   local oldglobal = lume.clone(_G)
   local updated = {}
