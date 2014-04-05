@@ -362,11 +362,10 @@ end
 
 
 function lume.uuid()
-  local hex = "0123456789abcdef"
   local fn = function(x)
-    local r = math.random(16) - 1
+    local r = math_random(16) - 1
     r = (x == "x") and (r + 1) or (r % 4) + 9
-    return hex:sub(r, r)
+    return ("0123456789abcdef"):sub(r, r)
   end
   return (("xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx"):gsub("[xy]", fn))
 end
