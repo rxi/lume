@@ -222,6 +222,15 @@ tests["lume.match"] = function()
   testeq( k, nil  )
 end
 
+-- lume.count
+tests["lume.count"] = function()
+  local t = { a = 1, b = 2, c = 5, [13] = 22, z = 8 }
+  testeq( lume.count(t), 5 )
+  testeq( lume.count(t, function(x) return x % 2 == 0 end ), 3 )
+  local a = { 5, 6, 7, 8, 9 }
+  testeq( lume.count(a), #a )
+end
+
 -- lume.slice
 tests["lume.slice"] = function()
   testeq( lume.slice({"a", "b", "c", "d", "e"}, 2, 4),    {"b", "c", "d"} )

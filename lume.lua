@@ -209,6 +209,19 @@ function lume.match(t, fn)
 end
 
 
+function lume.count(t, fn)
+  local count = 0
+  if fn then
+    for k, v in pairs(t) do
+      if fn(v) then count = count + 1 end
+    end
+  else
+    for k in pairs(t) do count = count + 1 end
+  end
+  return count
+end
+
+
 function lume.slice(t, i, j)
   i = i and absindex(#t, i) or 1
   j = j and absindex(#t, j) or #t
