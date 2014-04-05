@@ -417,4 +417,19 @@ function lume.rgba(color)
 end
 
 
+local chain_mt = {}
+chain_mt.__index = lume.map(lume.filter(lume, isfunction, true),
+  function(fn)
+    return function(self, ...)
+      self._value = fn(self._value, ...)
+      return self
+    end
+  end)
+chain_mt.__index.result = function(x) return x._value end
+
+function lume.chain(value)
+  return setmetatable({ _value = value }, chain_mt)
+end
+
+
 return lume

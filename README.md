@@ -314,6 +314,17 @@ arguments to [LÖVE](http://love2d.org)'s setColor() function.
 lume.rgba(0xFF304050) -- Returns 48, 64, 80, 255
 ```
 
+### lume.chain(value)
+Returns a wrapped object which allows chaining of lume functions. The function
+result() should be called at the end of the chain to return the resulting
+value.
+```lua
+lume.chain({1, 2, 3, 4})
+  :filter(function(x) return x % 2 == 0 end)
+  :map(function(x) return -x end)
+  :result() -- Returns { -2, -4 }
+```
+
 
 ## License
 
