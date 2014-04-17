@@ -19,8 +19,6 @@ local math_cos = math.cos
 local math_atan2 = math.atan2
 local math_sqrt = math.sqrt
 local math_abs = math.abs
-local math_min = math.min
-local math_max = math.max
 local math_pi = math.pi
 
 local patternescape = function(str)
@@ -226,8 +224,8 @@ function lume.slice(t, i, j)
   i = i and absindex(#t, i) or 1
   j = j and absindex(#t, j) or #t
   local rtn = {}
-  for i = math_max(i, 1), math_min(j, #t) do
-    rtn[#rtn + 1] = t[i]
+  for x = i < 1 and 1 or i, j > #t and #t or j do
+    rtn[#rtn + 1] = t[x]
   end
   return rtn
 end
