@@ -245,6 +245,7 @@ tests["lume.slice"] = function()
   testeq( lume.slice({"a", "b", "c", "d", "e"}, 0, 1),    {"a"}           )
   testeq( lume.slice({"a", "b", "c", "d", "e"}, 0, 0),    {}              )
   testeq( lume.slice({"a", "b", "c", "d", "e"}, -3),      {"c", "d", "e"} )
+  testeq( lume.slice({"a", "b", "c", "d", "e"}, -3, 900), {"c", "d", "e"} )
 end
 
 -- lume.invert
