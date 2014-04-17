@@ -29,8 +29,8 @@ local absindex = function(len, i)
   return i < 0 and (len + i + 1) or i
 end
 
-local isfunction = function(x)
-  return type(x) == "function"
+local iscallable = function(x)
+  return type(x) == "function" or getmetatable(x).__call ~= nil
 end
 
 
@@ -246,7 +246,7 @@ end
 
 
 function lume.fn(fn, ...)
-  assert(isfunction(fn), "expected a function as the first argument")
+  assert(iscallable(fn), "expected a function as the first argument")
   local args = {...}
   return function(...)
     local a = lume.merge(lume.clone(args), {...})
@@ -275,7 +275,7 @@ end
 
 function lume.combine(...)
   local funcs = {...}
-  assert(lume.all(funcs, isfunction), "expected all arguments to be functions")
+  assert(lume.all(funcs, iscallable), "expected all arguments to be functions")
   return function(...)
     for _, f in ipairs(funcs) do f(...) end
   end
@@ -415,7 +415,7 @@ end
 
 
 local chain_mt = {}
-chain_mt.__index = lume.map(lume.filter(lume, isfunction, true),
+chain_mt.__index = lume.map(lume.filter(lume, iscallable, true),
   function(fn)
     return function(self, ...)
       self._value = fn(self._value, ...)
