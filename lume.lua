@@ -34,6 +34,7 @@ local iscallable = function(x)
 end
 
 
+
 function lume.clamp(x, min, max)
   return x < min and min or (x > max and max or x)
 end
@@ -344,13 +345,13 @@ end
 
 
 function lume.trace(...)
-  local function stringify(x)
-    x = (type(x) == "number") and lume.round(x, .01) or x
-    return tostring(x)
-  end
   local info = debug.getinfo(2, "Sl")
-  local head = "[" .. info.short_src .. ":" .. info.currentline .. "] "
-  print(head .. table.concat(lume.map({...}, stringify), " "))
+  local t = { "[" .. info.short_src .. ":" .. info.currentline .. "]" }
+  for i = 1, select("#", ...) do
+    local x = select(i, ...)
+    t[#t + 1] = (type(x) == "number") and lume.round(x, .01) or (x or "nil")
+  end
+  print(table.concat(t, " "))
 end
 
 
