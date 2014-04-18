@@ -359,11 +359,11 @@ tests["lume.trace"] = function()
   print = function(x)
     file, line, msg = x:match("%[(.-):(.-)%] (.*)")
   end
-  lume.trace("Hi world", 123.456, 1)
+  lume.trace("Hi world", 123.456, 1, nil)
   print = oldprint
-  testeq( file:match(".lua$"),    ".lua"      )
-  testeq( tonumber(line) ~= nil,  true        ) 
-  testeq( msg,                    "Hi world 123.46 1"  )
+  testeq( file:match(".lua$"),    ".lua"                  )
+  testeq( tonumber(line) ~= nil,  true                    ) 
+  testeq( msg,                    "Hi world 123.46 1 nil" )
 end
 
 -- lume.dostring
