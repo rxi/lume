@@ -349,7 +349,8 @@ function lume.trace(...)
   local t = { "[" .. info.short_src .. ":" .. info.currentline .. "]" }
   for i = 1, select("#", ...) do
     local x = select(i, ...)
-    t[#t + 1] = (type(x) == "number") and lume.round(x, .01) or (x or "nil")
+    x = (type(x) == "number") and lume.round(x, .01) or (x or "nil")
+    t[#t + 1] = tostring(x)
   end
   print(table.concat(t, " "))
 end
