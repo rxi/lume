@@ -217,8 +217,9 @@ lume.time(function(x) return x end, "hello") -- Returns 0, "hello"
 
 ### lume.combine(...)
 Creates a wrapper function which calls each supplied argument in the order they
-were passed to `lume.combine`. The wrapper function passes its own arguments to
-each of its wrapped functions when it is called.
+were passed to `lume.combine()`; nil arguments are ignored. The wrapper
+function passes its own arguments to each of its wrapped functions when it is
+called.
 ```lua
 local f = lume.combine(function(a, b) print(a + b) end,
                        function(a, b) print(a * b) end)

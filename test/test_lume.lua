@@ -294,6 +294,10 @@ tests["lume.combine"] = function()
   local fn = lume.combine(a, b)
   fn(10, 20)
   testeq( acc, 230 )
+  acc = 0
+  fn = lume.combine(nil, a, nil, b, nil)
+  fn(10, 20)
+  testeq( acc, 230 )
 end
 
 -- lume.lambda
