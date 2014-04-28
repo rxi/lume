@@ -275,8 +275,14 @@ end
 
 
 function lume.combine(...)
-  local funcs = {...}
-  assert(lume.all(funcs, iscallable), "expected all arguments to be functions")
+  local funcs = {}
+  for i = 1, select("#", ...) do
+    local fn = select(i, ...)
+    if fn ~= nil then
+      assert(iscallable(fn), "expected a function or nil")
+      funcs[#funcs + 1] = fn
+    end
+  end
   return function(...)
     for _, f in ipairs(funcs) do f(...) end
   end
