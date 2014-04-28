@@ -30,7 +30,9 @@ local absindex = function(len, i)
 end
 
 local iscallable = function(x)
-  return type(x) == "function" or getmetatable(x).__call ~= nil
+  if type(x) == "function" then return true end
+  local mt = getmetatable(x)
+  return mt and mt.__call ~= nil
 end
 
 
