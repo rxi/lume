@@ -269,6 +269,24 @@ function lume.once(fn, ...)
 end
 
 
+local memoize_fnkey = {}
+local memoize_nilkey = {}
+
+function lume.memoize(fn)
+  local cache = {}
+  return function(...)
+    local c = cache
+    for i = 1, select("#", ...) do
+      local a = select(i, ...) or memoize_nilkey
+      c[a] = c[a] or {}
+      c = c[a]
+    end
+    c[memoize_fnkey] = c[memoize_fnkey] or {fn(...)}
+    return unpack(c[memoize_fnkey])
+  end
+end
+
+
 function lume.time(fn, ...)
   local start = os.clock()
   local rtn = {fn(...)}

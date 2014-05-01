@@ -279,6 +279,20 @@ tests["lume.once"] = function()
   tester.test.error( lume.once, 123 )
 end
 
+-- lume.memoize
+tests["lume.memoize"] = function()
+  local f = lume.memoize(
+    function(a, b, c)
+      return tostring(a) .. tostring(b) .. tostring(c)
+    end)
+  testeq( f("hello", nil, 15),  "hellonil15"  )
+  testeq( f("hello", nil, 15),  "hellonil15"  )
+  testeq( f(),                  "nilnilnil"   )
+  testeq( f(),                  "nilnilnil"   )
+  local f2 = lume.memoize(function() end)
+  testeq( f2(), nil )
+end
+
 -- lume.time
 tests["lume.time"] = function()
   local t, a, b, c = lume.time(function(x) return 50, 60, x end, 70)

@@ -208,6 +208,14 @@ f() -- Prints "Hello"
 f() -- Does nothing
 ```
 
+### lume.memoize(fn)
+Returns a wrapper function to `fn` where the results for any given set of
+arguments are cached. `lume.memoize()` is useful when used on functions with
+slow-running computations.
+```lua
+fib = lume.memoize(function(n) return n < 2 and n or fib(n-1) + fib(n-2) end)
+```
+
 ### lume.time(fn, ...)
 Inserts the arguments into function `fn` and calls it. Returns the time in
 seconds the function `fn` took to execute followed by `fn`'s returned values.
