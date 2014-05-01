@@ -287,13 +287,6 @@ function lume.memoize(fn)
 end
 
 
-function lume.time(fn, ...)
-  local start = os.clock()
-  local rtn = {fn(...)}
-  return (os.clock() - start), unpack(rtn)
-end
-
-
 function lume.combine(...)
   local funcs = {}
   for i = 1, select("#", ...) do
@@ -306,6 +299,13 @@ function lume.combine(...)
   return function(...)
     for _, f in ipairs(funcs) do f(...) end
   end
+end
+
+
+function lume.time(fn, ...)
+  local start = os.clock()
+  local rtn = {fn(...)}
+  return (os.clock() - start), unpack(rtn)
 end
 
 

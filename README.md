@@ -216,13 +216,6 @@ slow-running computations.
 fib = lume.memoize(function(n) return n < 2 and n or fib(n-1) + fib(n-2) end)
 ```
 
-### lume.time(fn, ...)
-Inserts the arguments into function `fn` and calls it. Returns the time in
-seconds the function `fn` took to execute followed by `fn`'s returned values.
-```lua
-lume.time(function(x) return x end, "hello") -- Returns 0, "hello"
-```
-
 ### lume.combine(...)
 Creates a wrapper function which calls each supplied argument in the order they
 were passed to `lume.combine()`; nil arguments are ignored. The wrapper
@@ -232,6 +225,13 @@ called.
 local f = lume.combine(function(a, b) print(a + b) end,
                        function(a, b) print(a * b) end)
 f(3, 4) -- Prints "7" then "12" on a new line
+```
+
+### lume.time(fn, ...)
+Inserts the arguments into function `fn` and calls it. Returns the time in
+seconds the function `fn` took to execute followed by `fn`'s returned values.
+```lua
+lume.time(function(x) return x end, "hello") -- Returns 0, "hello"
 ```
 
 ### lume.lambda(str)
