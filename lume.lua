@@ -270,14 +270,14 @@ end
 
 
 local memoize_fnkey = {}
-local memoize_nilkey = {}
+local memoize_nil = {}
 
 function lume.memoize(fn)
   local cache = {}
   return function(...)
     local c = cache
     for i = 1, select("#", ...) do
-      local a = select(i, ...) or memoize_nilkey
+      local a = select(i, ...) or memoize_nil
       c[a] = c[a] or {}
       c = c[a]
     end
