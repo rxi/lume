@@ -59,7 +59,8 @@ end
 
 
 function lume.smooth(a, b, amount)
-  local m = (1 - math_cos(lume.clamp(amount, 0, 1) * math_pi)) / 2
+  local t = lume.clamp(amount, 0, 1)
+  local m = t*t*(3-2*t)
   return a + (b - a) * m
 end
 
@@ -79,6 +80,14 @@ end
 
 function lume.angle(x1, y1, x2, y2)
   return math_atan2(y2 - y1, x2 - x1)
+end
+
+
+function lume.aabb(x, y, x1, y1, w, h)
+  return x >= x1    and
+         x <= x1+w1 and
+         y >= y1    and
+         y <= y1+h1
 end
 
 
@@ -136,7 +145,7 @@ end
 
 
 function lume.map(t, fn)
-  local rtn = {} 
+  local rtn = {}
   for k, v in pairs(t) do rtn[k] = fn(v) end
   return rtn
 end
@@ -170,7 +179,7 @@ end
 
 function lume.set(t, retainkeys)
   local rtn = {}
-  for k, v in pairs(lume.invert(t)) do 
+  for k, v in pairs(lume.invert(t)) do
     rtn[retainkeys and v or (#rtn + 1)] = k
   end
   return rtn
@@ -253,7 +262,7 @@ function lume.fn(fn, ...)
   local args = {...}
   return function(...)
     local a = lume.merge(lume.clone(args), {...})
-    return fn(unpack(a)) 
+    return fn(unpack(a))
   end
 end
 
@@ -363,8 +372,8 @@ end
 
 function lume.format(str, vars)
   if not vars then return str end
-  local f = function(x) 
-    return tostring(vars[x] or vars[tonumber(x)] or "{" .. x .. "}") 
+  local f = function(x)
+    return tostring(vars[x] or vars[tonumber(x)] or "{" .. x .. "}")
   end
   return (str:gsub("{(.-)}", f))
 end
@@ -401,7 +410,7 @@ function lume.hotswap(modname)
   local oldglobal = lume.clone(_G)
   local updated = {}
   local function update(old, new)
-    if updated[old] then return end 
+    if updated[old] then return end
     updated[old] = true
     local oldmt, newmt = getmetatable(old), getmetatable(new)
     if oldmt and newmt then update(oldmt, newmt) end
@@ -421,7 +430,7 @@ function lume.hotswap(modname)
     local newmod = require(modname)
     if type(oldmod) == "table" then update(oldmod, newmod) end
     for k, v in pairs(oldglobal) do
-      if v ~= _G[k] and type(v) == "table" then 
+      if v ~= _G[k] and type(v) == "table" then
         update(v, _G[k])
         _G[k] = v
       end
