@@ -136,7 +136,7 @@ end
 
 
 function lume.map(t, fn)
-  local rtn = {} 
+  local rtn = {}
   for k, v in pairs(t) do rtn[k] = fn(v) end
   return rtn
 end
@@ -170,7 +170,7 @@ end
 
 function lume.set(t, retainkeys)
   local rtn = {}
-  for k, v in pairs(lume.invert(t)) do 
+  for k, v in pairs(lume.invert(t)) do
     rtn[retainkeys and v or (#rtn + 1)] = k
   end
   return rtn
@@ -253,7 +253,7 @@ function lume.fn(fn, ...)
   local args = {...}
   return function(...)
     local a = lume.merge(lume.clone(args), {...})
-    return fn(unpack(a)) 
+    return fn(unpack(a))
   end
 end
 
@@ -363,8 +363,8 @@ end
 
 function lume.format(str, vars)
   if not vars then return str end
-  local f = function(x) 
-    return tostring(vars[x] or vars[tonumber(x)] or "{" .. x .. "}") 
+  local f = function(x)
+    return tostring(vars[x] or vars[tonumber(x)] or "{" .. x .. "}")
   end
   return (str:gsub("{(.-)}", f))
 end
@@ -401,7 +401,7 @@ function lume.hotswap(modname)
   local oldglobal = lume.clone(_G)
   local updated = {}
   local function update(old, new)
-    if updated[old] then return end 
+    if updated[old] then return end
     updated[old] = true
     local oldmt, newmt = getmetatable(old), getmetatable(new)
     if oldmt and newmt then update(oldmt, newmt) end
@@ -421,7 +421,7 @@ function lume.hotswap(modname)
     local newmod = require(modname)
     if type(oldmod) == "table" then update(oldmod, newmod) end
     for k, v in pairs(oldglobal) do
-      if v ~= _G[k] and type(v) == "table" then 
+      if v ~= _G[k] and type(v) == "table" then
         update(v, _G[k])
         _G[k] = v
       end
