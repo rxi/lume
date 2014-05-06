@@ -59,7 +59,8 @@ end
 
 
 function lume.smooth(a, b, amount)
-  local m = (1 - math_cos(lume.clamp(amount, 0, 1) * math_pi)) / 2
+  local t = lume.clamp(amount, 0, 1)
+  local m = t*t*(3-2*t)
   return a + (b - a) * m
 end
 
