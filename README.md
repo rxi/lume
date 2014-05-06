@@ -38,7 +38,7 @@ lume.lerp(100, 200, .5) -- Returns 150
 ```
 
 ### lume.smooth(a, b, amount)
-Similar to `lume.lerp()` but uses cubic interpolation instead of linear
+Similar to `lume.lerp()` but uses cosine interpolation instead of linear
 interpolation.
 
 ### lume.pingpong(x)
@@ -51,10 +51,6 @@ used when comparing distances.
 
 ### lume.angle(x1, y1, x2, y2)
 Returns the angle between the two points.
-
-### lume.aabb(x, y, x1, y1, w, h)
-Returns if point `x, y` is in a rectangle with position `x1, y1`, width `w1 and
-height `h`.
 
 ### lume.random([a [, b]])
 Returns a random number between `a` and `b`. If only `a` is supplied a number
