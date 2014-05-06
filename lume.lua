@@ -443,9 +443,9 @@ end
 
 
 function lume.rgba(color)
-  local a = math_floor((color / 2 ^ 16777216) % 256)
-  local r = math_floor((color / 2 ^    65536) % 256)
-  local g = math_floor((color / 2 ^      256) % 256)
+  local a = math_floor((color / 2 ^ 24) % 256)
+  local r = math_floor((color / 2 ^ 16) % 256)
+  local g = math_floor((color / 2 ^ 08) % 256)
   local b = math_floor((color) % 256)
   return r, g, b, a
 end
