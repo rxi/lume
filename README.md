@@ -38,7 +38,7 @@ lume.lerp(100, 200, .5) -- Returns 150
 ```
 
 ### lume.smooth(a, b, amount)
-Similar to `lume.lerp()` but uses cosine interpolation instead of linear
+Similar to `lume.lerp()` but uses cubic interpolation instead of linear
 interpolation.
 
 ### lume.pingpong(x)
