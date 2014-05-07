@@ -60,7 +60,7 @@ end
 
 function lume.smooth(a, b, amount)
   local t = lume.clamp(amount, 0, 1)
-  local m = t*t*(3-2*t)
+  local m = t * t * (3 - 2 * t)
   return a + (b - a) * m
 end
 
