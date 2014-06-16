@@ -121,7 +121,7 @@ end
 
 function lume.array(...)
   local t = {}
-  for x in unpack({...}) do t[#t + 1] = x end
+  for x in ... do t[#t + 1] = x end
   return t
 end
 
