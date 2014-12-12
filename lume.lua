@@ -35,6 +35,24 @@ local iscallable = function(x)
   return mt and mt.__call ~= nil
 end
 
+local identity = function(x)
+  return x
+end
+
+local iteratee = function(x)
+  if x == nil then return identity end
+  if iscallable(x) then return x end
+  if type(x) == "table" then
+    return function(z)
+      for k, v in pairs(x) do
+        if z[k] ~= v then return false end
+      end
+      return true
+    end
+  end
+  return function(z) return z[x] end
+end
+
 
 
 function lume.clamp(x, min, max)
