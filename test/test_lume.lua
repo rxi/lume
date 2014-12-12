@@ -435,6 +435,8 @@ tests["lume.chain"] = function()
   local t = lume.chain({1, 2}):map(function(x) return x * 2 end):result() 
   testeq( t, { 2, 4 } )
   testeq( lume.chain(10):result(), 10 )
+  local t = lume({1, 2}):map(function(x) return x * 2 end):result()
+  testeq( t, { 2, 4 } )
 end
 
 

@@ -479,5 +479,11 @@ function lume.chain(value)
   return setmetatable({ _value = value }, chain_mt)
 end
 
+setmetatable(lume,  {
+  __call = function(t, ...)
+    return lume.chain(...)
+  end
+})
+
 
 return lume
