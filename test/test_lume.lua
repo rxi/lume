@@ -141,6 +141,8 @@ end
 tests["lume.map"] = function()
   testeq( lume.map({1, 2, 3}, function(x) return x * 2 end), {2, 4, 6} )
   testeq( lume.map({a=2,b=3}, function(x) return x * 2 end), {a=4,b=6} )
+  local t = {{ id = 10 }, { id = 20 }, { id = 30 }}
+  testeq( lume.map(t, "id"), { 10, 20, 30 })
 end
 
 -- lume.all
@@ -149,6 +151,10 @@ tests["lume.all"] = function()
   testeq( lume.all({true, true, true, true}),                         true  )
   testeq( lume.all({2, 3, 4, 5}, function(x) return x % 2 == 0 end),  false )
   testeq( lume.all({2, 4, 6, 8}, function(x) return x % 2 == 0 end),  true  )
+  testeq( lume.all({{ x = 1 }, {}, { x = 3 }}, "x"),                  false )
+  testeq( lume.all({{ x = 1 }, { x = 2 }, { x = 3 }}, "x"),           true  )
+  testeq( lume.all({{ x = 1 }, { x = 2 }, { x = 3 }}, { x = 2 }),     false )
+  testeq( lume.all({{ x = 2 }, { x = 2 }, { x = 2 }}, { x = 2 }),     true  )
 end
 
 -- lume.any
@@ -157,6 +163,9 @@ tests["lume.any"] = function()
   testeq( lume.any({false, false, false}),                            false )
   testeq( lume.any({2, 3, 4, 5}, function(x) return x % 2 == 0 end),  true  )
   testeq( lume.any({1, 3, 5, 7}, function(x) return x % 2 == 0 end),  false )
+  local t = {{ id = 10 }, { id = 20 }, { id = 30 }}
+  testeq( lume.any(t, { id = 10 }), true  )
+  testeq( lume.any(t, { id = 40 }), false )
 end
 
 -- lume.reduce
@@ -189,6 +198,8 @@ tests["lume.filter"] = function()
   testeq( t, {2, 4} )
   local t = lume.filter({a=1, b=2, c=3}, function(x) return x == 2 end, true) 
   testeq( t, {b=2} )
+  local t = lume.filter({{ x=1, y=1 }, { x=2, y=2 }, { x=1, y=3 }}, { x = 1 })
+  testeq( t, {{ x=1, y=1 }, {x=1, y=3}} )
 end
 
 -- lume.merge
@@ -208,6 +219,7 @@ end
 tests["lume.match"] = function()
   local t = { "a", "b", "c", "d" }
   local t2 = { a = 1, b = 2, c = 3, d = 4 }
+  local t3 = { {x=1, y=2}, {x=3, y=4}, {x=5, y=6} }
   local v, k = lume.match(t, function(x) return x > "c" end)
   testeq( v, "d"  )
   testeq( k, 4    )
@@ -220,6 +232,8 @@ tests["lume.match"] = function()
   local v, k = lume.match(t2, function(x) return x > 5 end)
   testeq( v, nil  )
   testeq( k, nil  )
+  local v, k = lume.match(t3, { x = 3, y = 4 })
+  testeq( k, 2    )
 end
 
 -- lume.count
@@ -229,6 +243,10 @@ tests["lume.count"] = function()
   testeq( lume.count(t, function(x) return x % 2 == 0 end ), 3 )
   local a = { 5, 6, 7, 8, 9 }
   testeq( lume.count(a), #a )
+  local t = { { n = 20 }, { n = 30 }, { n = 40 }, { n = 20 } }
+  testeq( lume.count(t, { n = 20 }),  2 )
+  testeq( lume.count(t, { n = 30 }),  1 )
+  testeq( lume.count(t, { n = 50 }),  0 )
 end
 
 -- lume.slice
