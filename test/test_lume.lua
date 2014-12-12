@@ -266,6 +266,22 @@ tests["lume.slice"] = function()
   testeq( lume.slice({"a", "b", "c", "d", "e"}, -3, 900), {"c", "d", "e"} )
 end
 
+-- lume.first
+tests["lume.first"] = function()
+  local t = { "a", "b", "c", "d", "e" }
+  testeq( lume.first(t),    "a"           )
+  testeq( lume.first(t, 1), { "a" }       )
+  testeq( lume.first(t, 2), { "a", "b" }  )  
+end
+
+-- lume.last
+tests["lume.last"] = function()
+  local t = { "a", "b", "c", "d", "e" }
+  testeq( lume.last(t),     "e"           )
+  testeq( lume.last(t, 1),  { "e" }       )
+  testeq( lume.last(t, 2),  { "d", "e" }  )  
+end
+
 -- lume.invert
 tests["lume.invert"] = function()
   testeq( lume.invert({}),                        {}                  )

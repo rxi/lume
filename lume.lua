@@ -257,6 +257,18 @@ function lume.slice(t, i, j)
 end
 
 
+function lume.first(t, n)
+  if not n then return t[1] end
+  return lume.slice(t, 1, n)
+end
+
+
+function lume.last(t, n)
+  if not n then return t[#t] end
+  return lume.slice(t, -n, -1)
+end
+
+
 function lume.invert(t)
   local rtn = {}
   for k, v in pairs(t) do rtn[v] = k end

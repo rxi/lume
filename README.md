@@ -178,6 +178,20 @@ than a string. Creates and returns a new array of the given slice.
 lume.slice({"a", "b", "c", "d", "e"}, 2, 4) -- Returns {"b", "c", "d"}
 ```
 
+### lume.first(t [, n])
+Returns the first element of an array or nil if the array is empty. If `n` is
+specificed an array of the first `n` elements is returned.
+```lua
+lume.first({"a", "b", "c"}) -- Returns "a"
+```
+
+### lume.last(t [, n])
+Returns the last element of an array or nil if the array is empty. If `n` is
+specificed an array of the last `n` elements is returned.
+```lua
+lume.last({"a", "b", "c"}) -- Returns "c"
+```
+
 ### lume.invert(t)
 Returns a copy of the table where the keys have become the values and the
 values the keys.
