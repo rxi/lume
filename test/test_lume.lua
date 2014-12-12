@@ -267,7 +267,7 @@ tests["lume.slice"] = function()
 end
 
 -- lume.invert
-tests["lume_invert"] = function()
+tests["lume.invert"] = function()
   testeq( lume.invert({}),                        {}                  )
   testeq( lume.invert{a = "x", b = "y"},          {x = "a", y = "b"}  )
   testeq( lume.invert{a = 1, b = 2},              {"a", "b"}          )
