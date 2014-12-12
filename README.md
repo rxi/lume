@@ -185,6 +185,9 @@ values the keys.
 lume.invert({a = "x", b = "y"}) -- returns {x = "a", y = "b"}
 ```
 
+### lume.keys(t)
+Returns an array containing each key of the table.
+
 ### lume.clone(t)
 Returns a shallow copy of the table `t`.
 

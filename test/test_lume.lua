@@ -274,6 +274,16 @@ tests["lume.invert"] = function()
   testeq( lume.invert(lume.invert{a = 1, b = 2}), {a = 1, b = 2}      )
 end
 
+-- lume.keys
+tests["lume.keys"] = function()
+  testeq( lume.keys({}), {} )
+  local t = lume.keys({ aaa = 1, bbb = 2, ccc = 3 }) 
+  table.sort(t)
+  testeq( t, {"aaa", "bbb", "ccc"} ) 
+  local t = lume.keys({ "x", "x", "x" })
+  testeq( t, {1, 2, 3} )
+end
+
 -- lume.clone
 tests["lume.clone"] = function()
   local t = {6, 7, 4, 5}

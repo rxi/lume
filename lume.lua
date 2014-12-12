@@ -264,6 +264,13 @@ function lume.invert(t)
 end
 
 
+function lume.keys(t)
+  local rtn = {}
+  for k, v in pairs(t) do rtn[#rtn + 1] = k end
+  return rtn
+end
+
+
 function lume.clone(t)
   local rtn = {}
   for k, v in pairs(t) do rtn[k] = v end
