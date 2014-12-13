@@ -350,6 +350,11 @@ lume.chain({1, 2, 3, 4})
   :map(function(x) return -x end)
   :result() -- Returns { -2, -4 }
 ```
+The table returned by the `lume` module, when called, acts in the same manner
+as calling `lume.chain()`.
+```lua
+lume({1, 2, 3}):each(print) -- Prints 1, 2 then 3 on separate lines
+```
 
 
 ## License
