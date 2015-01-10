@@ -260,6 +260,19 @@ function lume.merge(t, t2, retainkeys)
 end
 
 
+function lume.concat(...)
+  local rtn = {}
+  for i = 1, select("#", ...) do
+    local t = select(i, ...)
+    local iter = getiter(t)
+    for k, v in iter(t) do
+      rtn[#rtn + 1] = v
+    end
+  end
+  return rtn
+end
+
+
 function lume.find(t, value)
   local iter = getiter(t)
   for k, v in iter(t) do

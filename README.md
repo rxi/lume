@@ -159,6 +159,12 @@ and `t2` have a conflicting key, the value from `t2` is used.
 lume.merge({2, 3}, {4, 5}) -- Returns {2, 3, 4, 5}
 ```
 
+### lume.concat(...)
+Returns a new array consisting of all the given arrays concatenated into one.
+```lua
+lume.concat({1, 2}, {3, 4}, {5, 6}) -- Returns {1, 2, 3, 4, 5, 6}
+```
+
 ### lume.find(t, value)
 Returns the index/key of `value` in `t`. Returns `nil` if that value does not
 exist in the table.

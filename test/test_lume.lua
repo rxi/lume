@@ -220,6 +220,14 @@ tests["lume.merge"] = function()
   testeq( lume.merge({a=1, b=2}, {b=3, c=4}, true), {a=1, b=3, c=4}     )
 end
 
+-- lume.concat
+tests["lume.concat"] = function()
+  testeq( lume.concat(nil),                            {}                    )
+  testeq( lume.concat({1, 2, 3}),                      {1, 2, 3}             )
+  testeq( lume.concat({1, 2, 3}, {4, 5, 6}),           {1, 2, 3, 4, 5, 6}    )
+  testeq( lume.concat({1, 2, 3}, {4, 5, 6}, nil, {7}), {1, 2, 3, 4, 5, 6, 7} )
+end
+
 -- lume.find
 tests["lume.find"] = function()
   testeq( lume.find({"a", "b", "c"}, "b"),  2   )
