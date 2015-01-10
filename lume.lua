@@ -46,9 +46,13 @@ local isarray = function(x)
   return (x and x[1]) and true or false
 end
 
+local iternil = function()
+  return noop
+end
+
 local getiter = function(x)
   if x == nil then
-    return noop
+    return iternil
   elseif isarray(x) then
     return ipairs
   else
