@@ -351,6 +351,14 @@ tests["lume.combine"] = function()
   testeq( acc, 230 )
 end
 
+-- lume.call
+tests["lume.call"] = function()
+  local add = function(a, b) return a + b end
+  testeq( lume.call(),              nil )
+  testeq( lume.call(nil, 1, 2, 3),  nil )
+  testeq( lume.call(add, 1, 2),     3   )
+end
+
 -- lume.time
 tests["lume.time"] = function()
   local t, a, b, c = lume.time(function(x) return 50, 60, x end, 70)

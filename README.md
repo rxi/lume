@@ -244,6 +244,14 @@ local f = lume.combine(function(a, b) print(a + b) end,
 f(3, 4) -- Prints "7" then "12" on a new line
 ```
 
+### lume.call(fn, ...)
+Calls the given function with the provided arguments and returns its value. If
+`fn` is nil then no action is performed and the function returns nil.
+```lua
+_.call(print, "Hello world") -- Prints "Hello world"
+```
+
+
 ### lume.time(fn, ...)
 Inserts the arguments into function `fn` and calls it. Returns the time in
 seconds the function `fn` took to execute followed by `fn`'s returned values.
