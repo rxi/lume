@@ -265,6 +265,9 @@ function lume.count(t, fn)
       if fn(v) then count = count + 1 end
     end
   else
+    if isarray(t) then
+      return #t
+    end
     for k in iter(t) do count = count + 1 end
   end
   return count
