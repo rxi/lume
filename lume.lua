@@ -252,11 +252,16 @@ function lume.filter(t, fn, retainkeys)
 end
 
 
-function lume.merge(t, t2, retainkeys)
-  for k, v in pairs(t2) do
-    t[retainkeys and k or (#t + 1)] = v
+function lume.merge(...)
+  local rtn = {}
+  for i = 1, select("#", ...) do
+    local t = select(i, ...)
+    local iter = getiter(t)
+    for k, v in iter(t) do
+      rtn[k] = v
+    end
   end
-  return t
+  return rtn
 end
 
 
@@ -357,9 +362,9 @@ end
 
 function lume.fn(fn, ...)
   assert(iscallable(fn), "expected a function as the first argument")
-  local args = {...}
+  local args = { ... }
   return function(...)
-    local a = lume.merge(lume.clone(args), {...})
+    local a = lume.concat(args, { ... })
     return fn(unpack(a))
   end
 end

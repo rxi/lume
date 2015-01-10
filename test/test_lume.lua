@@ -216,8 +216,9 @@ end
 
 -- lume.merge
 tests["lume.merge"] = function()
-  testeq( lume.merge({1, 2, 3}, {8, 9, 0}),         {1, 2, 3, 8, 9, 0}  )
-  testeq( lume.merge({a=1, b=2}, {b=3, c=4}, true), {a=1, b=3, c=4}     )
+  testeq( lume.merge(),                       {}              )
+  testeq( lume.merge({x=1, y=2}),             {x=1, y=2}      )
+  testeq( lume.merge({a=1, b=2}, {b=3, c=4}), {a=1, b=3, c=4} )
 end
 
 -- lume.concat

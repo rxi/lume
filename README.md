@@ -151,12 +151,11 @@ an array and retains its original keys.
 lume.filter({1, 2, 3, 4}, function(x) return x % 2 == 0 end) -- Returns {2, 4}
 ```
 
-### lume.merge(t, t2 [, retainkeys])
-Merges all the values from the table `t2` into `t` in place. If `retainkeys` is
-true the table is not treated as an array and retains its original keys; if `t`
-and `t2` have a conflicting key, the value from `t2` is used.
+### lume.merge(...)
+Returns a new table with all the given tables merged together. If a key exists
+in multiple tables the right-most table's value is used.
 ```lua
-lume.merge({2, 3}, {4, 5}) -- Returns {2, 3, 4, 5}
+lume.merge({a=1, b=2, c=3}, {c=8, d=9}) -- Returns {a=1, b=2, c=8, d=9}
 ```
 
 ### lume.concat(...)
