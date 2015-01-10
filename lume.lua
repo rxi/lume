@@ -43,7 +43,7 @@ local iscallable = function(x)
 end
 
 local isarray = function(x)
-  return x[1] and true or false
+  return (x and x[1]) and true or false
 end
 
 local getiter = function(x)
