@@ -109,7 +109,7 @@ end
 -- lume.shuffle
 tests["lume.shuffle"] = function()
   local t = {1, 2, 3, 4, 5}
-  lume.shuffle(t)
+  t = lume.shuffle(t)
   table.sort(t)
   testeq( t,                {1, 2, 3, 4, 5} )
   testeq( lume.shuffle({}), {}              )

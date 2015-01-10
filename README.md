@@ -75,7 +75,7 @@ lume.weightedchoice({ ["cat"] = 10, ["dog"] = 5, ["frog"] = 0 })
 ```
 
 ### lume.shuffle(t)
-Shuffles the values of array `t` in place, returns the array.
+Returns a shuffled copy of the array `t`.
 
 ### lume.array(...)
 Iterates the supplied iterator and returns an array filled with the values.

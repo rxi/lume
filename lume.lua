@@ -146,11 +146,15 @@ end
 
 
 function lume.shuffle(t)
+  local rtn = {}
   for i = 1, #t do
-    local r = math_random(#t)
-    t[i], t[r] = t[r], t[i]
+    local r = math_random(i)
+    if r ~= i then
+      rtn[i] = rtn[r]
+    end
+    rtn[r] = t[i]
   end
-  return t
+  return rtn
 end
 
 
