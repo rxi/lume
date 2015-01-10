@@ -431,6 +431,16 @@ tests["lume.trim"] = function()
   testeq( lume.trim("^.hello world]^", "^.]"),  "hello world"   )
 end
 
+-- lume.wordwrap
+tests["lume.wordwrap"] = function()
+  local str = "A small string with some words and then some more words"
+  local b = "A small string with\nsome words and then\nsome more words"
+  local fn = function(str) return #str >= 20 end
+  testeq( lume.wordwrap(str),     str )
+  testeq( lume.wordwrap(str, 20), b   )
+  testeq( lume.wordwrap(str, fn), b   )
+end
+
 -- lume.format
 tests["lume.format"] = function()
   local str = lume.format("a {a} in a {b}", {a = "mouse", b = "house"})

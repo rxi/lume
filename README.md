@@ -316,6 +316,15 @@ instead of whitespace.
 lume.trim("  Hello  ") -- Returns "Hello"
 ```
 
+### lume.wordwrap(str [, limit])
+Returns `str` wrapped to `limit` number of characters per line, by default
+`limit` is `72`. `limit` can also be a function which when passed a string,
+returns `true` if it is too long for a single line.
+```lua
+-- Returns "Hello world\nThis is a\nshort string"
+lume.wordwrap("Hello world. This is a short string", 14)
+```
+
 ### lume.format(str [, vars])
 Returns a formatted string. The values of keys in the table `vars` can be
 inserted into the string by using the form `"{key}"` in `str`; numerical keys

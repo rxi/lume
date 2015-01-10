@@ -480,6 +480,32 @@ function lume.trim(str, chars)
 end
 
 
+function lume.wordwrap(str, limit)
+  limit = limit or 72
+  local check
+  if type(limit) == "number" then
+    check = function(str) return #str >= limit end
+  else
+    check = limit
+  end
+  local rtn = {}
+  for j, line in ipairs(lume.split(str, "\n")) do
+    local str
+    for i, word in ipairs(lume.split(line)) do
+      local s = (str and (str .. " ") or "") .. word
+      if check(s) then
+        rtn[#rtn + 1] = str
+        str = word
+      else
+        str = s
+      end
+    end
+    rtn[#rtn + 1] = str
+  end
+  return table.concat(rtn, "\n")
+end
+
+
 function lume.format(str, vars)
   if not vars then return str end
   local f = function(x)
