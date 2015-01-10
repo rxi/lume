@@ -21,6 +21,13 @@ local math_sqrt = math.sqrt
 local math_abs = math.abs
 local math_pi = math.pi
 
+local noop = function()
+end
+
+local identity = function(x)
+  return x
+end
+
 local patternescape = function(str)
   return str:gsub("[%(%)%.%%%+%-%*%?%[%]%^%$]", "%%%1")
 end
@@ -35,8 +42,18 @@ local iscallable = function(x)
   return mt and mt.__call ~= nil
 end
 
-local identity = function(x)
-  return x
+local isarray = function(x)
+  return x[1] and true or false
+end
+
+local getiter = function(x)
+  if x == nil then
+    return noop
+  elseif isarray(x) then
+    return ipairs
+  else
+    return pairs
+  end
 end
 
 local iteratee = function(x)
@@ -145,10 +162,11 @@ end
 
 
 function lume.each(t, fn, ...)
+  local iter = getiter(t)
   if type(fn) == "string" then
-    for _, v in pairs(t) do v[fn](v, ...) end
+    for _, v in iter(t) do v[fn](v, ...) end
   else
-    for _, v in pairs(t) do fn(v, ...) end
+    for _, v in iter(t) do fn(v, ...) end
   end
   return t
 end
