@@ -115,6 +115,18 @@ tests["lume.shuffle"] = function()
   testeq( lume.shuffle({}), {}              )
 end
 
+-- lume.sort
+tests["lume.sort"] = function()
+  local t = { 1, 5, 2, 4, 3 }
+  local fn = function(a, b) return a > b end
+  testeq( t == lume.sort(t), false             )
+  testeq( lume.sort(t),      { 1, 2, 3, 4, 5 } )
+  testeq( lume.sort(t, fn),  { 5, 4, 3, 2, 1 } )
+  testeq( t,                 { 1, 5, 2, 4, 3 } )
+  local t = { { id = 2 }, { id = 3 }, { id = 1 } }
+  testeq( lume.sort(t, "id"), { { id = 1 }, { id = 2 }, { id = 3 } })
+end
+
 -- lume.array
 tests["lume.array"] = function()
   local t = lume.array(pairs({a=0, b=0, c=0}))

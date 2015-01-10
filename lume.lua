@@ -158,6 +158,21 @@ function lume.shuffle(t)
 end
 
 
+function lume.sort(t, comp)
+  local rtn = lume.clone(t)
+  if comp then
+    if type(comp) == "string" then
+      table.sort(rtn, function(a, b) return a[comp] < b[comp] end)
+    else
+      table.sort(rtn, comp)
+    end
+  else
+    table.sort(rtn)
+  end
+  return rtn
+end
+
+
 function lume.array(...)
   local t = {}
   for x in ... do t[#t + 1] = x end
