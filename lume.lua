@@ -174,15 +174,17 @@ end
 
 function lume.map(t, fn)
   fn = iteratee(fn)
+  local iter = getiter(t)
   local rtn = {}
-  for k, v in pairs(t) do rtn[k] = fn(v) end
+  for k, v in iter(t) do rtn[k] = fn(v) end
   return rtn
 end
 
 
 function lume.all(t, fn)
   fn = iteratee(fn)
-  for k, v in pairs(t) do
+  local iter = getiter(t)
+  for k, v in iter(t) do
     if not fn(v) then return false end
   end
   return true
@@ -191,7 +193,8 @@ end
 
 function lume.any(t, fn)
   fn = iteratee(fn)
-  for k, v in pairs(t) do
+  local iter = getiter(t)
+  for k, v in iter(t) do
     if fn(v) then return true end
   end
   return false
@@ -217,8 +220,9 @@ end
 
 function lume.filter(t, fn, retainkeys)
   fn = iteratee(fn)
+  local iter = getiter(t)
   local rtn = {}
-  for k, v in pairs(t) do
+  for k, v in iter(t) do
     if fn(v) then rtn[retainkeys and k or (#rtn + 1)] = v end
   end
   return rtn
@@ -234,7 +238,8 @@ end
 
 
 function lume.find(t, value)
-  for k, v in pairs(t) do
+  local iter = getiter(t)
+  for k, v in iter(t) do
     if v == value then return k end
   end
   return nil
@@ -243,7 +248,8 @@ end
 
 function lume.match(t, fn)
   fn = iteratee(fn)
-  for k, v in pairs(t) do
+  local iter = getiter(t)
+  for k, v in iter(t) do
     if fn(v) then return v, k end
   end
   return nil
@@ -252,13 +258,14 @@ end
 
 function lume.count(t, fn)
   local count = 0
+  local iter = getiter(t)
   if fn then
     fn = iteratee(fn)
-    for k, v in pairs(t) do
+    for k, v in iter(t) do
       if fn(v) then count = count + 1 end
     end
   else
-    for k in pairs(t) do count = count + 1 end
+    for k in iter(t) do count = count + 1 end
   end
   return count
 end
@@ -296,7 +303,8 @@ end
 
 function lume.keys(t)
   local rtn = {}
-  for k, v in pairs(t) do rtn[#rtn + 1] = k end
+  local iter = getiter(t)
+  for k, v in iter(t) do rtn[#rtn + 1] = k end
   return rtn
 end
 
