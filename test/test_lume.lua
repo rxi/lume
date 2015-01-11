@@ -486,6 +486,18 @@ tests["lume.hotswap"] = function()
   testeq( type(err),  "string"  )
 end
 
+-- lume.ripairs
+tests["lume.ripairs"] = function()
+  local t = { "a", "b", "c" }
+  local r = {}
+  for i, v in lume.ripairs(t) do
+    table.insert(r, { i, v })
+  end
+  testeq( r, { { 3, "c" }, { 2, "b" }, { 1, "a" } })
+  for i, v in lume.ripairs(nil) do
+  end
+end
+
 -- lume.rgba
 tests["lume.rgba"] = function()
   local r, g, b, a = lume.rgba(0x12345678)

@@ -361,6 +361,17 @@ lume.hotswap("lume") -- Reloads the lume module
 assert(lume.hotswap("inexistant_module")) -- Raises an error
 ```
 
+### lume.ripairs(t)
+Performs the same function as `ipairs()` but iterates in reverse; this allows
+the removal of items from the table during iteration without any items being
+skipped.
+```lua
+-- Prints "3->c", "2->b" and "1->a" on separate lines
+for i, v in lume.ripairs({ "a", "b", "c" }) do
+  print(i .. "->" .. v)
+end
+```
+
 ### lume.rgba(color)
 Takes the 32bit integer `color` argument and returns 4 numbers, one for each
 channel, with a range of 0 - 255. The returned values can be used as the

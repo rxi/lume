@@ -578,6 +578,20 @@ function lume.hotswap(modname)
 end
 
 
+local ripairs_iter = function(t, i)
+  i = i - 1
+  local v = t[i]
+  if v then return i, v end
+end
+
+function lume.ripairs(t)
+  if t == nil then
+    return noop
+  end
+  return ripairs_iter, t, (#t + 1)
+end
+
+
 function lume.rgba(color)
   local a = math_floor((color / 16777216) % 256)
   local r = math_floor((color /    65536) % 256)
