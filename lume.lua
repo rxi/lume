@@ -232,10 +232,10 @@ function lume.reduce(t, fn, first)
 end
 
 
-function lume.set(t, retainkeys)
+function lume.set(t)
   local rtn = {}
   for k, v in pairs(lume.invert(t)) do
-    rtn[retainkeys and v or (#rtn + 1)] = k
+    rtn[#rtn + 1] = k
   end
   return rtn
 end

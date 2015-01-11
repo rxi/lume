@@ -135,10 +135,8 @@ an error is raised,
 lume.reduce({1, 2, 3}, function(a, b) return a + b end) -- Returns 6
 ```
 
-### lume.set(t [, retainkeys])
-Returns a copy of the `t` table with all the duplicate values removed. If
-`retainkeys` is true the table is not treated as an array and retains its
-original keys.
+### lume.set(t)
+Returns a copy of the `t` array with all the duplicate values removed. 
 ```lua
 lume.set({2, 1, 2, "cat", "cat"}) -- Returns {1, 2, "cat"}
 ```
