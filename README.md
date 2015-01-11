@@ -80,7 +80,7 @@ Returns a shuffled copy of the array `t`.
 ### lume.sort(t [, comp])
 Returns a copy of the array `t` with all its items sorted. If `comp` is a
 function it will be used to compare the items when sorting. If `comp` is a
-string the it will be used as the key to sort the items by.
+string it will be used as the key to sort the items by.
 ```lua
 lume.sort({ 1, 4, 3, 2, 5 }) -- Returns { 1, 2, 3, 4, 5 }
 lume.sort({ {z=2}, {z=3}, {z=1} }, "z") -- Returns { {z=1}, {z=2}, {z=3} }
