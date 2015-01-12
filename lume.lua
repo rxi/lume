@@ -16,7 +16,7 @@ local math_floor = math.floor
 local math_ceil = math.ceil
 local math_random = math.random
 local math_cos = math.cos
-local math_atan2 = math.atan2
+local math_atan2 = math.atan2 or math.atan
 local math_sqrt = math.sqrt
 local math_abs = math.abs
 local math_pi = math.pi
@@ -520,7 +520,9 @@ function lume.trace(...)
   local t = { "[" .. info.short_src .. ":" .. info.currentline .. "]" }
   for i = 1, select("#", ...) do
     local x = select(i, ...)
-    x = (type(x) == "number") and lume.round(x, .01) or (x or "nil")
+    if type(x) == "number" then
+      x = string.format("%g", lume.round(x, .01))
+    end
     t[#t + 1] = tostring(x)
   end
   print(table.concat(t, " "))
