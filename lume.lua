@@ -400,8 +400,16 @@ end
 
 
 function lume.combine(...)
+  local n = select('#', ...)
+  if n == 0 then return noop end
+  if n == 1 then 
+    local fn = select(1, ...)
+    if not fn then return noop end
+    assert(iscallable(fn), "expected a function or nil")
+    return fn
+  end
   local funcs = {}
-  for i = 1, select("#", ...) do
+  for i = 1, n do
     local fn = select(i, ...)
     if fn ~= nil then
       assert(iscallable(fn), "expected a function or nil")

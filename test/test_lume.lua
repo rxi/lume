@@ -370,6 +370,12 @@ tests["lume.combine"] = function()
   fn = lume.combine(nil, a, nil, b, nil)
   fn(10, 20)
   testeq( acc, 230 )
+  local x = false
+  fn = lume.combine(function() x = true end)
+  fn()
+  testeq( x, true )
+  testeq( type(lume.combine(nil)), "function" )
+  testeq( type(lume.combine()),    "function" )
 end
 
 -- lume.call
