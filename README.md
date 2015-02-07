@@ -75,7 +75,8 @@ lume.weightedchoice({ ["cat"] = 10, ["dog"] = 5, ["frog"] = 0 })
 ```
 
 ### lume.push(t, ...)
-Pushes all the given values to the end of the table `t` and returns the values.
+Pushes all the given values to the end of the table `t` and returns the pushed
+values. Nil values are ignored.
 ```lua
 local t = { 1, 2, 3 }
 lume.push(t, 4, 5) -- `t` becomes { 1, 2, 3, 4, 5 }
