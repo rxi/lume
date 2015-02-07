@@ -175,6 +175,14 @@ function lume.remove(t, x)
 end
 
 
+function lume.clear(t)
+  local iter = getiter(t)
+  for k, v in iter(t) do
+    t[k] = nil
+  end
+end
+
+
 function lume.shuffle(t)
   local rtn = {}
   for i = 1, #t do
