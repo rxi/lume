@@ -74,6 +74,28 @@ lume.weightedchoice({ ["cat"] = 10, ["dog"] = 5, ["frog"] = 0 })
 -- Returns either "cat" or "dog" with "cat" being twice as likely to be chosen.
 ```
 
+### lume.push(t, ...)
+Pushes all the given values to the end of the table `t` and returns the values.
+```lua
+local t = { 1, 2, 3 }
+lume.push(t, 4, 5) -- `t` becomes { 1, 2, 3, 4, 5 }
+```
+
+### lume.remove(t, x)
+Removes the first instance of the value `x` if it exists in the table `t`.
+Returns `x`.
+```lua
+local t = { 1, 2, 3 }
+lume.remove(t, 2) -- `t` becomes { 1, 3 }
+```
+
+### lume.clear(t)
+Nils all the values in the table `t`, this renders the table empty.
+```lua
+local t = { 1, 2, 3 }
+lume.clear(t) -- `t` becomes {}
+```
+
 ### lume.shuffle(t)
 Returns a shuffled copy of the array `t`.
 
