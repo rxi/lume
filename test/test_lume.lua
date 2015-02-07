@@ -117,6 +117,18 @@ tests["lume.push"] = function()
   testeq(t, { 1, 2, 3, 4, 5, 6, 7 })
 end
 
+-- lume.remove
+tests["lume.remove"] = function()
+  local t = { 1, 2, 3, 4, 5 }
+  lume.remove(t, 3)
+  testeq(t, { 1, 2, 4, 5  })
+  lume.remove(t, 1)
+  testeq(t, { 2, 4, 5 })
+  lume.remove(t, 5)
+  testeq(t, { 2, 4 })
+  local m = { a = 1, b = 2, c = 3 }
+end
+
 -- lume.shuffle
 tests["lume.shuffle"] = function()
   local t = {1, 2, 3, 4, 5}

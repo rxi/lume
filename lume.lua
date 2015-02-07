@@ -158,6 +158,23 @@ function lume.push(t, ...)
 end
 
 
+function lume.remove(t, x) 
+  local iter = getiter(t)
+  for i, v in iter(t) do
+    if v == x then
+      if isarray(t) then
+        table.remove(t, i)
+        break
+      else
+        t[i] = nil
+        break
+      end
+    end
+  end
+  return x
+end
+
+
 function lume.shuffle(t)
   local rtn = {}
   for i = 1, #t do
