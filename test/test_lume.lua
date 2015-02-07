@@ -115,6 +115,9 @@ tests["lume.push"] = function()
   testeq(t, { 1, 2, 3, 4, 5, 6, 7 })
   lume.push(t)
   testeq(t, { 1, 2, 3, 4, 5, 6, 7 })
+  local x, y = lume.push(t, 123, 456)
+  testeq(x, 123)
+  testeq(y, 456)
 end
 
 -- lume.remove
@@ -127,6 +130,8 @@ tests["lume.remove"] = function()
   lume.remove(t, 5)
   testeq(t, { 2, 4 })
   local m = { a = 1, b = 2, c = 3 }
+  local x = lume.remove(t, 123)
+  testeq(x, 123)
 end
 
 -- lume.clear
