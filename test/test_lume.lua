@@ -106,6 +106,17 @@ tests["lume.weightedchoice"] = function()
   tester.test.error( lume.weightedchoice, { a = 1, b = -1 }   )
 end
 
+-- lume.push
+tests["lume.push"] = function()
+  local t = { 1, 2 }
+  lume.push(t, 3, 4)
+  testeq(t, { 1, 2, 3, 4 })
+  lume.push(t, 5, nil, 6, nil, 7)
+  testeq(t, { 1, 2, 3, 4, 5, 6, 7 })
+  lume.push(t)
+  testeq(t, { 1, 2, 3, 4, 5, 6, 7 })
+end
+
 -- lume.shuffle
 tests["lume.shuffle"] = function()
   local t = {1, 2, 3, 4, 5}

@@ -149,6 +149,15 @@ function lume.weightedchoice(t)
 end
 
 
+function lume.push(t, ...)
+  local n = select("#", ...)
+  for i = 1, n do
+    t[#t + 1] = select(i, ...)
+  end
+  return ...
+end
+
+
 function lume.shuffle(t)
   local rtn = {}
   for i = 1, #t do
