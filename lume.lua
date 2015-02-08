@@ -43,7 +43,7 @@ local iscallable = function(x)
 end
 
 local isarray = function(x)
-  return (x and x[1]) and true or false
+  return (type(x) == "table" and x[1] ~= nil) and true or false
 end
 
 local iternil = function()
