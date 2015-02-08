@@ -180,6 +180,7 @@ function lume.clear(t)
   for k, v in iter(t) do
     t[k] = nil
   end
+  return t
 end
 
 

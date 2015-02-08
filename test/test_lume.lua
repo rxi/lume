@@ -142,6 +142,7 @@ tests["lume.clear"] = function()
   local m = { a = 1, b = 2, c = 3 }
   lume.clear(m)
   testeq(m, {})
+  testeq( lume.clear(t) == t, true )
 end
 
 -- lume.shuffle

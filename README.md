@@ -91,7 +91,8 @@ lume.remove(t, 2) -- `t` becomes { 1, 3 }
 ```
 
 ### lume.clear(t)
-Nils all the values in the table `t`, this renders the table empty.
+Nils all the values in the table `t`, this renders the table empty. Returns
+`t`.
 ```lua
 local t = { 1, 2, 3 }
 lume.clear(t) -- `t` becomes {}
