@@ -420,6 +420,35 @@ as calling `lume.chain()`.
 lume({1, 2, 3}):each(print) -- Prints 1, 2 then 3 on separate lines
 ```
 
+## Iteratee functions
+Several lume functions allow a `table`, `string` or `nil` to be used in place
+of their iteratee function argument. The functions that provide this behaviour
+are: `map()`, `all()`, `any()`, `filter()`, `match()` and `count()`.
+
+If the argument is `nil` then each value will return itself.
+```lua
+lume.filter({ true, true, false, true }, nil) -- { true, true, true }
+```
+
+If the argument is a `string` then each value will be assumed to be a table,
+and will return the value of the key which matches the string.
+``` lua
+local t = {{ z = "cat" }, { z = "dog" }, { z = "owl" }}
+lume.map(t, "z") -- Returns { "cat", "dog", "owl" }
+```
+
+If the argument is a `table` then each value will return `true` or `false`,
+depending on whether the values at each of the table's keys match the
+collection's value's keys.
+```lua
+local t = {
+  { age = 10, type = "cat" },
+  { age = 8,  type = "dog" },
+  { age = 10, type = "owl" },
+}
+lume.count(t, { age = 10 }) -- returns 2
+```
+
 
 ## License
 
