@@ -439,7 +439,7 @@ lume.map(t, "z") -- Returns { "cat", "dog", "owl" }
 
 If the argument is a `table` then each value will return `true` or `false`,
 depending on whether the values at each of the table's keys match the
-collection's value's keys.
+collection's value's values.
 ```lua
 local t = {
   { age = 10, type = "cat" },
