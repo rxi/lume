@@ -431,7 +431,8 @@ lume({1, 2, 3}):each(print) -- Prints 1, 2 then 3 on separate lines
 ## Iteratee functions
 Several lume functions allow a `table`, `string` or `nil` to be used in place
 of their iteratee function argument. The functions that provide this behaviour
-are: `map()`, `all()`, `any()`, `filter()`, `match()` and `count()`.
+are: `map()`, `all()`, `any()`, `filter()`, `reject()`, `match()` and
+`count()`.
 
 If the argument is `nil` then each value will return itself.
 ```lua
