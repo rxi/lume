@@ -178,7 +178,7 @@ The opposite of `lume.filter()`: Calls `fn` on each value of `t` table; returns
 a new table with only the values where `fn` returned false. If `retainkeys` is
 true the table is not treated as an array and retains its original keys.
 ```lua
-lume.filter({1, 2, 3, 4}, function(x) return x % 2 == 0 end) -- Returns {1, 3}
+lume.reject({1, 2, 3, 4}, function(x) return x % 2 == 0 end) -- Returns {1, 3}
 ```
 
 ### lume.merge(...)
