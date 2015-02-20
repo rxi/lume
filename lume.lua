@@ -287,6 +287,23 @@ function lume.filter(t, fn, retainkeys)
 end
 
 
+function lume.reject(t, fn, retainkeys)
+  fn = iteratee(fn)
+  local iter = getiter(t)
+  local rtn = {}
+  if retainkeys then
+    for k, v in iter(t) do
+      if not fn(v) then rtn[k] = v end
+    end
+  else
+    for k, v in iter(t) do
+      if not fn(v) then rtn[#rtn + 1] = v end
+    end
+  end
+  return rtn
+end
+
+
 function lume.merge(...)
   local rtn = {}
   for i = 1, select("#", ...) do

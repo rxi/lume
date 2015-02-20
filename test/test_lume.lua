@@ -253,6 +253,16 @@ tests["lume.filter"] = function()
   testeq( t, {{ x=1, y=1 }, {x=1, y=3}} )
 end
 
+-- lume.reject
+tests["lume.reject"] = function()
+  local t = lume.reject({1, 2, 3, 4, 5}, function(x) return x % 2 == 0 end  ) 
+  testeq( t, {1, 3, 5} )
+  local t = lume.reject({a=1, b=2, c=3}, function(x) return x == 2 end, true) 
+  testeq( t, {a=1, c=3} )
+  local t = lume.reject({{ x=1, y=1 }, { x=2, y=2 }, { x=1, y=3 }}, { x = 1 })
+  testeq( t, {{ x=2, y=2 }} )
+end
+
 -- lume.merge
 tests["lume.merge"] = function()
   testeq( lume.merge(),                       {}              )
