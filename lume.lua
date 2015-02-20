@@ -280,8 +280,14 @@ function lume.filter(t, fn, retainkeys)
   fn = iteratee(fn)
   local iter = getiter(t)
   local rtn = {}
-  for k, v in iter(t) do
-    if fn(v) then rtn[retainkeys and k or (#rtn + 1)] = v end
+  if retainkeys then
+    for k, v in iter(t) do
+      if fn(v) then rtn[k] = v end
+    end
+  else
+    for k, v in iter(t) do
+      if fn(v) then rtn[#rtn + 1] = v end
+    end
   end
   return rtn
 end
