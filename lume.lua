@@ -259,9 +259,18 @@ end
 
 
 function lume.reduce(t, fn, first)
-  local acc = first or t[1]
-  assert(acc, "reduce of an empty array with no first value")
-  for i = first and 1 or 2, #t do acc = fn(acc, t[i]) end
+  local acc = first
+  local started = first and true or false
+  local iter = getiter(t)
+  for k, v in iter(t) do
+    if started then
+      acc = fn(acc, v)
+    else
+      acc = v
+      started = true
+    end
+  end
+  assert(started, "reduce of an empty table with no first value")
   return acc
 end
 

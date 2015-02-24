@@ -230,6 +230,9 @@ tests["lume.reduce"] = function()
   testeq( lume.reduce({1, 2, 3, 4}, add, 5),          15          )
   testeq( lume.reduce({1}, add),                      1           )
   testeq( lume.reduce({}, concat, "potato"),          "potato"    )
+  testeq( lume.reduce({a=1, b=2}, add, 5),            8           )
+  testeq( lume.reduce({a=1, b=2}, add),               3           )
+  tester.test.error(lume.reduce, {}, add)
 end
 
 -- lume.set
