@@ -491,8 +491,8 @@ end
 
 -- lume.wordwrap
 tests["lume.wordwrap"] = function()
-  local str = "A small string with some words and then some more words"
-  local b = "A small string with\nsome words and then\nsome more words"
+  local str = "A small string with some words and then some more   words"
+  local b = "A small string with \nsome words and then \nsome more   words"
   local fn = function(str) return #str >= 20 end
   testeq( lume.wordwrap(str),     str )
   testeq( lume.wordwrap(str, 20), b   )
