@@ -145,6 +145,16 @@ tests["lume.clear"] = function()
   testeq( lume.clear(t) == t, true )
 end
 
+-- lume.extend
+tests["lume.extend"] = function()
+  local t = { a = 10, b = 20, c = 30 }
+  testeq( lume.extend(t) == t, true )
+  lume.extend(t, { d = 40 }, { e = 50 })
+  testeq( t, { a = 10, b = 20, c = 30, d = 40, e = 50 } )
+  lume.extend(t, { a = "cat", b = "dog" }, { b = "owl", c = "fox" })
+  testeq( t, { a = "cat", b = "owl", c = "fox", d = 40, e = 50 } )
+end
+
 -- lume.shuffle
 tests["lume.shuffle"] = function()
   local t = {1, 2, 3, 4, 5}

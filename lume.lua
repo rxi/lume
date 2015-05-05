@@ -183,6 +183,19 @@ function lume.clear(t)
 end
 
 
+function lume.extend(t, ...)
+  for i = 1, select("#", ...) do
+    local x = select(i, ...)
+    if x then
+      for k, v in pairs(x) do
+        t[k] = v
+      end
+    end
+  end
+  return t
+end
+
+
 function lume.shuffle(t)
   local rtn = {}
   for i = 1, #t do
