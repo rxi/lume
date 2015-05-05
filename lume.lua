@@ -565,20 +565,26 @@ function lume.wordwrap(str, limit)
     check = limit
   end
   local rtn = {}
-  for j, line in ipairs(lume.split(str, "\n")) do
-    local str
-    for i, word in ipairs(lume.split(line)) do
-      local s = (str and (str .. " ") or "") .. word
-      if check(s) then
-        rtn[#rtn + 1] = str
-        str = word
+  local line = ""
+  for word, spaces in str:gmatch("(%S+)(%s*)") do
+    local str = line .. word
+    if check(str) then
+      table.insert(rtn, line .. "\n")
+      line = word
+    else
+      line = str
+    end
+    for c in spaces:gmatch(".") do
+      if c == "\n" then
+        table.insert(rtn, line .. "\n")
+        line = ""
       else
-        str = s
+        line = line .. c
       end
     end
-    rtn[#rtn + 1] = str
   end
-  return table.concat(rtn, "\n")
+  table.insert(rtn, line)
+  return table.concat(rtn)
 end
 
 
