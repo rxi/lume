@@ -46,10 +46,6 @@ local isarray = function(x)
   return (type(x) == "table" and x[1] ~= nil) and true or false
 end
 
-local iternil = function()
-  return noop
-end
-
 local getiter = function(x)
   if isarray(x) then
     return ipairs
