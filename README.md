@@ -252,6 +252,12 @@ values the keys.
 lume.invert({a = "x", b = "y"}) -- returns {x = "a", y = "b"}
 ```
 
+### lume.pick(t, ...)
+Returns a copy of the table filtered to only contain values for the given keys
+```lua
+lume.pick({ a = 1, b = 2, c = 3 }, "a", "c") -- Returns { a = 1, c = 3 }
+```
+
 ### lume.keys(t)
 Returns an array containing each key of the table.
 
