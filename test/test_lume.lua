@@ -565,6 +565,23 @@ tests["lume.ripairs"] = function()
   tester.test.error(lume.ripairs, nil)
 end
 
+-- lume.color
+tests["lume.color"] = function()
+  testeq({ lume.color("#ff0000") },                   { 1, 0, 0, 1 }  )
+  testeq({ lume.color("#00ff00") },                   { 0, 1, 0, 1 }  )
+  testeq({ lume.color("#0000ff") },                   { 0, 0, 1, 1 }  )
+  testeq({ lume.color("rgb( 255, 255, 255 )") },      { 1, 1, 1, 1 }  )
+  testeq({ lume.color("rgb (0, 0, 0)") },             { 0, 0, 0, 1 }  )
+  testeq({ lume.color("rgba(255, 255, 255, .5)") },   { 1, 1, 1, .5 } )
+  testeq({ lume.color("#ffffff", 2) },                { 2, 2, 2, 2 }  )
+  testeq({ lume.color("rgba(255, 255, 255, 1)", 3) }, { 3, 3, 3, 3 }  )
+  tester.test.error(lume.color, "#ff00f")
+  tester.test.error(lume.color, "#xyzxyz")
+  tester.test.error(lume.color, "rgba(hello)")
+  tester.test.error(lume.color, "rgba()")
+  tester.test.error(lume.color, "rgba(1, 1, 1, 1")
+end
+
 -- lume.rgba
 tests["lume.rgba"] = function()
   local r, g, b, a = lume.rgba(0x12345678)
