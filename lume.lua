@@ -682,9 +682,6 @@ local ripairs_iter = function(t, i)
 end
 
 function lume.ripairs(t)
-  if t == nil then
-    return noop
-  end
   return ripairs_iter, t, (#t + 1)
 end
 

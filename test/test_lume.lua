@@ -562,8 +562,7 @@ tests["lume.ripairs"] = function()
     table.insert(r, { i, v })
   end
   testeq( r, { { 3, "c" }, { 2, "b" }, { 1, "a" } })
-  for i, v in lume.ripairs(nil) do
-  end
+  tester.test.error(lume.ripairs, nil)
 end
 
 -- lume.rgba
