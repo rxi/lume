@@ -422,6 +422,16 @@ function lume.invert(t)
 end
 
 
+function lume.pick(t, ...)
+  local rtn = {}
+  for i = 1, select("#", ...) do
+    local k = select(i, ...)
+    rtn[k] = t[k]
+  end
+  return rtn
+end
+
+
 function lume.keys(t)
   local rtn = {}
   local iter = getiter(t)

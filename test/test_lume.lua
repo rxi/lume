@@ -373,6 +373,15 @@ tests["lume.invert"] = function()
   testeq( lume.invert(lume.invert{a = 1, b = 2}), {a = 1, b = 2}      )
 end
 
+-- lume.pick
+tests["lume.pick"] = function()
+  local t = { cat = 10, dog = 20, fox = 30, owl = 40 }
+  testeq( lume.pick(t, "cat", "dog"), { cat = 10, dog = 20 } )
+  testeq( lume.pick(t, "fox", "owl"), { fox = 30, owl = 40 } )
+  testeq( lume.pick(t, "owl"), { owl = 40 } )
+  testeq( lume.pick(t), {} )
+end
+
 -- lume.keys
 tests["lume.keys"] = function()
   testeq( lume.keys({}), {} )
