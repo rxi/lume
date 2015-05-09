@@ -100,8 +100,7 @@ lume.clear(t) -- `t` becomes {}
 
 ### lume.extend(t, ...)
 Copies all the fields from the source tables to the table `t` and returns `t`.
-Tables are iterated in order, so the right-most table overrides existing
-fields.
+If a key exists in multiple tables the right-most table's value is used.
 ```lua
 local t = { a = 1, b = 2 }
 lume.extend(t, { b = 4, c = 6 }) -- `t` becomes { a = 1, b = 4, c = 6 }
