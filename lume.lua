@@ -536,19 +536,36 @@ function lume.lambda(str)
 end
 
 
-function lume.serialize(x)
-  local f = { string = function(v) return string.format("%q", v) end,
-              number = tostring, boolean = tostring }
-  f.table = function(t)
+local serialize
+
+local serializemap = {
+  [ "number"  ] = tostring,
+  [ "boolean" ] = tostring,
+  [ "nil"     ] = tostring,
+  [ "string"  ] = function(v) return string.format("%q", v) end,
+  [ "table"   ] = function(t, stk)
+    stk = stk or {}
+    if stk[t] then error("circular reference") end
     local rtn = {}
+    stk[t] = true
     for k, v in pairs(t) do
-      rtn[#rtn + 1] = "[" .. f[type(k)](k) .. "]=" .. f[type(v)](v) .. ","
+      rtn[#rtn + 1] = "[" .. serialize(k, stk) .. "]=" .. serialize(v, stk)
     end
-    return "{" .. table.concat(rtn) .. "}"
+    stk[t] = nil
+    return "{" .. table.concat(rtn, ",") .. "}"
   end
-  local err = function(t,k) error("unsupported serialize type: " .. k) end
-  setmetatable(f, { __index = err })
-  return f[type(x)](x)
+}
+
+setmetatable(serializemap, {
+  __index = function(t, k) error("unsupported serialize type: " .. k) end
+})
+
+serialize = function(x, stk)
+  return serializemap[type(x)](x, stk)
+end
+
+function lume.serialize(x)
+  return serialize(x)
 end
 
 
