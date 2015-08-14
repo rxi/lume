@@ -618,11 +618,11 @@ end
 
 function lume.trace(...)
   local info = debug.getinfo(2, "Sl")
-  local t = { "[" .. info.short_src .. ":" .. info.currentline .. "]" }
+  local t = { info.short_src .. ":" .. info.currentline .. ":" }
   for i = 1, select("#", ...) do
     local x = select(i, ...)
     if type(x) == "number" then
-      x = string.format("%g", lume.round(x, .01))
+      x = tonumber(lume.round(x, .01))
     end
     t[#t + 1] = tostring(x)
   end

@@ -535,7 +535,7 @@ tests["lume.trace"] = function()
   local oldprint = print
   local file, line, msg
   print = function(x)
-    file, line, msg = x:match("%[(.-):(.-)%] (.*)")
+    file, line, msg = x:match("(.-):(.-): (.*)")
   end
   lume.trace("Hi world", 123.456, 1, nil)
   print = oldprint
