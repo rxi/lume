@@ -1,4 +1,4 @@
-local tester = require "tester"
+local tester = require "util.tester"
 
 package.path = "../?.lua;" .. package.path
 
