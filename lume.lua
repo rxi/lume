@@ -538,7 +538,7 @@ end
 
 local serialize
 
-local serializemap = {
+local serialize_map = {
   [ "number"  ] = tostring,
   [ "boolean" ] = tostring,
   [ "nil"     ] = tostring,
@@ -556,12 +556,12 @@ local serializemap = {
   end
 }
 
-setmetatable(serializemap, {
+setmetatable(serialize_map, {
   __index = function(t, k) error("unsupported serialize type: " .. k) end
 })
 
 serialize = function(x, stk)
-  return serializemap[type(x)](x, stk)
+  return serialize_map[type(x)](x, stk)
 end
 
 function lume.serialize(x)
