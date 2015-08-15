@@ -639,7 +639,7 @@ function lume.trace(...)
   for i = 1, select("#", ...) do
     local x = select(i, ...)
     if type(x) == "number" then
-      x = tonumber(lume.round(x, .01))
+      x = string.format("%g", lume.round(x, .01))
     end
     t[#t + 1] = tostring(x)
   end
