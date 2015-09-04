@@ -329,7 +329,7 @@ f(10, 5) -- Returns 25
 ### lume.serialize(x)
 Serializes the argument `x` into a string which can be loaded again using
 `lume.deserialize()`. Only booleans, numbers, tables and strings can be
-serialized. Circular references are not handled; all nested tables are
+serialized. Circular references will result in an error; all nested tables are
 serialized as unique tables.
 ```lua
 lume.serialize({a = "test", b = {1, 2, 3}, false})
