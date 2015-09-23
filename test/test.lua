@@ -484,6 +484,10 @@ tests["lume.serialize, lume.deserialize"] = function()
   local t = { 1, 2, 3, 4, true, false, "cat", "dog", {1, 2, 3} }
   local s = lume.serialize(t)
   testeq( lume.deserialize(s), t )
+  testeq( lume.deserialize(lume.serialize(math.huge)), math.huge )
+  testeq( lume.deserialize(lume.serialize(-math.huge)), -math.huge )
+  local x = lume.deserialize(lume.serialize(0 / 0)) -- nan
+  testeq( x ~= x, true )
 end
 
 -- lume.split

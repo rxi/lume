@@ -539,10 +539,15 @@ end
 local serialize
 
 local serialize_map = {
-  [ "number"  ] = tostring,
   [ "boolean" ] = tostring,
   [ "nil"     ] = tostring,
   [ "string"  ] = function(v) return string.format("%q", v) end,
+  [ "number"  ] = function(v)
+    if      v ~=  v     then return  "0/0"      --  nan
+    elseif  v ==  1 / 0 then return  "1/0"      --  inf
+    elseif  v == -1 / 0 then return "-1/0" end  -- -inf
+    return tostring(v)
+  end,
   [ "table"   ] = function(t, stk)
     stk = stk or {}
     if stk[t] then error("circular reference") end
