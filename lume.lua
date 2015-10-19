@@ -15,11 +15,9 @@ local tostring, tonumber = tostring, tonumber
 local math_floor = math.floor
 local math_ceil = math.ceil
 local math_random = math.random
-local math_cos = math.cos
 local math_atan2 = math.atan2 or math.atan
 local math_sqrt = math.sqrt
 local math_abs = math.abs
-local math_pi = math.pi
 
 local noop = function()
 end
@@ -131,7 +129,7 @@ end
 
 function lume.weightedchoice(t)
   local sum = 0
-  for k, v in pairs(t) do
+  for _, v in pairs(t) do
     assert(v >= 0, "weight value less than zero")
     sum = sum + v
   end
@@ -172,7 +170,7 @@ end
 
 function lume.clear(t)
   local iter = getiter(t)
-  for k, v in iter(t) do
+  for k, _ in iter(t) do
     t[k] = nil
   end
   return t
@@ -250,7 +248,7 @@ end
 function lume.all(t, fn)
   fn = iteratee(fn)
   local iter = getiter(t)
-  for k, v in iter(t) do
+  for _, v in iter(t) do
     if not fn(v) then return false end
   end
   return true
@@ -260,7 +258,7 @@ end
 function lume.any(t, fn)
   fn = iteratee(fn)
   local iter = getiter(t)
-  for k, v in iter(t) do
+  for _, v in iter(t) do
     if fn(v) then return true end
   end
   return false
@@ -271,7 +269,7 @@ function lume.reduce(t, fn, first)
   local acc = first
   local started = first and true or false
   local iter = getiter(t)
-  for k, v in iter(t) do
+  for _, v in iter(t) do
     if started then
       acc = fn(acc, v)
     else
@@ -286,7 +284,7 @@ end
 
 function lume.set(t)
   local rtn = {}
-  for k, v in pairs(lume.invert(t)) do
+  for k, _ in pairs(lume.invert(t)) do
     rtn[#rtn + 1] = k
   end
   return rtn
@@ -302,7 +300,7 @@ function lume.filter(t, fn, retainkeys)
       if fn(v) then rtn[k] = v end
     end
   else
-    for k, v in iter(t) do
+    for _, v in iter(t) do
       if fn(v) then rtn[#rtn + 1] = v end
     end
   end
@@ -319,7 +317,7 @@ function lume.reject(t, fn, retainkeys)
       if not fn(v) then rtn[k] = v end
     end
   else
-    for k, v in iter(t) do
+    for _, v in iter(t) do
       if not fn(v) then rtn[#rtn + 1] = v end
     end
   end
@@ -346,7 +344,7 @@ function lume.concat(...)
     local t = select(i, ...)
     if t ~= nil then
       local iter = getiter(t)
-      for k, v in iter(t) do
+      for _, v in iter(t) do
         rtn[#rtn + 1] = v
       end
     end
@@ -379,14 +377,14 @@ function lume.count(t, fn)
   local iter = getiter(t)
   if fn then
     fn = iteratee(fn)
-    for k, v in iter(t) do
+    for _, v in iter(t) do
       if fn(v) then count = count + 1 end
     end
   else
     if isarray(t) then
       return #t
     end
-    for k in iter(t) do count = count + 1 end
+    for _ in iter(t) do count = count + 1 end
   end
   return count
 end
@@ -435,7 +433,7 @@ end
 function lume.keys(t)
   local rtn = {}
   local iter = getiter(t)
-  for k, v in iter(t) do rtn[#rtn + 1] = k end
+  for k, _ in iter(t) do rtn[#rtn + 1] = k end
   return rtn
 end
 
@@ -458,12 +456,12 @@ end
 
 
 function lume.once(fn, ...)
-  local fn = lume.fn(fn, ...)
+  local f = lume.fn(fn, ...)
   local done = false
   return function(...)
     if done then return end
     done = true
-    return fn(...)
+    return f(...)
   end
 end
 
@@ -562,7 +560,7 @@ local serialize_map = {
 }
 
 setmetatable(serialize_map, {
-  __index = function(t, k) error("unsupported serialize type: " .. k) end
+  __index = function(_, k) error("unsupported serialize type: " .. k) end
 })
 
 serialize = function(x, stk)
@@ -601,19 +599,19 @@ function lume.wordwrap(str, limit)
   limit = limit or 72
   local check
   if type(limit) == "number" then
-    check = function(str) return #str >= limit end
+    check = function(s) return #s >= limit end
   else
     check = limit
   end
   local rtn = {}
   local line = ""
   for word, spaces in str:gmatch("(%S+)(%s*)") do
-    local str = line .. word
-    if check(str) then
+    local s = line .. word
+    if check(s) then
       table.insert(rtn, line .. "\n")
       line = word
     else
-      line = str
+      line = s
     end
     for c in spaces:gmatch(".") do
       if c == "\n" then
@@ -681,7 +679,7 @@ function lume.hotswap(modname)
   end
   local err = nil
   local function onerror(e)
-    for k, v in pairs(_G) do _G[k] = oldglobal[k] end
+    for k, _ in pairs(_G) do _G[k] = oldglobal[k] end
     err = lume.trim(e)
   end
   local ok, oldmod = pcall(require, modname)
@@ -760,7 +758,7 @@ function lume.chain(value)
 end
 
 setmetatable(lume,  {
-  __call = function(t, ...)
+  __call = function(_, ...)
     return lume.chain(...)
   end
 })
