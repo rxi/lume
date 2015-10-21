@@ -170,7 +170,7 @@ end
 
 function lume.clear(t)
   local iter = getiter(t)
-  for k, _ in iter(t) do
+  for k in iter(t) do
     t[k] = nil
   end
   return t
@@ -284,7 +284,7 @@ end
 
 function lume.set(t)
   local rtn = {}
-  for k, _ in pairs(lume.invert(t)) do
+  for k in pairs(lume.invert(t)) do
     rtn[#rtn + 1] = k
   end
   return rtn
@@ -433,7 +433,7 @@ end
 function lume.keys(t)
   local rtn = {}
   local iter = getiter(t)
-  for k, _ in iter(t) do rtn[#rtn + 1] = k end
+  for k in iter(t) do rtn[#rtn + 1] = k end
   return rtn
 end
 
@@ -679,7 +679,7 @@ function lume.hotswap(modname)
   end
   local err = nil
   local function onerror(e)
-    for k, _ in pairs(_G) do _G[k] = oldglobal[k] end
+    for k in pairs(_G) do _G[k] = oldglobal[k] end
     err = lume.trim(e)
   end
   local ok, oldmod = pcall(require, modname)
