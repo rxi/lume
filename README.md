@@ -326,11 +326,14 @@ local f = lume.lambda "x,y -> 2*x+y"
 f(10, 5) -- Returns 25
 ```
 
-### lume.serialize(x)
-Serializes the argument `x` into a string which can be loaded again using
-`lume.deserialize()`. Only booleans, numbers, tables and strings can be
-serialized. Circular references will result in an error; all nested tables are
-serialized as unique tables.
+### lume.serialize(x, allow_unreadable)
+Serializes the argument `x` into a string which can be loaded again
+using `lume.deserialize()`. All nested tables are serialized as unique
+tables. Only booleans, numbers, tables and strings can be deserialized. By
+default serializing things which cannot be deserialized will result in an
+error, but if the second `allow_unreadable` argument is true then they will
+be included in the output. Likewise circular tables will result in an error
+normally, but can be included in a non-deserializable way with this arg set.
 ```lua
 lume.serialize({a = "test", b = {1, 2, 3}, false})
 -- Returns "{[1]=false,["a"]="test",["b"]={[1]=1,[2]=2,[3]=3,},}"
