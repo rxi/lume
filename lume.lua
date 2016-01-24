@@ -85,6 +85,11 @@ function lume.sign(x)
 end
 
 
+function lume.smaller(a, b)
+  if a < b then return a, b else return b, a end
+end
+
+
 function lume.lerp(a, b, amount)
   return a + (b - a) * lume.clamp(amount, 0, 1)
 end
@@ -151,7 +156,7 @@ function lume.push(t, ...)
 end
 
 
-function lume.remove(t, x) 
+function lume.remove(t, x)
   local iter = getiter(t)
   for i, v in iter(t) do
     if v == x then
@@ -487,7 +492,7 @@ end
 function lume.combine(...)
   local n = select('#', ...)
   if n == 0 then return noop end
-  if n == 1 then 
+  if n == 1 then
     local fn = select(1, ...)
     if not fn then return noop end
     assert(iscallable(fn), "expected a function or nil")

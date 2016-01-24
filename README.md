@@ -30,6 +30,9 @@ lume.round(123.4567, .1) -- Returns 123.5
 ### lume.sign(x)
 Returns `1` if `x` is 0 or above, returns `-1` when `x` is negative.
 
+### lume.smaller(a, b)
+Returns `a, b` if a is less than b, returns `b, a` otherwise.
+
 ### lume.lerp(a, b, amount)
 Returns the linearly interpolated number between `a` and `b`, `amount` should
 be in the range of 0 - 1; if `amount` is outside of this range it is clamped.
@@ -168,7 +171,7 @@ lume.reduce({1, 2, 3}, function(a, b) return a + b end) -- Returns 6
 ```
 
 ### lume.set(t)
-Returns a copy of the `t` array with all the duplicate values removed. 
+Returns a copy of the `t` array with all the duplicate values removed.
 ```lua
 lume.set({2, 1, 2, "cat", "cat"}) -- Returns {1, 2, "cat"}
 ```
@@ -488,4 +491,3 @@ lume.count(t, { age = 10 }) -- returns 2
 
 This library is free software; you can redistribute it and/or modify it under
 the terms of the MIT license. See [LICENSE](LICENSE) for details.
-
