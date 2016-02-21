@@ -74,6 +74,13 @@ lume.weightedchoice({ ["cat"] = 10, ["dog"] = 5, ["frog"] = 0 })
 -- Returns either "cat" or "dog" with "cat" being twice as likely to be chosen.
 ```
 
+### lume.isarray(x)
+Returns `true` if `x` is an array -- the value is assumed to be an array if it
+is a table which contains a value at the index `1`. This function is used
+internally and can be overridden if you wish to use a different method to detect
+arrays.
+
+
 ### lume.push(t, ...)
 Pushes all the given values to the end of the table `t` and returns the pushed
 values. Nil values are ignored.
@@ -168,7 +175,7 @@ lume.reduce({1, 2, 3}, function(a, b) return a + b end) -- Returns 6
 ```
 
 ### lume.set(t)
-Returns a copy of the `t` array with all the duplicate values removed. 
+Returns a copy of the `t` array with all the duplicate values removed.
 ```lua
 lume.set({2, 1, 2, "cat", "cat"}) -- Returns {1, 2, "cat"}
 ```
@@ -488,4 +495,3 @@ lume.count(t, { age = 10 }) -- returns 2
 
 This library is free software; you can redistribute it and/or modify it under
 the terms of the MIT license. See [LICENSE](LICENSE) for details.
-
