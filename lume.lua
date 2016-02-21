@@ -40,12 +40,8 @@ local iscallable = function(x)
   return mt and mt.__call ~= nil
 end
 
-local isarray = function(x)
-  return (type(x) == "table" and x[1] ~= nil) and true or false
-end
-
 local getiter = function(x)
-  if isarray(x) then
+  if lume.isarray(x) then
     return ipairs
   elseif type(x) == "table" then
     return pairs
@@ -142,6 +138,11 @@ function lume.weightedchoice(t)
 end
 
 
+function lume.isarray(x)
+  return (type(x) == "table" and x[1] ~= nil) and true or false
+end
+
+
 function lume.push(t, ...)
   local n = select("#", ...)
   for i = 1, n do
@@ -151,11 +152,11 @@ function lume.push(t, ...)
 end
 
 
-function lume.remove(t, x) 
+function lume.remove(t, x)
   local iter = getiter(t)
   for i, v in iter(t) do
     if v == x then
-      if isarray(t) then
+      if lume.isarray(t) then
         table.remove(t, i)
         break
       else
@@ -381,7 +382,7 @@ function lume.count(t, fn)
       if fn(v) then count = count + 1 end
     end
   else
-    if isarray(t) then
+    if lume.isarray(t) then
       return #t
     end
     for _ in iter(t) do count = count + 1 end
@@ -487,7 +488,7 @@ end
 function lume.combine(...)
   local n = select('#', ...)
   if n == 0 then return noop end
-  if n == 1 then 
+  if n == 1 then
     local fn = select(1, ...)
     if not fn then return noop end
     assert(iscallable(fn), "expected a function or nil")
