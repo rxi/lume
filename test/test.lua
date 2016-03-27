@@ -62,6 +62,24 @@ tests["lume.pingpong"] = function()
   testeq( lume.pingpong(1.8),   .2  )
 end
 
+-- lume.pingpong
+tests["lume.pingpongseq"] = function()
+  n = 10
+  local f = lume.pingpongseq(n)
+  for i = 0, n do
+    testeq(f(), i)
+  end
+  for i = n, 0, -1 do
+    testeq(f(), i)
+  end
+  for i = 0, n do
+    testeq(f(), i)
+  end
+  for i = n, 0, -1 do
+    testeq(f(), i)
+  end
+end
+
 -- lume.distance
 tests["lume.distance"] = function()
   testeq( lume.distance(15, 20, 15, 20),        0             )
