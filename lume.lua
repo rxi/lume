@@ -105,10 +105,10 @@ end
 function lume.pingpongseq(max)
   return coroutine.wrap(function()
     while true do
-      for i = 0, max do
+      for i = 1, max do
         coroutine.yield(i)
       end
-      for i = max, 0, -1 do
+      for i = max, 1, -1 do
         coroutine.yield(i)
       end
     end

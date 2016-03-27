@@ -66,16 +66,16 @@ end
 tests["lume.pingpongseq"] = function()
   n = 10
   local f = lume.pingpongseq(n)
-  for i = 0, n do
+  for i = 1, n do
     testeq(f(), i)
   end
-  for i = n, 0, -1 do
+  for i = n, 1, -1 do
     testeq(f(), i)
   end
-  for i = 0, n do
+  for i = 1, n do
     testeq(f(), i)
   end
-  for i = n, 0, -1 do
+  for i = n, 1, -1 do
     testeq(f(), i)
   end
 end
