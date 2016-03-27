@@ -69,13 +69,13 @@ tests["lume.pingpongseq"] = function()
   for i = 1, n do
     testeq(f(), i)
   end
-  for i = n, 1, -1 do
+  for i = n-1, 1, -1 do
     testeq(f(), i)
   end
   for i = 1, n do
     testeq(f(), i)
   end
-  for i = n, 1, -1 do
+  for i = n-1, 1, -1 do
     testeq(f(), i)
   end
 end
