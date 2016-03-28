@@ -109,7 +109,7 @@ function lume.pingpongseq(max)
       for i = start, max do
         coroutine.yield(i)
       end
-      for i = max-1, start, -1 do
+      for i = max-1, start+1, -1 do
         coroutine.yield(i)
       end
     end
