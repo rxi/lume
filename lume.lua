@@ -15,6 +15,9 @@ local tostring, tonumber = tostring, tonumber
 local math_floor = math.floor
 local math_ceil = math.ceil
 local math_random = math.random
+if love and love.math then
+  math_random = love.math.random
+end
 local math_atan2 = math.atan2 or math.atan
 local math_sqrt = math.sqrt
 local math_abs = math.abs
@@ -62,8 +65,6 @@ local iteratee = function(x)
   end
   return function(z) return z[x] end
 end
-
-
 
 function lume.clamp(x, min, max)
   return x < min and min or (x > max and max or x)
