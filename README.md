@@ -18,6 +18,12 @@ lume = require "lume"
 ### lume.clamp(x, min, max)
 Returns the number `x` clamped between the numbers `min` and `max`
 
+### lume.floor(x)
+Returns the largest integer less than or equal to `x`
+
+### lume.ceil(x)
+Returns the smallest integer greater than or equal to `x`
+
 ### lume.round(x [, increment])
 Rounds `x` to the nearest integer; rounds away from zero if we're midway
 between two integers. If `increment` is set then the number is rounded to the
