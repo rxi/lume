@@ -69,6 +69,14 @@ function lume.clamp(x, min, max)
   return x < min and min or (x > max and max or x)
 end
 
+function lume.floor(x)
+    return math_floor(x)
+end
+
+function lume.ceil(x)
+    return math_ceil(x)
+end
+
 
 function lume.round(x, increment)
   if increment then return lume.round(x / increment) * increment end
