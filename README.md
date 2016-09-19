@@ -52,6 +52,12 @@ used when comparing distances.
 ### lume.angle(x1, y1, x2, y2)
 Returns the angle between the two points.
 
+### lume.vector(angle, magnitude)
+Given an `angle` and `magnitude`, returns a vector.
+```lua
+local x, y = lume.vector(0, 10) -- Returns 10, 0
+```
+
 ### lume.random([a [, b]])
 Returns a random number between `a` and `b`. If only `a` is supplied a number
 between `0` and `a` is returned. If no arguments are supplied a random number

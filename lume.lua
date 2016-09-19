@@ -111,6 +111,11 @@ function lume.angle(x1, y1, x2, y2)
 end
 
 
+function lume.vector(angle, magnitude)
+  return math.cos(angle) * magnitude, math.sin(angle) * magnitude
+end
+
+
 function lume.random(a, b)
   if not a then a, b = 0, 1 end
   if not b then b = 0 end

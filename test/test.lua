@@ -20,7 +20,7 @@ end
 
 -- lume.round
 tests["lume.round"] = function()
-  testeq( lume.round(.5),           1       )   
+  testeq( lume.round(.5),           1       )
   testeq( lume.round(-.5),          -1      )
   testeq( lume.round(2.4),          2       )
   testeq( lume.round(123, 10),      120     )
@@ -78,6 +78,18 @@ tests["lume.angle"] = function()
   testeq( lume.angle(10, 10, 5,  10), math.rad(180) )
   testeq( lume.angle(10, 10, 20, 20), math.rad(45)  )
   testeq( lume.angle(10, 10, 10, 30), math.rad(90)  )
+end
+
+-- lume.vector
+tests["lume.vector"] = function()
+  local function cmp(a, b) return math.abs(a - b) < 10e-6 end
+  local x, y
+  x, y = lume.vector(0, 10)
+  testeq( cmp(x, 10) and cmp(y, 0), true )
+  x, y = lume.vector(math.pi, 100)
+  testeq( cmp(x, -100) and cmp(y, 0), true )
+  x, y = lume.vector(math.pi * 0.25, 100)
+  testeq( cmp(x, 70.71067811865476) and cmp(y, 70.71067811865476), true )
 end
 
 -- lume.random
@@ -258,9 +270,9 @@ end
 
 -- lume.filter
 tests["lume.filter"] = function()
-  local t = lume.filter({1, 2, 3, 4, 5}, function(x) return x % 2 == 0 end  ) 
+  local t = lume.filter({1, 2, 3, 4, 5}, function(x) return x % 2 == 0 end  )
   testeq( t, {2, 4} )
-  local t = lume.filter({a=1, b=2, c=3}, function(x) return x == 2 end, true) 
+  local t = lume.filter({a=1, b=2, c=3}, function(x) return x == 2 end, true)
   testeq( t, {b=2} )
   local t = lume.filter({{ x=1, y=1 }, { x=2, y=2 }, { x=1, y=3 }}, { x = 1 })
   testeq( t, {{ x=1, y=1 }, {x=1, y=3}} )
@@ -268,9 +280,9 @@ end
 
 -- lume.reject
 tests["lume.reject"] = function()
-  local t = lume.reject({1, 2, 3, 4, 5}, function(x) return x % 2 == 0 end  ) 
+  local t = lume.reject({1, 2, 3, 4, 5}, function(x) return x % 2 == 0 end  )
   testeq( t, {1, 3, 5} )
-  local t = lume.reject({a=1, b=2, c=3}, function(x) return x == 2 end, true) 
+  local t = lume.reject({a=1, b=2, c=3}, function(x) return x == 2 end, true)
   testeq( t, {a=1, c=3} )
   local t = lume.reject({{ x=1, y=1 }, { x=2, y=2 }, { x=1, y=3 }}, { x = 1 })
   testeq( t, {{ x=2, y=2 }} )
@@ -354,7 +366,7 @@ tests["lume.first"] = function()
   local t = { "a", "b", "c", "d", "e" }
   testeq( lume.first(t),    "a"           )
   testeq( lume.first(t, 1), { "a" }       )
-  testeq( lume.first(t, 2), { "a", "b" }  )  
+  testeq( lume.first(t, 2), { "a", "b" }  )
 end
 
 -- lume.last
@@ -362,7 +374,7 @@ tests["lume.last"] = function()
   local t = { "a", "b", "c", "d", "e" }
   testeq( lume.last(t),     "e"           )
   testeq( lume.last(t, 1),  { "e" }       )
-  testeq( lume.last(t, 2),  { "d", "e" }  )  
+  testeq( lume.last(t, 2),  { "d", "e" }  )
 end
 
 -- lume.invert
@@ -385,9 +397,9 @@ end
 -- lume.keys
 tests["lume.keys"] = function()
   testeq( lume.keys({}), {} )
-  local t = lume.keys({ aaa = 1, bbb = 2, ccc = 3 }) 
+  local t = lume.keys({ aaa = 1, bbb = 2, ccc = 3 })
   table.sort(t)
-  testeq( t, {"aaa", "bbb", "ccc"} ) 
+  testeq( t, {"aaa", "bbb", "ccc"} )
   local t = lume.keys({ "x", "x", "x" })
   testeq( t, {1, 2, 3} )
 end
@@ -544,14 +556,14 @@ tests["lume.trace"] = function()
   lume.trace("Hi world", 123.456, 1, nil)
   print = oldprint
   testeq( file:match(".lua$"),    ".lua"                  )
-  testeq( tonumber(line) ~= nil,  true                    ) 
+  testeq( tonumber(line) ~= nil,  true                    )
   testeq( msg,                    "Hi world 123.46 1 nil" )
 end
 
 -- lume.dostring
 tests["lume.dostring"] = function()
   testeq( lume.dostring([[return "hello!"]]), "hello!"  )
-  testeq( lume.dostring([[return 12345]]),    12345     )   
+  testeq( lume.dostring([[return 12345]]),    12345     )
 end
 
 -- lume.uuid
@@ -606,7 +618,7 @@ end
 
 -- lume.chain
 tests["lume.chain"] = function()
-  local t = lume.chain({1, 2}):map(function(x) return x * 2 end):result() 
+  local t = lume.chain({1, 2}):map(function(x) return x * 2 end):result()
   testeq( t, { 2, 4 } )
   testeq( lume.chain(10):result(), 10 )
   local t = lume({1, 2}):map(function(x) return x * 2 end):result()
@@ -617,4 +629,3 @@ end
 tester.dotests(tests)
 tester.test.global()
 tester.printresults()
-
