@@ -14,7 +14,6 @@ local type, assert, unpack = type, assert, unpack or table.unpack
 local tostring, tonumber = tostring, tonumber
 local math_floor = math.floor
 local math_ceil = math.ceil
-local math_random = math.random
 local math_atan2 = math.atan2 or math.atan
 local math_sqrt = math.sqrt
 local math_abs = math.abs
@@ -119,12 +118,12 @@ end
 function lume.random(a, b)
   if not a then a, b = 0, 1 end
   if not b then b = 0 end
-  return a + math_random() * (b - a)
+  return a + math.random() * (b - a)
 end
 
 
 function lume.randomchoice(t)
-  return t[math_random(#t)]
+  return t[math.random(#t)]
 end
 
 
@@ -199,7 +198,7 @@ end
 function lume.shuffle(t)
   local rtn = {}
   for i = 1, #t do
-    local r = math_random(i)
+    local r = math.random(i)
     if r ~= i then
       rtn[i] = rtn[r]
     end
@@ -663,7 +662,7 @@ end
 
 function lume.uuid()
   local fn = function(x)
-    local r = math_random(16) - 1
+    local r = math.random(16) - 1
     r = (x == "x") and (r + 1) or (r % 4) + 9
     return ("0123456789abcdef"):sub(r, r)
   end
