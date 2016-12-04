@@ -97,6 +97,21 @@ function lume.pingpong(x)
 end
 
 
+function lume.pingpongseq(max)
+  return coroutine.wrap(function()
+    start = 1
+    while true do
+      for i = start, max do
+        coroutine.yield(i)
+      end
+      for i = max-1, start+1, -1 do
+        coroutine.yield(i)
+      end
+    end
+  end)
+end
+
+
 function lume.distance(x1, y1, x2, y2, squared)
   local dx = x1 - x2
   local dy = y1 - y2
