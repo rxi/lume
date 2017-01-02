@@ -30,6 +30,9 @@ lume.round(123.4567, .1) -- Returns 123.5
 ### lume.sign(x)
 Returns `1` if `x` is 0 or above, returns `-1` when `x` is negative.
 
+### lume.smaller(a, b)
+Returns `a, b` if a is less than b, returns `b, a` otherwise.
+
 ### lume.lerp(a, b, amount)
 Returns the linearly interpolated number between `a` and `b`, `amount` should
 be in the range of 0 - 1; if `amount` is outside of this range it is clamped.

@@ -36,6 +36,13 @@ tests["lume.sign"] = function()
   testeq( lume.sign(0),    1  )
 end
 
+-- lume.smaller
+tests["lume.smaller"] = function()
+  testeq( {lume.smaller(3, 5)}, {3, 5} )
+  testeq( {lume.smaller(5, 3)}, {3, 5} )
+  testeq( {lume.smaller(5, 5)}, {5, 5} )
+end
+
 -- lume.lerp
 tests["lume.lerp"] = function()
   testeq( lume.lerp(100, 200, .5),    150  )

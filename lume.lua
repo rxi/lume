@@ -80,6 +80,11 @@ function lume.sign(x)
 end
 
 
+function lume.smaller(a, b)
+  if a < b then return a, b else return b, a end
+end
+
+
 function lume.lerp(a, b, amount)
   return a + (b - a) * lume.clamp(amount, 0, 1)
 end
