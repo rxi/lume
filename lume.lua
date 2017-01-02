@@ -541,6 +541,8 @@ end
 
 local serialize
 
+local serialize_unreadable = false
+
 local serialize_map = {
   [ "boolean" ] = tostring,
   [ "nil"     ] = tostring,
@@ -553,7 +555,13 @@ local serialize_map = {
   end,
   [ "table"   ] = function(t, stk)
     stk = stk or {}
-    if stk[t] then error("circular reference") end
+    if stk[t] then
+       if serialize_unreadable then
+          return "#<circular " .. tostring(t) .. ">"
+       else
+          error("circular reference")
+       end
+    end
     local rtn = {}
     stk[t] = true
     for k, v in pairs(t) do
@@ -565,15 +573,24 @@ local serialize_map = {
 }
 
 setmetatable(serialize_map, {
-  __index = function(_, k) error("unsupported serialize type: " .. k) end
+                __index = function(_, k)
+                   return function(v)
+                      if serialize_unreadable then
+                         return "#<" .. tostring(v) .. ">"
+                      else
+                         error("unsupported serialize type: " .. k)
+                      end
+                   end
+                end
 })
 
 serialize = function(x, stk)
   return serialize_map[type(x)](x, stk)
 end
 
-function lume.serialize(x)
-  return serialize(x)
+function lume.serialize(x, allow_unreadable)
+   serialize_unreadable = allow_unreadable
+   return serialize(x)
 end
 
 
