@@ -135,7 +135,7 @@ lume.sort({ 1, 3, 2 }, function(a, b) return a > b end) -- Returns { 3, 2, 1 }
 ### lume.array(...)
 Iterates the supplied iterator and returns an array filled with the values.
 ```lua
-lume.array(pairs({a = 1, b = 2})) -- Returns {"a", "b"}
+lume.array(string.gmatch("Hello world", "%a+")) -- Returns {"Hello", "world"}
 ```
 
 ### lume.each(t, fn, ...)
