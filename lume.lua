@@ -716,6 +716,16 @@ function lume.ripairs(t)
   return ripairs_iter, t, (#t + 1)
 end
 
+function lume.allipairs(t, start)
+	start = start or 1
+	local maxn = table.maxn(t)
+	return function (t, k)			
+		repeat
+			k = k + 1
+		until t[k] ~= nil or k > maxn
+		return k <= maxn and k or nil, t[k]
+	end, t, start-1
+end
 
 function lume.color(str, mul)
   mul = mul or 1
