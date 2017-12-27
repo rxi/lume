@@ -115,6 +115,19 @@ function lume.vector(angle, magnitude)
 end
 
 
+function lume.betweenangles(theta, angle_min, angle_max)
+  local n = (360 + (theta % 360)) % 360
+	local a = (3600000 + angle_min) % 360
+	local b = (3600000 + angle_max) % 360
+
+	if a < b then
+		return a <= n and n <= b
+  else
+    return a <= n or n <= b
+  end
+end
+
+
 function lume.random(a, b)
   if not a then a, b = 0, 1 end
   if not b then b = 0 end
