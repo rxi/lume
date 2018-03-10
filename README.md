@@ -175,7 +175,7 @@ Applies `fn` on two arguments cumulative to the items of the array `t`, from
 left to right, so as to reduce the array to a single value. If a `first` value
 is specified the accumulator is initialised to this, otherwise the first value
 in the array is used. If the array is empty and no `first` value is specified
-an error is raised,
+an error is raised.
 ```lua
 lume.reduce({1, 2, 3}, function(a, b) return a + b end) -- Returns 6
 ```
