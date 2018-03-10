@@ -739,15 +739,6 @@ function lume.color(str, mul)
 end
 
 
-function lume.rgba(color)
-  local a = math_floor((color / 16777216) % 256)
-  local r = math_floor((color /    65536) % 256)
-  local g = math_floor((color /      256) % 256)
-  local b = math_floor((color) % 256)
-  return r, g, b, a
-end
-
-
 local chain_mt = {}
 chain_mt.__index = lume.map(lume.filter(lume, iscallable, true),
   function(fn)

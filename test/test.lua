@@ -607,15 +607,6 @@ tests["lume.color"] = function()
   tester.test.error(lume.color, "rgba(1, 1, 1, 1")
 end
 
--- lume.rgba
-tests["lume.rgba"] = function()
-  local r, g, b, a = lume.rgba(0x12345678)
-  testeq( a, 0x12 )
-  testeq( r, 0x34 )
-  testeq( g, 0x56 )
-  testeq( b, 0x78 )
-end
-
 -- lume.chain
 tests["lume.chain"] = function()
   local t = lume.chain({1, 2}):map(function(x) return x * 2 end):result()
