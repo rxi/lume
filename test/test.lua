@@ -257,13 +257,13 @@ tests["lume.reduce"] = function()
   tester.test.error(lume.reduce, {}, add)
 end
 
--- lume.set
-tests["lume.set"] = function()
-  testeq( lume.set({}), {} )
-  local t = lume.set({1, 2, 3, 2, 5, 6, 6})
+-- lume.unique
+tests["lume.unique"] = function()
+  testeq( lume.unique({}), {} )
+  local t = lume.unique({1, 2, 3, 2, 5, 6, 6})
   table.sort(t)
   testeq( t, {1, 2, 3, 5, 6} )
-  local t = lume.set({"a", "b", "c", "b", "d"})
+  local t = lume.unique({"a", "b", "c", "b", "d"})
   table.sort(t)
   testeq( t, {"a", "b", "c", "d"} )
 end

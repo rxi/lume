@@ -287,7 +287,7 @@ function lume.reduce(t, fn, first)
 end
 
 
-function lume.set(t)
+function lume.unique(t)
   local rtn = {}
   for k in pairs(lume.invert(t)) do
     rtn[#rtn + 1] = k

@@ -180,10 +180,10 @@ an error is raised,
 lume.reduce({1, 2, 3}, function(a, b) return a + b end) -- Returns 6
 ```
 
-#### lume.set(t)
+#### lume.unique(t)
 Returns a copy of the `t` array with all the duplicate values removed.
 ```lua
-lume.set({2, 1, 2, "cat", "cat"}) -- Returns {1, 2, "cat"}
+lume.unique({2, 1, 2, "cat", "cat"}) -- Returns {1, 2, "cat"}
 ```
 
 #### lume.filter(t, fn [, retainkeys])
