@@ -581,12 +581,12 @@ end
 
 -- lume.ripairs
 tests["lume.ripairs"] = function()
-  local t = { "a", "b", "c" }
+  local t = { "a", "b", false, "c" }
   local r = {}
   for i, v in lume.ripairs(t) do
     table.insert(r, { i, v })
   end
-  testeq( r, { { 3, "c" }, { 2, "b" }, { 1, "a" } })
+  testeq( r, { { 4, "c" }, { 3, false }, { 2, "b" }, { 1, "a" } })
   tester.test.error(lume.ripairs, nil)
 end
 
