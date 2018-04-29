@@ -92,6 +92,15 @@ tests["lume.vector"] = function()
   testeq( cmp(x, 70.71067811865476) and cmp(y, 70.71067811865476), true )
 end
 
+-- lume.aabb
+tests["lume.aabb"] = function()
+  testeq( lume.aabb(100, 100, 100, 100, 90, 90, 20, 20), true )
+  testeq( lume.aabb(10, 0, 10, 10, -10, 0, 21, 10), true )
+  testeq( lume.aabb(20, 20, 20, 20, 0, 0, 10, 10), false )
+  testeq( lume.aabb(5, 5, 5, 5, 0, 0, 5, 5), false )
+  testeq( lume.aabb(-1, -1, 1, 1, -1, -1, 1, 1), true )
+end
+
 -- lume.random
 tests["lume.random"] = function()
   testeq( type(lume.random()),      "number" )
