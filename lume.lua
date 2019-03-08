@@ -158,7 +158,7 @@ end
 
 
 function lume.isarray(x)
-  return (type(x) == "table" and x[1] ~= nil) and true or false
+  return type(x) == "table" and x[1] ~= nil
 end
 
 
