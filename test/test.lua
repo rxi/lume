@@ -141,7 +141,6 @@ tests["lume.remove"] = function()
   testeq(t, { 2, 4, 5 })
   lume.remove(t, 5)
   testeq(t, { 2, 4 })
-  local m = { a = 1, b = 2, c = 3 }
   local x = lume.remove(t, 123)
   testeq(x, 123)
 end
@@ -245,6 +244,7 @@ end
 tests["lume.reduce"] = function()
   local concat = function(a, b) return a .. b end
   local add = function(a, b) return a + b end
+  local any = function(a, b) return a or b end
   testeq( lume.reduce({"cat", "dog"}, concat, ""),    "catdog"    )
   testeq( lume.reduce({"cat", "dog"}, concat, "pig"), "pigcatdog" )
   testeq( lume.reduce({"me", "ow"}, concat),          "meow"      )
@@ -254,6 +254,8 @@ tests["lume.reduce"] = function()
   testeq( lume.reduce({}, concat, "potato"),          "potato"    )
   testeq( lume.reduce({a=1, b=2}, add, 5),            8           )
   testeq( lume.reduce({a=1, b=2}, add),               3           )
+  testeq( lume.reduce({false, false, false}, any),    false       )
+  testeq( lume.reduce({false, true, false}, any),     true        )
   tester.test.error(lume.reduce, {}, add)
 end
 
