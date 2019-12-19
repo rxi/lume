@@ -225,14 +225,10 @@ end
 
 function lume.sort(t, comp)
   local rtn = lume.clone(t)
-  if comp then
-    if type(comp) == "string" then
-      table.sort(rtn, function(a, b) return a[comp] < b[comp] end)
-    else
-      table.sort(rtn, comp)
-    end
+  if comp ~= nil and type(comp) ~= "function" then
+    table.sort(rtn, function(a, b) return a[comp] < b[comp] end)
   else
-    table.sort(rtn)
+    table.sort(rtn, comp)
   end
   return rtn
 end
