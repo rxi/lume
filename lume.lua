@@ -454,6 +454,14 @@ function lume.keys(t)
 end
 
 
+function lume.values(t)
+  local rtn = {}
+  local iter = getiter(t)
+  for _,v in iter(t) do rtn[#rtn + 1] = v end
+  return rtn
+end
+
+
 function lume.clone(t)
   local rtn = {}
   for k, v in pairs(t) do rtn[k] = v end
