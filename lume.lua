@@ -674,8 +674,8 @@ function lume.trace(...)
 end
 
 
-function lume.dostring(str)
-  return assert((loadstring or load)(str))()
+function lume.dostring(str, ...)
+  return assert((loadstring or load)(str))(...)
 end
 
 
