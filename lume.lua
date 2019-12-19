@@ -730,6 +730,24 @@ function lume.ripairs(t)
 end
 
 
+function lume.numbers(start, stop, step)
+  start, stop, step = start or 1, stop or 1, step or 1
+  local left, right = start, stop
+  if start > stop then
+    step = -step
+    left, right = stop, start
+  end
+  local i = -1
+  return function()
+    i = i + 1
+    local n = start + i * step
+    if n >= left and n <= right then
+      return n
+    end
+  end
+end
+
+
 function lume.color(str, mul)
   mul = mul or 1
   local r, g, b, a
