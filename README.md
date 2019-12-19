@@ -459,8 +459,8 @@ lume({1, 2, 3}):each(print) -- Prints 1, 2 then 3 on separate lines
 ```
 
 ## Iteratee functions
-Several lume functions allow a `table`, `string` or `nil` to be used in place
-of their iteratee function argument. The functions that provide this behaviour
+Several lume functions allow a non-`function` value to be used in place of
+their iteratee function argument. The functions that provide this behaviour
 are: `map()`, `all()`, `any()`, `filter()`, `reject()`, `match()` and
 `count()`.
 
@@ -469,9 +469,9 @@ If the argument is `nil` then each value will return itself.
 lume.filter({ true, true, false, true }, nil) -- { true, true, true }
 ```
 
-If the argument is a `string` then each value will be assumed to be a table,
+If the argument is not a `table` then each value will be assumed to be a table,
 and will return the value of the key which matches the string.
-``` lua
+```lua
 local t = {{ z = "cat" }, { z = "dog" }, { z = "owl" }}
 lume.map(t, "z") -- Returns { "cat", "dog", "owl" }
 ```
