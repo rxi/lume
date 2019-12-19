@@ -138,6 +138,15 @@ Iterates the supplied iterator and returns an array filled with the values.
 lume.array(string.gmatch("Hello world", "%a+")) -- Returns {"Hello", "world"}
 ```
 
+#### lume.selectarray([, i [, j]], ...)
+Iterates the supplied iterator and returns an array filled with the values,
+taking into account the specified indices.
+```lua
+local str = "x=5:int~public y=5.5:float~private"
+lume.selectarray(2, 3, str:gmatch("(%w+)=([%d%.]+):(%w+)~(%w+)"))
+-- Returns {{"5", "int"}, {"5.5", "float"}}
+```
+
 #### lume.each(t, fn, ...)
 Iterates the table `t` and calls the function `fn` on each value followed by
 the supplied additional arguments; if `fn` is a string the method of that name
