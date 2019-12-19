@@ -431,6 +431,16 @@ for i, v in lume.ripairs({ "a", "b", "c" }) do
 end
 ```
 
+#### lume.numbers([begin [, end [, step]]])
+Returns an iterator that iterates from `begin` to `end` using `step`. All
+parameters default to 1.
+```lua
+-- Prints "0", "1.5" and "3" on separate lines
+for n in lume.numbers(0, 4, 1.5) do print(n) end
+-- Prints "3", "2" and "1" on separate lines
+for n in lume.numbers(3) do print(n) end
+```
+
 #### lume.color(str [, mul])
 Takes color string `str` and returns 4 values, one for each color channel (`r`,
 `g`, `b` and `a`). By default the returned values are between 0 and 1; the
