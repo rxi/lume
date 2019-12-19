@@ -241,6 +241,24 @@ function lume.array(...)
 end
 
 
+function lume.selectarray(...)
+  local i, j = ..., select(2, ...)
+  if type(i) == 'function' then return lume.selectarray(nil, nil,           ... ) end
+  if type(j) == 'function' then return lume.selectarray(i,   nil, select(2, ...)) end
+  assert(type(select(3, ...)) == 'function', 'invalid iterator')
+  
+  local t = {}
+  local f, s, v = select(3, ...)
+  while true do
+    local values = {f(s, v)}
+    v = values[1]
+    if v == nil then break end
+    t[#t + 1] = {unpack(values, i, j)}
+  end
+  return t
+end
+
+
 function lume.each(t, fn, ...)
   local iter = getiter(t)
   if type(fn) == "string" then
