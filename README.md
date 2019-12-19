@@ -274,6 +274,10 @@ lume.pick({ a = 1, b = 2, c = 3 }, "a", "c") -- Returns { a = 1, c = 3 }
 #### lume.keys(t)
 Returns an array containing each key of the table.
 
+#### lume.values(t)
+Returns an array containing each value of the table. The order is undetermined
+and may contain duplicates.
+
 #### lume.clone(t)
 Returns a shallow copy of the table `t`.
 
