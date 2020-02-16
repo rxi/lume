@@ -618,6 +618,25 @@ tests["lume.chain"] = function()
   testeq( t, { 2, 4 } )
 end
 
+tests["lume.get"] = function()
+  local obj = { a = 1, b = { c = { d = 2 } } }
+  testeq(lume.get(obj, "b.c.d"), 2)
+  testeq(lume.get(obj, "b.e.d", 3), 3)
+  local arr = { {a = 1}, {b = {c = {d = 2}}}}
+  testeq(lume.get(arr, "[2].b.c.d"), 2)
+  testeq(lume.get(arr, "[4].b.c.d", 3), 3)
+
+end
+
+tests["lume.set"] = function()
+  local obj = { a = 1, b = {c = {d = 2}}}
+  testeq(lume.set(obj, "b.c.d", 3), 3)
+  testeq(obj.b.c.d, 3)
+  local arr = { {a = 1}, {b = {c = {d = 2}}}}
+  testeq(lume.set(arr, "[2].b.c.d", 3), 3)
+  testeq(arr[2].b.c.d, 3)
+end
+
 
 tester.dotests(tests)
 tester.test.global()

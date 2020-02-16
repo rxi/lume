@@ -597,6 +597,21 @@ function lume.deserialize(str)
 end
 
 
+function lume.get(t, str, def)
+  if not str:match("^%[") then str = "."..str end
+  local val, res = pcall(function() return lume.dostring("return function(obj) return obj"..str.." end")(t) end)
+  if not val then return def end
+  return res
+end
+
+
+function lume.set(t, str, val)
+  if not str:match("^%[") then str = "."..str end
+  lume.dostring("return function(obj, val) obj"..str.." = val end")(t, val)
+  return val
+end
+
+
 function lume.split(str, sep)
   if not sep then
     return lume.array(str:gmatch("([%S]+)"))

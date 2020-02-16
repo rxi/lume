@@ -405,6 +405,20 @@ Executes the lua code inside `str`.
 lume.dostring("print('Hello!')") -- Prints "Hello!"
 ```
 
+#### lume.get(t, str, [,default])
+Return the value of the `str` path in table `t`.
+```lua
+lume.get({a = {b = {c = 1}}}, "a.b.c") -- Returns 1
+```
+
+#### lume.set(t, str, val)
+Set the value of the `str` path in table `t`.
+```lua
+local t = {a = {b = {c = 1}
+lume.set(t, "a.b.c", 2) -- Returns 2
+print(t.a.b.c) -- Return 2
+```
+
 #### lume.uuid()
 Generates a random UUID string; version 4 as specified in
 [RFC 4122](http://www.ietf.org/rfc/rfc4122.txt).
@@ -487,6 +501,7 @@ local t = {
 }
 lume.count(t, { age = 10 }) -- returns 2
 ```
+
 
 
 ## License
