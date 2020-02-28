@@ -694,7 +694,11 @@ function lume.hotswap(modname)
     local oldmt, newmt = getmetatable(old), getmetatable(new)
     if oldmt and newmt then update(oldmt, newmt) end
     for k, v in pairs(new) do
-      if type(v) == "table" then update(old[k], v) else old[k] = v end
+      if type(v) == "table" and type(old[k]) == "table" then
+        update(old[k], v)
+      else
+        old[k] = v
+      end
     end
   end
   local err = nil
@@ -707,9 +711,11 @@ function lume.hotswap(modname)
   xpcall(function()
     package.loaded[modname] = nil
     local newmod = require(modname)
-    if type(oldmod) == "table" then update(oldmod, newmod) end
+    if type(newmod) == "table" and type(oldmod) == "table" then
+      update(oldmod, newmod)
+    end
     for k, v in pairs(oldglobal) do
-      if v ~= _G[k] and type(v) == "table" then
+      if v ~= _G[k] and type(v) == "table" and type(_G[k]) == "table" then
         update(v, _G[k])
         _G[k] = v
       end
