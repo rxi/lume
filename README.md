@@ -44,6 +44,19 @@ interpolation.
 #### lume.pingpong(x)
 Ping-pongs the number `x` between 0 and 1.
 
+### lume.pingpongseq(max)
+Returns a coroutine that continuously yields the next item in the sequence
+```lua
+local coro = lume.pingpongseq(3)
+coro() -- Returns 1
+coro() -- Returns 2
+coro() -- Returns 3
+coro() -- Returns 2
+coro() -- Returns 1
+coro() -- Returns 2
+-- ...
+```
+
 #### lume.distance(x1, y1, x2, y2 [, squared])
 Returns the distance between the two points. If `squared` is true then the
 squared distance is returned -- this is faster to calculate and can still be
