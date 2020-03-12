@@ -124,8 +124,8 @@ Returns a shuffled copy of the array `t`.
 
 #### lume.sort(t [, comp])
 Returns a copy of the array `t` with all its items sorted. If `comp` is a
-function it will be used to compare the items when sorting. If `comp` is a
-string it will be used as the key to sort the items by.
+function it will be used to compare the items when sorting. Otherwise, if
+`comp` is not nil it will be used as the key to sort the items by.
 ```lua
 lume.sort({ 1, 4, 3, 2, 5 }) -- Returns { 1, 2, 3, 4, 5 }
 lume.sort({ {z=2}, {z=3}, {z=1} }, "z") -- Returns { {z=1}, {z=2}, {z=3} }
@@ -136,6 +136,15 @@ lume.sort({ 1, 3, 2 }, function(a, b) return a > b end) -- Returns { 3, 2, 1 }
 Iterates the supplied iterator and returns an array filled with the values.
 ```lua
 lume.array(string.gmatch("Hello world", "%a+")) -- Returns {"Hello", "world"}
+```
+
+#### lume.selectarray([, i [, j]], ...)
+Iterates the supplied iterator and returns an array filled with the values,
+taking into account the specified indices.
+```lua
+local str = "x=5:int~public y=5.5:float~private"
+lume.selectarray(2, 3, str:gmatch("(%w+)=([%d%.]+):(%w+)~(%w+)"))
+-- Returns {{"5", "int"}, {"5.5", "float"}}
 ```
 
 #### lume.each(t, fn, ...)
@@ -273,6 +282,10 @@ lume.pick({ a = 1, b = 2, c = 3 }, "a", "c") -- Returns { a = 1, c = 3 }
 
 #### lume.keys(t)
 Returns an array containing each key of the table.
+
+#### lume.values(t)
+Returns an array containing each value of the table. The order is undetermined
+and may contain duplicates.
 
 #### lume.clone(t)
 Returns a shallow copy of the table `t`.
@@ -431,6 +444,16 @@ for i, v in lume.ripairs({ "a", "b", "c" }) do
 end
 ```
 
+#### lume.numbers([begin [, end [, step]]])
+Returns an iterator that iterates from `begin` to `end` using `step`. All
+parameters default to 1.
+```lua
+-- Prints "0", "1.5" and "3" on separate lines
+for n in lume.numbers(0, 4, 1.5) do print(n) end
+-- Prints "3", "2" and "1" on separate lines
+for n in lume.numbers(3) do print(n) end
+```
+
 #### lume.color(str [, mul])
 Takes color string `str` and returns 4 values, one for each color channel (`r`,
 `g`, `b` and `a`). By default the returned values are between 0 and 1; the
@@ -459,8 +482,8 @@ lume({1, 2, 3}):each(print) -- Prints 1, 2 then 3 on separate lines
 ```
 
 ## Iteratee functions
-Several lume functions allow a `table`, `string` or `nil` to be used in place
-of their iteratee function argument. The functions that provide this behaviour
+Several lume functions allow a non-`function` value to be used in place of
+their iteratee function argument. The functions that provide this behaviour
 are: `map()`, `all()`, `any()`, `filter()`, `reject()`, `match()` and
 `count()`.
 
@@ -469,9 +492,9 @@ If the argument is `nil` then each value will return itself.
 lume.filter({ true, true, false, true }, nil) -- { true, true, true }
 ```
 
-If the argument is a `string` then each value will be assumed to be a table,
+If the argument is not a `table` then each value will be assumed to be a table,
 and will return the value of the key which matches the string.
-``` lua
+```lua
 local t = {{ z = "cat" }, { z = "dog" }, { z = "owl" }}
 lume.map(t, "z") -- Returns { "cat", "dog", "owl" }
 ```

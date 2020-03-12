@@ -225,14 +225,10 @@ end
 
 function lume.sort(t, comp)
   local rtn = lume.clone(t)
-  if comp then
-    if type(comp) == "string" then
-      table.sort(rtn, function(a, b) return a[comp] < b[comp] end)
-    else
-      table.sort(rtn, comp)
-    end
+  if comp ~= nil and type(comp) ~= "function" then
+    table.sort(rtn, function(a, b) return a[comp] < b[comp] end)
   else
-    table.sort(rtn)
+    table.sort(rtn, comp)
   end
   return rtn
 end
@@ -241,6 +237,24 @@ end
 function lume.array(...)
   local t = {}
   for x in ... do t[#t + 1] = x end
+  return t
+end
+
+
+function lume.selectarray(...)
+  local i, j = ..., select(2, ...)
+  if type(i) == 'function' then return lume.selectarray(nil, nil,           ... ) end
+  if type(j) == 'function' then return lume.selectarray(i,   nil, select(2, ...)) end
+  assert(type(select(3, ...)) == 'function', 'invalid iterator')
+  
+  local t = {}
+  local f, s, v = select(3, ...)
+  while true do
+    local values = {f(s, v)}
+    v = values[1]
+    if v == nil then break end
+    t[#t + 1] = {unpack(values, i, j)}
+  end
   return t
 end
 
@@ -458,6 +472,14 @@ function lume.keys(t)
 end
 
 
+function lume.values(t)
+  local rtn = {}
+  local iter = getiter(t)
+  for _,v in iter(t) do rtn[#rtn + 1] = v end
+  return rtn
+end
+
+
 function lume.clone(t)
   local rtn = {}
   for k, v in pairs(t) do rtn[k] = v end
@@ -670,8 +692,8 @@ function lume.trace(...)
 end
 
 
-function lume.dostring(str)
-  return assert((loadstring or load)(str))()
+function lume.dostring(str, ...)
+  return assert((loadstring or load)(str))(...)
 end
 
 
@@ -731,6 +753,24 @@ end
 
 function lume.ripairs(t)
   return ripairs_iter, t, (#t + 1)
+end
+
+
+function lume.numbers(start, stop, step)
+  start, stop, step = start or 1, stop or 1, step or 1
+  local left, right = start, stop
+  if start > stop then
+    step = -step
+    left, right = stop, start
+  end
+  local i = -1
+  return function()
+    i = i + 1
+    local n = start + i * step
+    if n >= left and n <= right then
+      return n
+    end
+  end
 end
 
 
