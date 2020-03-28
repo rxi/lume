@@ -49,6 +49,10 @@ Returns the distance between the two points. If `squared` is true then the
 squared distance is returned -- this is faster to calculate and can still be
 used when comparing distances.
 
+#### lume.aabb(x1, y1, w1, h1, x2, y2, w2, h2)
+Checks whether two rectangular objects overlap using axis-aligned bounding box
+(AABB) collision detection. Returns true if they do, and false otherwise.
+
 #### lume.angle(x1, y1, x2, y2)
 Returns the angle between the two points.
 
