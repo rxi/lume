@@ -58,6 +58,10 @@ Given an `angle` and `magnitude`, returns a vector.
 local x, y = lume.vector(0, 10) -- Returns 10, 0
 ```
 
+#### lume.betweenangles(theta, angle_min, angle_max)
+Returns whether the angle `theta` is between `angle_min` and `angle_max`.  (All
+angles in degrees.)
+
 #### lume.random([a [, b]])
 Returns a random number between `a` and `b`. If only `a` is supplied a number
 between `0` and `a` is returned. If no arguments are supplied a random number

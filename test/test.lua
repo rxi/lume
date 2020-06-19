@@ -92,6 +92,25 @@ tests["lume.vector"] = function()
   testeq( cmp(x, 70.71067811865476) and cmp(y, 70.71067811865476), true )
 end
 
+-- lume.betweenangles
+tests["lume.betweenangles"] = function()
+  testeq(lume.betweenangles(10, 3, 27), true)
+  testeq(lume.betweenangles(10, 27, 3), false)
+  testeq(lume.betweenangles(7, 11, 17), false)
+  testeq(lume.betweenangles(7, 17, 11), true)
+  testeq(lume.betweenangles(23, 11, 17), false)
+  testeq(lume.betweenangles(23, 17, 11), true)
+  testeq(lume.betweenangles(0, -13, 7), true)
+  testeq(lume.betweenangles(3, -13, 7), true)
+  testeq(lume.betweenangles(-5, -13, 7), true)
+  testeq(lume.betweenangles(-10, -3, -27), false)
+  testeq(lume.betweenangles(-10, -27, -3), true)
+  testeq(lume.betweenangles(-7, -11, -17), true)
+  testeq(lume.betweenangles(-7, -17, -11), false)
+  testeq(lume.betweenangles(-23, -11, -17), true)
+  testeq(lume.betweenangles(-23, -17, -11), false)
+end
+
 -- lume.random
 tests["lume.random"] = function()
   testeq( type(lume.random()),      "number" )
