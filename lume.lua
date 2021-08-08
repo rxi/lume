@@ -284,6 +284,26 @@ function lume.any(t, fn)
   return false
 end
 
+function lume.And(...)
+  local preds = { ... }
+  return function(x)
+    return lume.all(preds, function(p) return p(x) end)
+  end
+end
+
+function lume.Or(...)
+  local preds = { ... }
+  return function(x)
+    return lume.any(preds, function(p) return p(x) end)
+  end
+end
+
+function lume.Not(p)
+  return function(x)
+    return not p(x)
+  end
+end
+
 
 function lume.reduce(t, fn, first)
   local started = first ~= nil
