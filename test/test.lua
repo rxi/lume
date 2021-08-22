@@ -93,10 +93,30 @@ tests["lume.vector"] = function()
 end
 
 -- lume.random
+local function check_bounds(a, count)
+  if 0 <= a and a < 1 then
+    return count + 1
+  end
+  return count
+end
 tests["lume.random"] = function()
   testeq( type(lume.random()),      "number" )
   testeq( type(lume.random(1)),     "number" )
   testeq( type(lume.random(1, 2)),  "number" )
+
+  -- Static seed to improve consistency. However, different versions of lua may
+  -- produce different sequences.
+  math.randomseed(0)
+  local in_bounds = 0
+  local iterations = 1000
+  for i=1,iterations do
+    -- random always outputs in [a,b). Test all argument versions but with the
+    -- same 0,1 bounds to produce results in [0,1).
+    in_bounds = check_bounds(lume.random(), in_bounds)
+    in_bounds = check_bounds(lume.random(1), in_bounds)
+    in_bounds = check_bounds(lume.random(0, 1), in_bounds)
+  end
+  testeq(in_bounds, iterations * 3)
 end
 
 -- lume.randomchoice
