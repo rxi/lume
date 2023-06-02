@@ -14,6 +14,10 @@ lume = require "lume"
 
 
 ## Function Reference
+
+### lume.mapvalue(value, start1, stop1, start2, stop2)
+Returns the number `value` in its new range.
+
 ---
 ### lume.clamp(x, min, max)
 Returns the number `x` clamped between the numbers `min` and `max`
@@ -68,9 +72,11 @@ local x, y = lume.vector(0, 10) -- Returns 10, 0
 
 ---
 ### lume.random([a [, b]])
-Returns a random number between `a` and `b`. If only `a` is supplied a number
-between `0` and `a` is returned. If no arguments are supplied a random number
-between `0` and `1` is returned.
+Returns a random floating-point number between `a` and `b`. Unlike math.random, passing two integers will not return an integer.
+
+With both args, returns a number in the range `[a,b]`.
+If only `a` is supplied, returns a number in the range `[0,a]`.
+If no arguments are supplied, returns a number in the range `[0,1]`.
 
 ---
 ### lume.randomchoice(t)
