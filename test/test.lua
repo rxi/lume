@@ -93,10 +93,40 @@ tests["lume.vector"] = function()
 end
 
 -- lume.random
+local function random_iterations(postcond, ...)
+  -- Ensure a consistent speed so our expected count can pass.
+  math.randomseed(0)
+  postcond.expected.count = 0
+  postcond.unexpected.count = 0
+  for i=1,100000 do
+    local a = lume.random(...)
+    for _,t in pairs(postcond) do
+      if t.value == a then
+        t.count = t.count + 1
+      end
+    end
+  end
+  testeq(postcond.expected.count > 0, true)
+  testeq(postcond.unexpected.count, 0)
+end
 tests["lume.random"] = function()
   testeq( type(lume.random()),      "number" )
   testeq( type(lume.random(1)),     "number" )
   testeq( type(lume.random(1, 2)),  "number" )
+
+  -- random should output in [a,b). Use the 0,1,2 argument versions so they all
+  -- produce results in [0,1).
+  local postcond = {
+    expected = {
+      value = 0,
+    },
+    unexpected = {
+      value = 1,
+    },
+  }
+  random_iterations(postcond)
+  random_iterations(postcond, 1)
+  random_iterations(postcond, 0, 1)
 end
 
 -- lume.randomchoice
