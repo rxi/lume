@@ -449,13 +449,6 @@ lume.color('#00ffff', 256)          -- Returns 0, 256, 256, 256
 lume.color('rgb(255, 0, 0)', 256)   -- Returns 256, 0, 0, 256
 ```
 
-### lume.rgba(color)
-> Takes the 32bit integer `color` argument and returns 4 numbers, one for each channel, with a range of 0 - 255.  
-> The returned values can be used as the arguments to LÖVE's setColor() function.
-```lua
-lume.rgba(0xFF304050) -- Returns 48, 64, 80, 255
-```
-
 ### lume.uuid()
 > Generates a random UUID string; version 4 as specified in [RFC 4122](http://www.ietf.org/rfc/rfc4122.txt).
 
