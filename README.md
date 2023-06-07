@@ -126,7 +126,7 @@ lume.clear(t) -- `t` becomes {}
 ### lume.find(t, value)
 > Returns the index/key of `value` in `t`. Returns `nil` if that value does not exist in the table.
 ```lua
-lume.find({"a", "b", "c"}, "b") -- Returns 2
+lume.find({'a', 'b', 'c'}, 'b') -- Returns 2
 ```
 
 ### lume.match(t, fn)
@@ -139,8 +139,8 @@ lume.match({1, 5, 8, 7}, function(x) return x % 2 == 0 end) -- Returns 8, 3
 > Iterates the table `t` and calls the function `fn` on each value followed by the supplied additional arguments.  
 > If `fn` is a string the method of that name is called for each value. The function returns `t` unmodified.
 ```lua
-lume.each({1, 2, 3}, print) -- Prints "1", "2", "3" on separate lines
-lume.each({a, b, c}, "move", 10, 20) -- Does x:move(10, 20) on each value
+lume.each({1, 2, 3}, print) -- Prints '1', '2', '3' on separate lines
+lume.each({a, b, c}, 'move', 10, 20) -- Does x:move(10, 20) on each value
 ```
 
 ### lume.map(t, fn)
@@ -165,16 +165,16 @@ lume.filter({1, 2, 3, 4}, function(x) return x % 2 == 0 end) -- Returns {2, 4}
 lume.reject({1, 2, 3, 4}, function(x) return x % 2 == 0 end) -- Returns {1, 3}
 ```
 
-### lume.set(t)
+### lume.unique(t)
 > Returns a copy of the `t` array with all the duplicate values removed.
 ```lua
-lume.set({2, 1, 2, "cat", "cat"}) -- Returns {1, 2, "cat"}
+lume.unique({2, 1, 2, 'cat', 'cat'}) -- Returns {1, 2, 'cat'}
 ```
 
 ### lume.pick(t, ...)
 >Returns a copy of the table filtered to only contain values for the given keys.
 ```lua
-lume.pick({ a = 1, b = 2, c = 3 }, "a", "c") -- Returns { a = 1, c = 3 }
+lume.pick({ a = 1, b = 2, c = 3 }, 'a', 'c') -- Returns { a = 1, c = 3 }
 ```
 
 ### lume.reduce(t, fn [, first])
@@ -239,14 +239,14 @@ lume.count({1, 2, 4, 6}, function(x) return x % 2 == 0 end) -- Returns 3
 > Returns the **first** element of an array or nil if the array is empty.  
 > If `n` is specificed an array of the first `n` elements is returned.
 ```lua
-lume.first({"a", "b", "c"}) -- Returns "a"
+lume.first({'a', 'b', 'c'}) -- Returns 'a'
 ```
 
 ### lume.last(t [, n])
 > Returns the **last** element of an array or nil if the array is empty.  
 > If `n` is specificed an array of the last `n` elements is returned.
 ```lua
-lume.last({"a", "b", "c"}) -- Returns "c"
+lume.last({'a', 'b', 'c'}) -- Returns 'c'
 ```
 
 ### lume.highest(t)
@@ -267,19 +267,19 @@ lume.last({"a", "b", "c"}) -- Returns "c"
 ### lume.slice(t [, i [, j]])
 > Mimics the behaviour of Lua's `string.sub`, but operates on an array rather than a string. Creates and returns a new array of the given slice.
 ```lua
-lume.slice({"a", "b", "c", "d", "e"}, 2, 4) -- Returns {"b", "c", "d"}
+lume.slice({'a', 'b', 'c', 'd', 'e'}, 2, 4) -- Returns {'b', 'c', 'd'}
 ```
 
 ### lume.invert(t)
 > Returns a copy of the table where the keys have become the values and the values the keys.
 ```lua
-lume.invert({a = "x", b = "y"}) -- returns {x = "a", y = "b"}
+lume.invert({a = 'x', b = 'y'}) -- returns {x = 'a', y = 'b'}
 ```
 
 ### lume.array(...)
 > Iterates the supplied iterator and returns an array filled with the values.
 ```lua
-lume.array(string.gmatch("Hello world", "%a+")) -- Returns {"Hello", "world"}
+lume.array(string.gmatch('Hello world', '%a+')) -- Returns {'Hello', 'world'}
 ```
 
 ### lume.shuffle(t)
@@ -291,7 +291,7 @@ lume.array(string.gmatch("Hello world", "%a+")) -- Returns {"Hello", "world"}
 > If `comp` is a string it will be used as the key to sort the items by.
 ```lua
 lume.sort({ 1, 4, 3, 2, 5 }) -- Returns { 1, 2, 3, 4, 5 }
-lume.sort({ {z=2}, {z=3}, {z=1} }, "z") -- Returns { {z=1}, {z=2}, {z=3} }
+lume.sort({ {z=2}, {z=3}, {z=1} }, 'z') -- Returns { {z=1}, {z=2}, {z=3} }
 lume.sort({ 1, 3, 2 }, function(a, b) return a > b end) -- Returns { 3, 2, 1 }
 ```
 
@@ -310,8 +310,8 @@ fib = lume.memoize(function(n) return n < 2 and n or fib(n-1) + fib(n-2) end)
 > Returns a wrapper function to `fn` which takes the supplied arguments.  
 > The wrapper function will call `fn` on the first call and do nothing on any subsequent calls.
 ```lua
-local f = lume.once(print, "Hello")
-f() -- Prints "Hello"
+local f = lume.once(print, 'Hello')
+f() -- Prints 'Hello'
 f() -- Does nothing
 ```
 
@@ -319,7 +319,7 @@ f() -- Does nothing
 > Takes a string lambda and returns a function.  
 > `str` should be a list of comma-separated parameters, followed by `->`, followed by the expression which will be evaluated and returned.
 ```lua
-local f = lume.lambda "x,y -> 2*x+y"
+local f = lume.lambda 'x,y -> 2*x+y'
 f(10, 5) -- Returns 25
 ```
 
@@ -332,22 +332,22 @@ local f = lume.combine(
     function(a, b) print(a + b) end,
     function(a, b) print(a * b) end
   )
-f(3, 4) -- Prints "7" then "12" on a new line
+f(3, 4) -- Prints '7' then '12' on a new line
 ```
 
 ### lume.call(fn, ...)
 > Calls the given function with the provided arguments and returns its values.  
 > If `fn` is `nil` then no action is performed and the function returns `nil`.
 ```lua
-lume.call(print, "Hello world") -- Prints "Hello world"
+lume.call(print, 'Hello world') -- Prints 'Hello world'
 ```
 
 ### lume.fn(fn, ...)
 > Creates a wrapper function around function `fn`, automatically inserting the arguments into `fn` which will persist every time the wrapper is called.  
 > Any arguments which are passed to the returned function will be inserted after the already existing arguments passed to `fn`.
 ```lua
-local f = lume.fn(print, "Hello")
-f("world") -- Prints "Hello world"
+local f = lume.fn(print, 'Hello')
+f('world') -- Prints 'Hello world'
 ```
 
 
@@ -358,43 +358,43 @@ f("world") -- Prints "Hello world"
 > Returns an array of the words in the string `str`.  
 > If `sep` is provided it is used as the delimiter, consecutive delimiters are not grouped together and will delimit empty strings.
 ```lua
-lume.split("One two three") -- Returns {"One", "two", "three"}
-lume.split("a,b,,c", ",") -- Returns {"a", "b", "", "c"}
+lume.split('One two three') -- Returns {'One', 'two', 'three'}
+lume.split('a,b,,c', ',') -- Returns {'a', 'b', '', 'c'}
 ```
 
 ### lume.format(str [, vars])
-> Returns a formatted string. The values of keys in the table `vars` can be inserted into the string by using the form `"{key}"` in `str`; numerical keys can also be used.
+> Returns a formatted string. The values of keys in the table `vars` can be inserted into the string by using the form `'{key}'` in `str`; numerical keys can also be used.
 ```lua
-lume.format("{b} hi {a}", {a = "mark", b = "Oh"}) -- Returns "Oh hi mark"
-lume.format("Hello {1}!", {"world"}) -- Returns "Hello world!"
+lume.format('{b} hi {a}', {a = 'mark', b = 'Oh'}) -- Returns 'Oh hi mark'
+lume.format('Hello {1}!', {'world'}) -- Returns 'Hello world!'
 ```
 
 ### lume.serialize(x)
 > Serializes the argument `x` into a string which can be loaded again using `lume.deserialize()`. Only booleans, numbers, tables and strings can be serialized.  
 > !!! Circular references will result in an error, all nested tables are serialized as unique tables.
 ```lua
-lume.serialize({a = "test", b = {1, 2, 3}, false})
--- Returns "{[1]=false,["a"]="test",["b"]={[1]=1,[2]=2,[3]=3,},}"
+lume.serialize({a = 'test', b = {1, 2, 3}, false})
+-- Returns '{[1]=false,['a']='test',['b']={[1]=1,[2]=2,[3]=3,},}'
 ```
 
 ### lume.deserialize(str)
 > Deserializes a string created by `lume.serialize()` and returns the resulting value.
 ```lua
-lume.deserialize("{1, 2, 3}") -- Returns {1, 2, 3}
+lume.deserialize('{1, 2, 3}') -- Returns {1, 2, 3}
 ```
 
 ### lume.trim(str [, chars])
 > Trims the whitespace from the start and end of the string `str` and returns the new string.  
 > If a `chars` value is set the characters in `chars` are trimmed instead of whitespace.
 ```lua
-lume.trim("  Hello  ") -- Returns "Hello"
+lume.trim('  Hello  ') -- Returns 'Hello'
 ```
 
 ### lume.wordwrap(str [, limit])
 > Returns `str` wrapped to `limit` number of characters per line, by default `limit` is `72`. `limit` can also be a function which when passed a string, returns `true` if it is too long for a single line.
 ```lua
--- Returns "Hello world\nThis is a\nshort string"
-lume.wordwrap("Hello world. This is a short string", 14)
+-- Returns 'Hello world\nThis is a\nshort string'
+lume.wordwrap('Hello world. This is a short string', 14)
 ```
 
 ---
@@ -404,23 +404,23 @@ lume.wordwrap("Hello world. This is a short string", 14)
 > Inserts the arguments into function `fn` and calls it.  
 > Returns the time in seconds the function `fn` took to execute followed by `fn`'s returned values.
 ```lua
-lume.time(function(x) return x end, "hello") -- Returns 0, "hello"
+lume.time(function(x) return x end, 'hello') -- Returns 0, 'hello'
 ```
 
 ### lume.ripairs(t)
 > Performs the same function as `ipairs()` but iterates in reverse.  
 > This allows the removal of items from the table during iteration without any items being skipped.
 ```lua
--- Prints "3->c", "2->b" and "1->a" on separate lines
-for i, v in lume.ripairs({ "a", "b", "c" }) do
-  print(i .. "->" .. v)
+-- Prints '3->c', '2->b' and '1->a' on separate lines
+for i, v in lume.ripairs({ 'a', 'b', 'c' }) do
+  print(i .. '->' .. v)
 end
 ```
 
 ### lume.dostring(str)
 > Executes the lua code inside `str`.
 ```lua
-lume.dostring("print('Hello!')") -- Prints "Hello!"
+lume.dostring('print("Hello!")') -- Prints 'Hello!'
 ```
 
 ### lume.hotswap(modname)
@@ -428,25 +428,25 @@ lume.dostring("print('Hello!')") -- Prints "Hello!"
 > `modname` should be the same string used when loading the module with require().  
 > In the case of an error the global environment is restored and `nil` plus an error message is returned.
 ```lua
-lume.hotswap("lume") -- Reloads the lume module
-assert(lume.hotswap("inexistant_module")) -- Raises an error
+lume.hotswap('lume') -- Reloads the lume module
+assert(lume.hotswap('inexistant_module')) -- Raises an error
 ```
 
 ### lume.trace(...)
 > Prints the current filename and line number followed by each argument separated by a space.
 ```lua
--- Assuming the file is called "example.lua" and the next line is 12:
-lume.trace("hello", 1234) -- Prints "example.lua:12: hello 1234"
+-- Assuming the file is called 'example.lua' and the next line is 12:
+lume.trace('hello', 1234) -- Prints 'example.lua:12: hello 1234'
 ```
 
 ### lume.color(str [, mul])
 > Takes color string `str` and returns 4 values, one for each color channel (`r`, `g`, `b` and `a`).  
 > By default the returned values are between 0 and 1; the values are multiplied by the number `mul` if it is provided.
 ```lua
-lume.color("#ff0000")               -- Returns 1, 0, 0, 1
-lume.color("rgba(255, 0, 255, .5)") -- Returns 1, 0, 1, .5
-lume.color("#00ffff", 256)          -- Returns 0, 256, 256, 256
-lume.color("rgb(255, 0, 0)", 256)   -- Returns 256, 0, 0, 256
+lume.color('#ff0000')               -- Returns 1, 0, 0, 1
+lume.color('rgba(255, 0, 255, .5)') -- Returns 1, 0, 1, .5
+lume.color('#00ffff', 256)          -- Returns 0, 256, 256, 256
+lume.color('rgb(255, 0, 0)', 256)   -- Returns 256, 0, 0, 256
 ```
 
 ### lume.rgba(color)
@@ -482,8 +482,8 @@ lume.randomchoice({true, false}) -- Returns either true or false
 > A weight should be 0 or above, the larger the number the higher the probability of that choice being picked.  
 > If the table is empty, a weight is below zero or all the weights are 0 then an error is raised.
 ```lua
-lume.weightedchoice({ ["cat"] = 10, ["dog"] = 5, ["frog"] = 0 })
--- Returns either "cat" or "dog" with "cat" being twice as likely to be chosen.
+lume.weightedchoice({ ['cat'] = 10, ['dog'] = 5, ['frog'] = 0 })
+-- Returns either 'cat' or 'dog' with 'cat' being twice as likely to be chosen.
 ```
 
 ---
@@ -497,16 +497,16 @@ lume.filter({ true, true, false, true }, nil) -- { true, true, true }
 
 > If the argument is a `string` then each value will be assumed to be a table, and will return the value of the key which matches the string.
 ``` lua
-local t = {{ z = "cat" }, { z = "dog" }, { z = "owl" }}
-lume.map(t, "z") -- Returns { "cat", "dog", "owl" }
+local t = {{ z = 'cat' }, { z = 'dog' }, { z = 'owl' }}
+lume.map(t, 'z') -- Returns { 'cat', 'dog', 'owl' }
 ```
 
 > If the argument is a `table` then each value will return `true` or `false`, depending on whether the values at each of the table's keys match the collection's value's values.
 ```lua
 local t = {
-  { age = 10, type = "cat" },
-  { age = 8,  type = "dog" },
-  { age = 10, type = "owl" },
+  { age = 10, type = 'cat' },
+  { age = 8,  type = 'dog' },
+  { age = 10, type = 'owl' },
 }
 lume.count(t, { age = 10 }) -- returns 2
 ```
