@@ -32,7 +32,7 @@ lume.round(2.3) -- Returns 2
 lume.round(123.4567, .1) -- Returns 123.5
 ```
 ---
-### lume.approximately(a, b, epsilon)
+### lume.approximately(a, b, precision)
 Compares whether two values are within a range. Useful for fuzzy comparisons:
 whether values are approximately equal.
 ```lua
