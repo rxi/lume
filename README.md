@@ -58,7 +58,6 @@ lume.round(123.4567, .1) -- Returns 123.5
 ---
 # Tables
 
----
 ## *Checks*
 
 ### lume.all(t [, fn])
@@ -480,7 +479,7 @@ lume.weightedchoice({ ['cat'] = 10, ['dog'] = 5, ['frog'] = 0 })
 ```
 
 ---
-## Iteratee functions
+# Iteratee functions
 > Several lume functions allow a `table`, `string` or `nil` to be used in place of their iteratee function argument. The functions that provide this behaviour are: `map()`, `all()`, `any()`, `filter()`, `reject()`, `match()` and `count()`.
 
 > If the argument is `nil` then each value will return itself.
