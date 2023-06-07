@@ -40,10 +40,10 @@
 
     Removed:
     - lume.vector()
-    
+
 ]]
 
-local lume = {_version = "2.3.1"}
+local lume = {_version = "3.1.0"}
 
 local pairs, ipairs = pairs, ipairs
 local type, assert, unpack = type, assert, table.unpack
