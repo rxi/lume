@@ -31,6 +31,15 @@ nearest increment.
 lume.round(2.3) -- Returns 2
 lume.round(123.4567, .1) -- Returns 123.5
 ```
+---
+### lume.approximately(a, b, epsilon)
+Compares whether two values are within a range. Useful for fuzzy comparisons:
+whether values are approximately equal.
+```lua
+lume.approximately(2.34567, 2.3, 0.001) -- Returns false
+lume.approximately(2.34567, 2.3, 0.1) -- Returns true
+lume.approximately(0, .1, 0.001) -- Returns false
+```
 
 ---
 ### lume.sign(x)
@@ -62,13 +71,6 @@ used when comparing distances.
 ---
 ### lume.angle(x1, y1, x2, y2)
 Returns the angle between the two points.
-
----
-### lume.vector(angle, magnitude)
-Given an `angle` and `magnitude`, returns a vector.
-```lua
-local x, y = lume.vector(0, 10) -- Returns 10, 0
-```
 
 ---
 ### lume.random([a [, b]])
@@ -119,6 +121,26 @@ Returns `x`.
 ```lua
 local t = { 1, 2, 3 }
 lume.remove(t, 2) -- `t` becomes { 1, 3 }
+```
+
+---
+### lume.removeall(t, should_remove_fn)
+Stable remove from list-like table.
+Fast for removing many elements. Doesn't change order of elements.
+[See reference](https://stackoverflow.com/questions/12394841/safely-remove-items-from-an-array-table-while-iterating/53038524#53038524).
+```lua
+local t = { 1, 2, 3 }
+lume.removeall(t, function(x, i, j) return x == 1 end) -- `t` becomes {2, 3}
+```
+
+---
+### lume.removeswap(t, should_remove_fn)
+Unstable remove from list-like table.
+Fast for removing a few elements, but modifies order.
+[See reference](https://stackoverflow.com/questions/12394841/safely-remove-items-from-an-array-table-while-iterating/28942022#28942022).
+```lua
+local t = { 1, 2, 3 }
+lume.removeswap(t, function(x) return x == 1 end) -- `t` becomes {3, 2}
 ```
 
 ---

@@ -113,6 +113,10 @@ function lume.round(x, increment)
     return x >= 0 and math_floor(x + .5) or math_ceil(x - .5)
 end
 
+function lume.approximately(a, b, epsilon)
+    return math.abs(math.abs(a) - math.abs(b)) < epsilon
+end
+
 function lume.sign(x)
     return x < 0 and -1 or 1
 end
@@ -134,16 +138,12 @@ end
 function lume.distance(x1, y1, x2, y2, squared)
     local dx = x1 - x2
     local dy = y1 - y2
-    local s = dx * dx + dy * dy
+    local s = dx^2 + dy^2
     return squared and s or math_sqrt(s)
 end
 
 function lume.angle(x1, y1, x2, y2)
     return math_atan2(y2 - y1, x2 - x1)
-end
-
-function lume.vector(angle, magnitude)
-    return math.cos(angle) * magnitude, math.sin(angle) * magnitude
 end
 
 function lume.random(a, b)
@@ -202,6 +202,41 @@ function lume.remove(t, x)
         end
     end
     return x
+end
+
+function lume.removeall(t, should_remove_fn)
+    local n = #t
+    local j = 1
+  
+    for i=1,n do
+        if should_remove_fn(t[i], i, j) then
+            t[i] = nil
+        else
+            -- Move i's kept value to j's position, if it's not already there.
+            if i ~= j then
+            t[j] = t[i]
+            t[i] = nil
+            end
+            j = j + 1 -- Increment position of where we'll place the next kept value.
+        end
+    end
+  
+    return t
+end
+
+function lume.removeswap(t, should_remove_fn)
+    local n = #t
+    local i = 1
+    while i <= n do
+        local value = t[i]
+        if should_remove_fn(value) then
+            t[i] = t[n]
+            t[n] = nil
+            n = n - 1
+        else
+            i = i + 1
+        end
+    end
 end
 
 function lume.clear(t)
