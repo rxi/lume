@@ -500,6 +500,9 @@ function lume.last(t, n)
     return lume.slice(t, -n, -1)
 end
 
+-- min and max
+
+
 function lume.invert(t)
     local rtn = {}
     for k, v in pairs(t) do
