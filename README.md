@@ -9,7 +9,7 @@
 - [Random]()
 
 
-## Math
+# Math
 
 ### lume.mapvalue(value, start1, stop1, start2, stop2)
 > Returns the number `value` in its new range.
@@ -56,7 +56,7 @@ lume.round(123.4567, .1) -- Returns 123.5
 > Returns the angle between the two points.
 
 ---
-## Tables
+# Tables
 
 ---
 ## *Checks*
@@ -297,7 +297,7 @@ lume.sort({ 1, 3, 2 }, function(a, b) return a > b end) -- Returns { 3, 2, 1 }
 
 
 ---
-## High Level Functions
+# High Level Functions
 
 ### lume.memoize(fn)
 > Returns a wrapper function to `fn` where the results for any given set of arguments are cached.  
@@ -352,7 +352,7 @@ f('world') -- Prints 'Hello world'
 
 
 ---
-## Strings
+# Strings
 
 ### lume.split(str [, sep])
 > Returns an array of the words in the string `str`.  
@@ -398,7 +398,7 @@ lume.wordwrap('Hello world. This is a short string', 14)
 ```
 
 ---
-## Misc
+# Misc
 
 ### lume.time(fn, ...)
 > Inserts the arguments into function `fn` and calls it.  
@@ -454,7 +454,7 @@ lume.color('rgb(255, 0, 0)', 256)   -- Returns 256, 0, 0, 256
 
 
 ---
-## Random
+# Random
 
 ### lume.random([a [, b]])
 > Returns a random floating-point number between `a` and `b`. Unlike math.random, passing two integers will not return an integer.
