@@ -2,11 +2,11 @@
 
 # Sections:
 - [Math](#math)
-- [Tables]()
-- [High-Level]()
-- [String]()
-- [Misc]()
-- [Random]()
+- [Tables](#tables)
+- [High-Level Functions](#high-level-functions)
+- [Strings](#strings)
+- [Misc](#misc)
+- [Random](#random)
 
 
 # Math
