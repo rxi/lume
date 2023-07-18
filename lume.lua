@@ -115,7 +115,7 @@ function lume.mapvalue(value, start1, stop1, start2, stop2)
 end
 
 function lume.approx(a, b, precision)
-    return math.abs(math.abs(a) - math.abs(b)) < epsilon
+    return math.abs(math.abs(a) - math.abs(b)) < precision
 end
 
 function lume.clamp(x, min, max)
@@ -214,7 +214,7 @@ end
 function lume.removeall(t, should_remove_fn)
     local n = #t
     local j = 1
-  
+
     for i=1,n do
         if should_remove_fn(t[i], i, j) then
             t[i] = nil
@@ -227,7 +227,7 @@ function lume.removeall(t, should_remove_fn)
             j = j + 1 -- Increment position of where we'll place the next kept value.
         end
     end
-  
+
     return t
 end
 
@@ -907,8 +907,7 @@ function lume.uuid()
         return ("0123456789abcdef"):sub(r, r)
     end
     return (("xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx"):gsub("[xy]", fn))
-    end
-    
+end
 
 -- random functions
 
