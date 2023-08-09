@@ -85,6 +85,13 @@ local t = { 1, 2, 3 }
 lume.push(t, 4, 5) -- `t` becomes { 1, 2, 3, 4, 5 }
 ```
 
+### lume.pop(t)
+> Pops off the last value in the table `t` (if its an array) and returns the value
+```lua
+local t = { 1, 2, 3 }
+lume.pop(t) -- returns 3 and t becomes { 1, 2 }
+```
+
 ### lume.remove(t, x)
 > Removes the first instance of the value `x` if it exists in the table `t`.  
 > Returns `x`.

@@ -25,14 +25,15 @@
 
 --[[
 
-    lume v3.1.0
+    lume v3.2.0
 
     Added:
     - lume.mapvalue() with inspiration from processing
     - lume.random() fix by idbrii (David Briscoe)
     - lume.approx() from pull request
-    - lume.highest() and lume.lowest()
+    - lume.max() and lume.min()
     - lume.deepclone()
+    - lume.pop()
     - lume.removeall() and lume.removeswap()
 
     Changed:
@@ -195,6 +196,15 @@ function lume.push(t, ...)
     return ...
 end
 
+function lume.pop(t)
+    if isarray(t) then
+        local x = t[#t]
+        t[#t] = nil
+        return x
+    end
+    return nil
+end
+
 function lume.remove(t, x)
     local iter = getiter(t)
     for i, v in iter(t) do
@@ -288,6 +298,22 @@ function lume.each(t, fn, ...)
     end
     return t
 end
+
+function lume.eachi(t, fn, ...)
+    local iter = getiter(t)
+    if type(fn) == "string" then
+        for _, v in iter(t) do
+            v[fn](v, ...)
+        end
+    else
+        for i, v in iter(t) do
+            fn(v, i, ...)
+        end
+    end
+    return t
+end
+
+
 
 function lume.map(t, fn)
     fn = iteratee(fn)
@@ -459,12 +485,12 @@ end
 
 function lume.last(t, n)
     if not n then
-        return t[#t]
+        return t[lume.count(t)]
     end
     return lume.slice(t, -n, -1)
 end
 
-function lume.highest(t)
+function lume.max(t)
     local max = -math.huge
     local iter = getiter(t)
     for _, v in iter(t) do
@@ -475,7 +501,7 @@ function lume.highest(t)
     return max
 end
 
-function lume.lowest(t)
+function lume.min(t)
     local min = math.huge
     local iter = getiter(t)
     for _, v in iter(t) do
