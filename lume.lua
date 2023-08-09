@@ -44,7 +44,7 @@
 
 ]]
 
-local lume = {_version = "3.1.0"}
+local lume = {_version = "3.2.0"}
 
 local pairs, ipairs = pairs, ipairs
 local type, assert, unpack = type, assert, table.unpack
@@ -185,7 +185,7 @@ function lume.any(t, fn)
 end
 
 function lume.isarray(x)
-    return type(x) == "table" and x[1] ~= nil
+    return type(x) == "table" and x[1] ~= nil and x[#x] ~= nil
 end
 
 function lume.push(t, ...)
@@ -197,7 +197,7 @@ function lume.push(t, ...)
 end
 
 function lume.pop(t)
-    if isarray(t) then
+    if lume.isarray(t) then
         local x = t[#t]
         t[#t] = nil
         return x
