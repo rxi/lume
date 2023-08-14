@@ -25,10 +25,11 @@
 
 --[[
 
-    lume v3.2.0
+    lume v3.2.1
 
     Added:
     - lume.mapvalue() with inspiration from processing
+    - lume.rerange() as better version of mapvalue
     - lume.random() fix by idbrii (David Briscoe)
     - lume.approx() from pull request
     - lume.max() and lume.min()
@@ -44,7 +45,7 @@
 
 ]]
 
-local lume = {_version = "3.2.0"}
+local lume = {_version = "3.2.1"}
 
 local pairs, ipairs = pairs, ipairs
 local type, assert, unpack = type, assert, table.unpack
@@ -110,6 +111,13 @@ end
 
 
 -- math functions
+
+function lume.rerange(v, a, b, c, d)
+    local result = c + (d - c) * ((v - a) / (b - a))
+    if result == (0/0) or type(result) ~= 'number' then result = 0 end
+    result = result < c and c or (result > d and d or result)
+    return result
+end
 
 function lume.mapvalue(value, start1, stop1, start2, stop2)
     return start2 + (stop2 - start2) * ((value - start1) / (stop1 - start1));
