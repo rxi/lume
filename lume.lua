@@ -328,7 +328,7 @@ function lume.map(t, fn)
     local iter = getiter(t)
     local rtn = {}
     for k, v in iter(t) do
-        rtn[k] = fn(v)
+        rtn[k] = fn(v, k)
     end
     return rtn
 end
