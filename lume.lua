@@ -132,7 +132,7 @@ end
 
 function lume.random(a, b)
   if not a then a, b = 0, 1 end
-  if not b then b = 0 end
+  if not b then a, b = 0, a end
   return a + math.random() * (b - a)
 end
 
