@@ -27,6 +27,12 @@ lume.round(2.3) -- Returns 2
 lume.round(123.4567, .1) -- Returns 123.5
 ```
 
+#### lume.maptoscale(x, inMin, inMax, outMin, outMax)
+Scales `x` from one range to another.
+```lua
+lume.maptoscale(0.75, 0, 1, -100, 100) -- Returns 50.0
+```
+
 #### lume.sign(x)
 Returns `1` if `x` is 0 or above, returns `-1` when `x` is negative.
 

@@ -90,6 +90,11 @@ function lume.round(x, increment)
 end
 
 
+function lume.maptoscale (x, inMin, inMax, outMin, outMax)
+  return (x - inMin) * (outMax - outMin) / (inMax - inMin) + outMin
+end
+
+
 function lume.sign(x)
   return x < 0 and -1 or 1
 end
