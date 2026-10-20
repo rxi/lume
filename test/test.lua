@@ -534,6 +534,16 @@ tests["lume.wordwrap"] = function()
   testeq( lume.wordwrap(str),     str )
   testeq( lume.wordwrap(str, 20), b   )
   testeq( lume.wordwrap(str, fn), b   )
+  testeq( lume.wordwrap("supercalifragilisticexpialidocious", 20),
+          "supercalifragilisticexpialidocious" )
+  testeq( lume.wordwrap("supercalifragilisticexpialidocious", fn),
+          "supercalifragilisticexpialidocious" )
+  testeq( lume.wordwrap("word", 4), "word" )
+  testeq( lume.wordwrap("longword next", 4), "longword \nnext" )
+  testeq( lume.wordwrap("a\nlongword", 4), "a\nlongword" )
+  testeq( lume.wordwrap("a\n\nlongword", 4), "a\n\nlongword" )
+  testeq( lume.wordwrap("longword\n", 4), "longword\n" )
+  testeq( lume.wordwrap("", 4), "" )
 end
 
 -- lume.format

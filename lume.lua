@@ -627,7 +627,7 @@ function lume.wordwrap(str, limit)
   local line = ""
   for word, spaces in str:gmatch("(%S+)(%s*)") do
     local s = line .. word
-    if check(s) then
+    if check(s) and line ~= "" then
       table.insert(rtn, line .. "\n")
       line = word
     else
